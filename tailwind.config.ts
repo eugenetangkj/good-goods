@@ -9,8 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "good-goods-blue": {
+          100: "#EEF9FF",
+          500: "#6CD0FF",
+          900: "#023047"
+        },
+        "good-goods-orange": {
+          900: "#FB8500"
+        }
       },
     },
   },
