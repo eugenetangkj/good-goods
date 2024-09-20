@@ -1,8 +1,7 @@
 import type { Metadata} from "next";
-import localFont from "next/font/local";
 import "./../globals.css";
 import { Inter } from "next/font/google";
-import { ThemeModeScript } from "flowbite-react";
+import Head from "next/head";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,13 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning lang="en">
-      <head>
-        <ThemeModeScript />
-      </head>
+    <html lang="en">
+      <Head>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+      </Head>
 
       <body className={`${inter.className} antialiased`}>
           {children}   
+          <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
       </body>
     </html>
   );

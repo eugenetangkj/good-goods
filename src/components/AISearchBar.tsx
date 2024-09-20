@@ -2,7 +2,6 @@
 
 import { FaArrowCircleUp } from "react-icons/fa";
 import { useState } from "react";
-import '../src/app/globals.css';
 
 //Constants
 const maxNumberOfCharacters = 100;
@@ -32,11 +31,11 @@ export function AISearchBar() {
     };
 
     return (
-        <div>
+        <div className='flex flex-col space-y-8'>
 
             <form className="flex flex-col gap-4 space-y-8" onSubmit={ handleSubmitQuery }>
                 <div>
-                    <div className="relative w-4/5 mx-auto">
+                    <div className="relative w-4/5">
                         {/* Input field */}
                         <input
                             className="block border border-gray-300 bg-white text-gray-900 text-lg focus:border-cyan-500 focus:ring-cyan-500 p-4 pr-12 rounded-full"
@@ -64,7 +63,7 @@ export function AISearchBar() {
             </form>
 
             {/* Suggested prompts */}
-            <div className='flex gap-x-4 space-x-8 mt-8' style={{ marginTop: "2rem"}}>
+            <div className='flex gap-x-4 space-x-6 mt-8'>
                 <div className='suggested-prompt px-4 py-2 rounded-full cursor-pointer duration-200 w-fit' onClick={() => setUserInput(promptOne)}>
                     <h6 className='font-bold' style={{ color: '#0369a1' }}>{ promptOne }</h6>
                 </div>

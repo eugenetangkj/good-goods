@@ -1,14 +1,12 @@
 import type { Config } from "tailwindcss";
 
-const flowbite = require("flowbite-react/tailwind");
-
 /** @type {import('tailwindcss').Config} */
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    flowbite.content(),
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
@@ -32,7 +30,7 @@ const config: Config = {
     },
   },
   plugins: [
-    flowbite.plugin(),
+    require('flowbite/plugin')
   ],
 };
 export default config;
