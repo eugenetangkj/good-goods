@@ -2,7 +2,7 @@
 function Footer() {
     // const emailAddress = "goodgoods975@gmail.com"
     return (
-        <footer className="bg-good-goods-blue-100">
+        <footer className="bg-good-goods-blue-100 mt-8 pl-4 pb-2">
             <div className="flex justify-start">
                 {/* Copyright Information */}
                 <span className="text-xs sm:text-sm sm:text-center text-good-goods-blue-900">© 2024 Good Goods. All Rights Reserved.

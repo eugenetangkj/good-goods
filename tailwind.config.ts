@@ -26,12 +26,14 @@ const config: Config = {
       },
       width: {
         'screen-4/5': '80vw',
+        '112': '28rem'
       },
       margin: {
-        '10vh': '10vh'
+        '15vh': '15vh'
       },
       inset: {
-        '0.7': '70%'
+        '0.7': '70%',
+        '0.9': '90%'
       }
     },
   },

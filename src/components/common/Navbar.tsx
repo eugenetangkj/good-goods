@@ -9,7 +9,7 @@ function Navbar() {
             <nav className="fixed w-full top-0 start-0 z-20 bg-good-goods-blue-100 p-8">         
                 <div className="flex flex-wrap items-center justify-between mx-auto p-4">  
                     {/* Good Goods Brand */}
-                    <span className="self-center text-xl sm:text-2xl font-semibold whitespace-nowrap text-good-goods-blue-900">🩵 Good Goods</span>
+                    <a href="/" className="self-center text-xl sm:text-2xl font-semibold whitespace-nowrap text-good-goods-blue-900">🩵 Good Goods</a>
 
                     {/* CTA and Mobile menu */}
                     <div className="flex md:hidden md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -30,7 +30,7 @@ function Navbar() {
                               navLinks.map((navLink) => {
                                   return (
                                     <li>
-                                      <a href={ navLink.route} key={ navLink.name } className="block py-2 px-3 rounded text-lg hover:bg-gray-100 md:hover:bg-transparent text-good-goods-blue-900 md:hover:text-sky-700 md:p-0 duration-200">{ navLink.name }</a>  
+                                      <a href={ navLink.route } key={ navLink.name } className="block py-2 px-3 rounded text-base lg:text-lg hover:bg-gray-100 md:hover:bg-transparent text-good-goods-blue-900 md:hover:text-sky-700 md:p-0 duration-200">{ navLink.name }</a>  
                                     </li>  
                                   );
                               })

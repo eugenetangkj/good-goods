@@ -8,6 +8,10 @@ export const navLinks =[
         route: '/businesses'
     },
     {
+        name: 'Campaigns',
+        route: '/campaigns'
+    },
+    {
         name: 'Recommend',
         route: '/recommend'
     },
