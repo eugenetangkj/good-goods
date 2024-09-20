@@ -25,11 +25,14 @@ const config: Config = {
         'screen-4/5': '80vh'
       },
       width: {
-        'screen-4/5': '80vw'
+        'screen-4/5': '80vw',
       },
       margin: {
         '10vh': '10vh'
       },
+      inset: {
+        '0.7': '70%'
+      }
     },
   },
   plugins: [
