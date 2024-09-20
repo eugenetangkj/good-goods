@@ -26,7 +26,10 @@ const config: Config = {
       },
       width: {
         'screen-4/5': '80vw'
-      }
+      },
+      margin: {
+        '10vh': '10vh'
+      },
     },
   },
   plugins: [
