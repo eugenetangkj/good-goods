@@ -2,6 +2,12 @@ import { AISearchBar } from "../../../components/AISearchBar";
 import { MenuNavbar } from "../../../components/common/MenuNavbar";
 
 export default function Home() {
+  const promptOne = "I want to buy flowers for my friend's birthday"
+const promptTwo = "I want to dine near Serangoon"
+
+
+
+
   return (
     <div className="bg-good-goods-blue-100 w-screen h-screen p-8">
       <MenuNavbar />

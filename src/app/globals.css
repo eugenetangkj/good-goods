@@ -25,3 +25,10 @@ body {
     text-wrap: balance;
   }
 }
+
+.suggested-prompt {
+  background-color: #bae6fd;
+}
+.suggested-prompt:hover {
+  background-color: #7dd3fc;
+}
