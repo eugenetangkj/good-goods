@@ -20,8 +20,8 @@ function RightDrawer() {
                 {
                     navLinks.map((navLink) => {
                         return (
-                            <li>
-                                <a href={ navLink.route } key={ navLink.name } className="block rounded-full text-center py-2 px-3 text-lg md:hover:bg-transparent text-good-goods-blue-900 hover:text-sky-700 md:p-0 duration-200">{ navLink.name }</a>
+                            <li key={ navLink.name }>
+                                <a href={ navLink.route } className="block rounded-full text-center py-2 px-3 text-lg md:hover:bg-transparent text-good-goods-blue-900 hover:text-sky-700 md:p-0 duration-200">{ navLink.name }</a>
                             </li>
                         );
                     })

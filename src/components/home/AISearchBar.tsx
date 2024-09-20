@@ -15,7 +15,7 @@ export function AISearchBar() {
     const [userInput, setUserInput] = useState('');
 
     //Handler function that runs when user's input in search bar changes
-    const handleInputChange = (event: any) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target;
       if (value.length <= maxNumberOfCharacters) {
         setUserInput(value);
@@ -25,7 +25,7 @@ export function AISearchBar() {
 
     //Function that runs when user submits query
     //TODO: Update this with AI processing
-    const handleSubmitQuery = (event: any) => {
+    const handleSubmitQuery = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();    
         console.log("Submitted query:", userInput);
     };
