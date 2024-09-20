@@ -1,19 +1,44 @@
 import type { Config } from "tailwindcss";
 
+/** @type {import('tailwindcss').Config} */
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "good-goods-blue": {
+          100: "#EEF9FF",
+          500: "#6CD0FF",
+          900: "#023047"
+        },
+        "good-goods-orange": {
+          900: "#FB8500"
+        }
       },
+      height: {
+        'screen-1/5': '20vh',
+        'screen-4/5': '80vh'
+      },
+      width: {
+        'screen-4/5': '80vw',
+        '112': '28rem'
+      },
+      margin: {
+        '15vh': '15vh'
+      },
+      inset: {
+        '0.7': '70%',
+        '0.9': '90%'
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 };
 export default config;
