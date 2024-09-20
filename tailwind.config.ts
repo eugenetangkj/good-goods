@@ -25,6 +25,9 @@ const config: Config = {
       height: {
         'screen-1/5': '20vh',
         'screen-4/5': '80vh'
+      },
+      width: {
+        'screen-4/5': '80vw'
       }
     },
   },
