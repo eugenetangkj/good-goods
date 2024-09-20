@@ -29,8 +29,8 @@ function Navbar() {
                           {
                               navLinks.map((navLink) => {
                                   return (
-                                    <li>
-                                      <a href={ navLink.route } key={ navLink.name } className="block py-2 px-3 rounded text-base lg:text-lg hover:bg-gray-100 md:hover:bg-transparent text-good-goods-blue-900 md:hover:text-sky-700 md:p-0 duration-200">{ navLink.name }</a>  
+                                    <li key={ navLink.name }>
+                                      <a href={ navLink.route } className="block py-2 px-3 rounded text-base lg:text-lg hover:bg-gray-100 md:hover:bg-transparent text-good-goods-blue-900 md:hover:text-sky-700 md:p-0 duration-200">{ navLink.name }</a>  
                                     </li>  
                                   );
                               })
