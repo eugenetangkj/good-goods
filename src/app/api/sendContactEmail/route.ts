@@ -1,5 +1,4 @@
-// pages/api/sendEmail.ts
-import { NextApiRequest, NextApiResponse } from 'next';
+//Route: /api/sendContactEmail
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 

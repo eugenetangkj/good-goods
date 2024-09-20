@@ -52,7 +52,7 @@ export function RecommendForm() {
     const handleSubmitQuery = async (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            let newMessage = "From: " + emailInput + "\n\n" + "Business to recommend: " + businessNameInput + "\n\n" + "Business Website/Location: " + businessContactInput;
+            const newMessage = "From: " + emailInput + "\n\n" + "Business to recommend: " + businessNameInput + "\n\n" + "Business Website/Location: " + businessContactInput;
             await sendEmail("Recommendation: " + businessNameInput, newMessage);
            
             //Reset fields
