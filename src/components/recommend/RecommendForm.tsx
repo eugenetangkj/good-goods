@@ -1,6 +1,8 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { EmailSuccessfulToast } from "./EmailSuccessfulToast";
+import { EmailUnsuccessfulToast } from "./EmailUnsuccessfulToast";
 
 
 //Form seen in recommendation page
@@ -12,8 +14,23 @@ export function RecommendForm() {
     const [businessNameInput, setBusinessNameInput] = useState('');
     //Business contact input value
     const [businessContactInput, setBusinessContactInput] = useState('');
+    
+
+    //Controls modal
+    const [shouldModalAppear, setShouldModalAppear] = useState(false);
+    const [shouldModalShowSuccess, setShouldModalShowSuccess] = useState<boolean>();
+    const timeoutDuration = 3000; //In ms
 
 
+    useEffect(() => {
+        if (shouldModalAppear) {
+            const timer = setTimeout(() => {
+                setShouldModalAppear(false);
+            }, timeoutDuration); // Adjust the delay as needed
+          
+            return () => clearTimeout(timer); // Clean up the timer on unmount
+        }
+    }, [shouldModalAppear])
 
 
 
@@ -30,79 +47,61 @@ export function RecommendForm() {
         setBusinessContactInput(event.target.value);
     };
 
-
-
-
-
+   
     //Function that runs when user submits recommendation form
     const handleSubmitQuery = async (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-          let newMessage = "From: " + emailInput + "\n\n" + businessNameInput + businessContactInput;
-          await sendEmail("subject", newMessage);
-        //   openModal("Message successfully sent! We will get in touch soon.");
+            let newMessage = "From: " + emailInput + "\n\n" + "Business to recommend: " + businessNameInput + "\n\n" + "Business Website/Location: " + businessContactInput;
+            await sendEmail("Recommendation: " + businessNameInput, newMessage);
+           
+            //Reset fields
+            setEmailInput("");
+            setBusinessNameInput("");
+            setBusinessContactInput("");
+            } catch (error) {
+                console.error("Error sending email:", error);
+                setShouldModalAppear(true);
+                setShouldModalShowSuccess(false);
+            }
+    };
 
-        //Reset fields
-        setEmailInput("");
-        setBusinessNameInput("");
-        setBusinessContactInput("");
-        } catch (error) {
-          console.error("Error sending email:", error);
-        //   openModal("We could not receive your message. Please try again.");
-        }
-      };
-
-
-
-
-      const sendEmail = async (subject: string, message: string) => {
+    
+    //Helper function that makes the API request
+    const sendEmail = async (subject: string, message: string) => {
         try {
             const response = await fetch("/api/sendContactEmail", {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ subject, message }),
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ subject, message }),
             });
-        
-            if (!response.ok) {
-            throw new Error(
-                `Email API request failed with status: ${response.status}`
-            );
-            }
-        
             const data = await response.json();
+
+            if (data.status !== 200) {
+                setShouldModalAppear(true);
+                setShouldModalShowSuccess(false);
+                throw new Error(
+                    `Email API request failed with status: ${response.status}`
+                );
+            }
+            setShouldModalAppear(true);
+            setShouldModalShowSuccess(true);
             console.log(data);
         } catch (error) {
+            setShouldModalAppear(true);
+            setShouldModalShowSuccess(false);
             console.log(error);
             throw new Error(`Error sending email: ${(error as Error).message}`);
         }
-        };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    };
 
 
     return (
-        <div className='flex flex-col space-y-8'>
-            <form className="flex flex-col w-3/4 2xl:w-1/2" onSubmit={ handleSubmitQuery }>
+            <div>
+            <form className="flex flex-col w-full sm:w-3/4 2xl:w-1/2" onSubmit={ handleSubmitQuery }>
+                
                 {/* Email field */}
                 <div className="mb-5">
                     <label htmlFor="email" className="block mb-2 font-medium text-gray-900">Your Email</label>
@@ -141,12 +140,17 @@ export function RecommendForm() {
                 </div>
 
                 {/* Submit button */}
-                <button type="submit" className="text-white bg-good-goods-blue-900 hover:bg-sky-700 rounded-full text-sm w-full sm:w-auto px-5 sm:px-16 py-2.5 text-center self-end duration-200">Submit</button>
+                <button type="submit" className="mt-4 text-white bg-good-goods-blue-900 hover:bg-sky-700 rounded-full text-sm w-full sm:w-auto px-5 sm:px-16 py-2.5 text-center self-end duration-200">Submit</button>
             </form>
 
 
-            
-
-        </div>
+            {shouldModalAppear && (
+               <div className="fixed z-10 inset-0 top-36 flex justify-center items-start">
+                <div>
+                    {shouldModalShowSuccess ? <EmailSuccessfulToast /> : <EmailUnsuccessfulToast />}
+                </div>
+             </div>
+            )}
+            </div>
     );
   }

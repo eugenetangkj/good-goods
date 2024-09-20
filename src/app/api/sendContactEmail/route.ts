@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
-      host: 'smpt.gmail.com',
+      host: 'smtp.gmail.com',
       secure: false,
       auth: {
         user: process.env.EMAIL_ADDRESS,
@@ -28,7 +28,6 @@ export async function POST(req: NextRequest) {
 
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent: ' + info.response);
-
     return NextResponse.json({ status: 200, message: 'Email sent successfully'})
   } catch (error) {
     console.error('Error sending email:', error);
