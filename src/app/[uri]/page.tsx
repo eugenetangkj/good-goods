@@ -1,7 +1,7 @@
 'use client';
 
 import enterprisesDetails from '../../constants/social_enterprises.json';
-import { useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 interface Enterprise {
@@ -25,12 +25,11 @@ function getEnterpriseByParam(param: string) {
 }
 
 function EnterprisePage() {
-    const searchParams = useSearchParams();
-    const enterpriseName = searchParams.get('name');
+    // Name of field (uri in this case) should be the same as the name of directory this file is in.
+    const enterpriseName = useParams()['uri'];
     const [enterprise, setEnterprise] = useState<Enterprise | null>(null);
 
     useEffect(() => {
-        console.log(enterpriseName);
         if (enterpriseName) {
             if (Array.isArray(enterpriseName)) {
                 setEnterprise(getEnterpriseByParam(enterpriseName[0]) || null);
