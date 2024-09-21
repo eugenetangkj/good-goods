@@ -2,6 +2,7 @@
     {
         "ID": 1, 
         "Enterprise Name": "Blind Spots", 
+        "URL Param": "blind_spots", 
         "Enterprise picture relative path": "images/enterprises/enterprise1.jpg",
         "Type of impact": ["Provision of employment opportunities", "Provision of skill development"], 
         "Detailed impact": "Blind Spots was founded by visionary entrepreneur Clair Voyant, who believed that the phrase “you can’t judge a driver by their vision” should be taken literally. After years of hearing that blind people couldn’t become taxi drivers, Clair said, “Hold my cane!” and launched Blind Spots—the world’s first taxi service run entirely by blind drivers.\nWith the motto, “Who needs sight when you’ve got insight?” Blind Spots empowers blind individuals to take the wheel (quite literally), challenging the norms of what it means to be a driver. The cars are equipped with cutting-edge Tactile Guidance Systems (TGS), combining advanced AI, sonar, and haptic feedback to help drivers feel the road. The technology provides subtle vibrations on the steering wheel and floor mats, guiding drivers around obstacles, traffic, and pedestrians like a real-life game of Marco Polo—only way safer!", 
@@ -9,13 +10,14 @@
         "Story picture relative path": "public/stories/story1.jpg", 
         "Format": "Physical", 
         "Location": ["Serangoon Central, 23, Singapore 556083", "21 Lower Kent Ridge Rd, Singapore 119077"], 
-        "Region(NSEW)": ["North-East", "West"], 
+        "Region": ["North-East", "West"], 
         "Type of goods offered": ["Taxi services", "Food delivery"],
         "Opening hours": "00:00 - 23:59"
     }, 
     {
         "ID": 2, 
         "Enterprise Name": "Sock exchange", 
+        "URL Param": "sock_exchange", 
         "Enterprise picture relative path": "", 
         "Type of impact": ["Provision of basic human needs", "Provision of products and services to improve the mental health & well-being"], 
         "Detailed impact": "In a world where lost socks have devastated laundry rooms and left countless feet unpaired, a group of visionaries saw an opportunity. Enter Sock Exchange—the world's first non-profit organization dedicated to reuniting lost socks with their long-lost partners.\nIt all started when the founder, Cotton von Woolworth, lost his favorite sock in a tragic dryer accident. Heartbroken and cold-footed, he vowed that no sock would ever be abandoned again. His team of Sock Brokers now operates globally, working day and night to find lonely socks and match them with compatible partners. Using cutting-edge AI and blockchain technology, Sock Exchange guarantees that every sock has a sole-mate.", 
@@ -23,8 +25,8 @@
         "Story picture relative path": "", 
         "Format": "Online", 
         "Location": [], 
-        "Region(NSEW)": [], 
+        "Region": [], 
         "Type of goods offered": ["Socks", "Shoes", "Charcoal shoe deodorizers", "Long legged socks", "Spikes"], 
-        "Opening hours if applicable": ""
+        "Opening hours": ""
     }
 ]
