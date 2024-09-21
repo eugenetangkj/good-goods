@@ -25,9 +25,23 @@ export function AISearchBar() {
 
     //Function that runs when user submits query
     //TODO: Update this with AI processing
-    const handleSubmitQuery = (event : React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitQuery = async(event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();    
         console.log("Submitted query:", userInput);
+        try {
+            console.log('About to make API call.')
+            const response = await fetch("/api/queryChatbot", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ question: userInput }), // Send the user input as the question
+            })
+            console.log (response)
+        }
+        catch{
+            console.log('Ran into an error.')
+        }
     };
 
     return (
