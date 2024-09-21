@@ -44,6 +44,7 @@ export function AISearchBar() {
                             placeholder="What goods or services are you looking for?"
                             value={userInput}
                             onChange={handleInputChange}
+                            style={{ paddingRight: '4rem' }}
                             required
                         />
 
