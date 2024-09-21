@@ -29,6 +29,7 @@ const config: Config = {
         '112': '28rem'
       },
       margin: {
+        '12.5vh': '12.5vh',
         '15vh': '15vh'
       },
       inset: {
