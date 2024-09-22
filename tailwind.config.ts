@@ -22,20 +22,27 @@ const config: Config = {
       },
       height: {
         'screen-1/5': '20vh',
-        'screen-4/5': '80vh'
+        'screen-4/5': '80vh',
+        '112': '28rem',
+        '128': '32rem'
       },
       width: {
         'screen-4/5': '80vw',
-        '112': '28rem'
+        '112': '28rem',
+        '128': '32rem'
       },
       margin: {
+        '10.vh': '10vh',
         '12.5vh': '12.5vh',
         '15vh': '15vh'
       },
       inset: {
         '0.7': '70%',
         '0.9': '90%'
-      }
+      },
+      screens: {
+        '2.5xl': '1700px'
+      },
     },
   },
   plugins: [
