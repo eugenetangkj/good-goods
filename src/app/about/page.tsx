@@ -69,7 +69,7 @@ export default function About() {
               Team behind Good Goods
             </h2>
             <p className="text-gray-700">
-              We are a team participating in Open Government Product's Build for
+              We are a team participating in Open Government Product&apos;s Build for
               Good Hackathon. We are hoping through Good Goods, we can raise
               awareness for social enterprises and provide support by making it
               easier for consumers to discover them.
