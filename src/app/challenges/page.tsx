@@ -15,7 +15,7 @@ export default function Challenges() {
             <div className='flex flex-col space-y-8'>
               {/* Upcoming and ongoing challenges  */}
               <h2 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Upcoming and Ongoing Challenges 🎯</h2>
-              <div className='grid w-full 2xl:w-3/4 2.5xl:w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2.5xl:grid-cols-3 gap-y-8'>
+              <div className='grid w-fit grid-cols-1 sm:grid-cols-2 2.5xl:grid-cols-3 gap-y-8 gap-x-8'>
                 {/* Iterate through upcoming and ongoing challenges*/}
                 {
                   upcomingOngoingChallengesData.map((challenge, index) => {
@@ -30,7 +30,7 @@ export default function Challenges() {
             {/* Past Challenges */}
             <div className='flex flex-col space-y-8'>
               <h2 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Past Challenges 💯</h2>
-              <div className='grid w-full 2xl:w-3/4 2.5xl:w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2.5xl:grid-cols-3 gap-y-8'>
+              <div className='grid w-fit grid-cols-1 sm:grid-cols-2 2.5xl:grid-cols-3 gap-y-8 gap-x-8'>
                 {/* Iterate through upcoming and ongoing challenges*/}
                 {
                   pastChallengesData.length === 0

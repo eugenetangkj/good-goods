@@ -13,7 +13,7 @@ interface ChallengeCardProps {
 
 function ChallengeCard(challenge: ChallengeCardProps) {
     return (
-        <div className="bg-white border border-gray-200 rounded-2xl shadow w-full md:w-80 md:h-112 lg:w-72 lg:h-112 xl:w-128 xl:h-72 px-4 py-4 xl:py-2 flex flex-col sm:flex-row md:flex-col xl:flex-row items-center xl:space-x-2">
+        <div className="bg-white border border-gray-200 rounded-2xl shadow w-full px-4 py-4 xl:py-2 xl:w-128 xl:h-72 flex flex-col md:flex-col xl:flex-row items-center xl:space-x-2">
             <Image
                 src={ challenge.imageLink }
                 alt={ challenge.title }
