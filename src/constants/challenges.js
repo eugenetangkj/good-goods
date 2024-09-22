@@ -10,3 +10,30 @@ export const upcomingOngoingChallengesData =[
 
 export const pastChallengesData = [
 ];
+
+export const tasteOfGoodnessBrands = [
+    {
+        imageLink: '/assets/brands/artease.png',
+        title: 'Artease Cafe',
+    },
+    {
+        imageLink: '/assets/brands/project-dignity.png',
+        title: 'Project Dignity',
+    },
+    {
+        imageLink: '/assets/brands/crossings-cafe.png',
+        title: 'Crossings Cafe',
+    },
+    {
+        imageLink: '/assets/brands/don8uri.png',
+        title: 'Don8uri',
+    },
+    {
+        imageLink: '/assets/brands/social-space.png',
+        title: 'Social Space',
+    },
+    {
+        imageLink: '/assets/brands/soul-food.png',
+        title: 'Social Food',
+    }
+]

@@ -24,7 +24,7 @@ function ChallengeCard(challenge: ChallengeCardProps) {
             <div className="p-2 flex flex-col space-y-4">
                 <div>
                     <h5 className="mb-2 text-xl sm:text-2xl font-semibold text-good-goods-blue-900">{ challenge.title }</h5>
-                    <div className='bg-sky-200 rounded-full p-2 w-fit h-fit'>
+                    <div className='bg-sky-200 rounded-full p-2 px-4 w-fit h-fit'>
                         <h6 className="font-semibold text-sm tracking-tight text-good-goods-blue-900">{ challenge.period }</h6> 
                     </div>
                 </div>
