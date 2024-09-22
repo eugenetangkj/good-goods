@@ -117,7 +117,7 @@ function EnterprisePage() {
                     </div>
 
                     {/* Enterprise Impact */}
-                    <p className='text-good-goods-blue-900 text-l sm:text-2xl lg:text-3xl' style={{ textAlign: 'justify' }}>
+                    <p className='text-good-goods-blue-900 text-l sm:text-xl lg:text-2xl' style={{ textAlign: 'justify' }}>
                         {enterprise['Detailed impact'].split('\n').map((line, index) => (
                             <span key={index}>{line}<br /><br /></span>
                         ))}
