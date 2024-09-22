@@ -34,7 +34,8 @@ function EnterprisePage() {
     const enterpriseName = useParams()['uri'];
     const [loading, setLoading] = useState(true);
     const [enterprise, setEnterprise] = useState<Enterprise | null>(null);
-    const [imageError, setImageError] = useState(false);
+    const [enterpriseImageError, setenterpriseImageError] = useState(false);
+    const [storyImageError, setStoryImageError] = useState(false);
     const [truncatedGoods, setTruncatedGoods] = useState<string[]>([]);
 
     useEffect(() => {
@@ -56,7 +57,7 @@ function EnterprisePage() {
             <div className='flex flex-col justify-center p-4 space-y-16 mt-15vh'>
                 <div className='flex flex-col justify-center space-y-8'>
                     {/* Enterprise Image */}
-                    {enterprise["Enterprise picture relative path"] && !imageError && 
+                    {enterprise["Enterprise picture relative path"] && !enterpriseImageError && 
                     <a href={enterprise['Website']} className='relative w-full h-96 overflow-hidden rounded-lg'>
                     <Image 
                             src={enterprise["Enterprise picture relative path"]}
@@ -66,7 +67,7 @@ function EnterprisePage() {
                             style={{ objectFit: 'cover' }}
                             onError = {() => {
                                 console.log('Enterprise pictuure reelative path invalid.');
-                                setImageError(true);
+                                setenterpriseImageError(true);
                             }}
                     />
                     </a>}
@@ -119,20 +120,35 @@ function EnterprisePage() {
                             <span key={index}>{line}<br /><br /></span>
                         ))}
                     </p>
+
                     {/* Visit Line */}
-                    <p className='text-good-goods-blue-900'>
-                        Visit <a href={enterprise['Website']} className='text-blue-500 underline'>{enterprise['Enterprise Name']}</a> now!
+                    <p className='text-good-goods-blue-900 text-m sm:text-xl lg:text-2xl'>
+                        Visit <a href={enterprise['Website']} className='text-blue-500 underline text-m sm:text-xl lg:text-2xl'>{enterprise['Enterprise Name']}</a> now!
                     </p>
 
-                    {/* Render Locations with Opening Hours */}
-                    <div className='space-y-1'>
-                        {enterprise["Location"].map((location, index) => (
-                            <EnterpriseLocation 
-                                key={index} 
-                                address={location} 
-                                openingHours={enterprise["Opening hours"][index]} 
-                            />
-                        ))}
+                    <p className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Meet our staff!</p>
+
+                    {/* Enterprise Story Container */}
+                    <div className="flex flex-col md:flex-row items-start">
+                        <div className="flex-1 md:w-1/2">
+                            <p className='text-good-goods-blue-900 text-m sm:text-l lg:text-xl'>
+                                {enterprise['Story'].split('\n').map((line, index) => (
+                                    <span key={index}>{line}<br /><br /></span>
+                                ))}
+                            </p>
+                        </div>
+                        {enterprise['Story picture relative path'] && !storyImageError &&
+                            <div className="flex-none md:w-1/2 h-96 relative">
+                                <Image 
+                                    src={enterprise['Story picture relative path']}
+                                    alt={`Image of employee for ${enterprise['Enterprise Name']}`}
+                                    className='object-cover rounded-lg'
+                                    fill
+                                    style={{ borderRadius: '0.5rem' }}
+                                    onError={() => setStoryImageError(true)}
+                                />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>}
