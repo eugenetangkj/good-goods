@@ -41,6 +41,7 @@ const config: Config = {
         '0.9': '90%'
       },
       screens: {
+        'xs': '400px',
         '2.5xl': '1700px'
       },
     },
