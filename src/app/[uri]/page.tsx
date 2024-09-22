@@ -83,6 +83,8 @@ function EnterprisePage() {
                                 overflow: 'hidden', 
                                 textOverflow: 'ellipsis', 
                                 maxWidth: '100%', 
+                                lineHeight: '1.2', 
+                                padding: '0.25rem 0'
                             }}
                         >
                             {enterprise['Enterprise Name']}
@@ -137,7 +139,7 @@ function EnterprisePage() {
                                 ))}
                             </p>
                         </div>
-                        {enterprise['Story picture relative path'] && !storyImageError &&
+                        {enterprise['Story picture relative path'] && !storyImageError ? (
                             <div className="flex-none md:w-1/2 h-96 relative">
                                 <Image 
                                     src={enterprise['Story picture relative path']}
@@ -148,8 +150,11 @@ function EnterprisePage() {
                                     onError={() => setStoryImageError(true)}
                                 />
                             </div>
-                        }
+                        ) : (
+                            <div className="flex-none md:w-1/2" style={{ minHeight: '24rem' }} />
+                        )}
                     </div>
+                    
                 </div>
             </div>}
             <Footer />
