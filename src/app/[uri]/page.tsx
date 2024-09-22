@@ -96,7 +96,7 @@ function EnterprisePage() {
                         {enterprise["Format"].includes("Physical") && (
                             <span 
                                 className="bg-green-100 text-green-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300"
-                                onClick={() => document.getElementById('goods-section')?.scrollIntoView({ behavior: 'smooth' })} // Scroll to Locations section
+                                onClick={() => document.getElementById('goods-section')?.scrollIntoView({ behavior: 'smooth' })}
                             >
                                 Physical
                             </span>
@@ -132,6 +132,7 @@ function EnterprisePage() {
                         {enterprise["Location"].map((location, index) => (
                             <EnterpriseLocation 
                                 key={index} 
+                                name={enterprise["Enterprise Name"]}
                                 address={location} 
                                 openingHours={enterprise["Opening hours"][index]} 
                             />

@@ -1,5 +1,5 @@
-export default function EnterpriseLocation({ address, openingHours }: { address: string; openingHours: string }) {
-    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+export default function EnterpriseLocation({ name, address, openingHours }: { name: string, address: string; openingHours: string }) {
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + " " + address)}`;
 
     return (
         <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className="block p-4 border border-good-goods-blue-300 rounded-lg hover:bg-blue-50 transition">

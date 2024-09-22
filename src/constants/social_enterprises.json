@@ -1,7 +1,7 @@
 [
     {
         "ID": 1, 
-        "Enterprise Name": "Blind Spots", 
+        "Enterprise Name": "18 Chefs", 
         "URL Param": "blind_spots", 
         "Enterprise picture relative path": "/images/enterprises/enterprise1.jpg",
         "Type of impact": ["Provision of employment opportunities", "Provision of skill development"], 
@@ -9,11 +9,11 @@
         "Story": "Gary Johnson had always dreamed of driving, despite being blind from birth. When he discovered Blind Spots, a taxi service for blind drivers using cutting-edge Tactile Guidance Systems (TGS), his life changed. After completing the intensive training, Gary became a certified driver, mastering the art of navigating through vibrations and sound cues. His first passenger, initially doubtful, was blown away by Gary's skill and humor, especially when he took a smooth detour through city traffic, proving that sight wasn’t necessary to be a great driver.\nGary quickly gained a reputation as the go-to driver in town, offering not just rides, but inspiration. His car became a beacon of hope, particularly for other blind individuals, showing them that limitations were just in the mind. Today, Gary is a local legend, using his driving skills and humor to inspire others to challenge what’s possible—one ride at a time.", 
         "Story picture relative path": "/images/stories/story1.jpg", 
         "Format": ["Physical", "Online"], 
-        "Location": ["Serangoon Central, 23, Singapore 556083", "21 Lower Kent Ridge Rd, Singapore 119077"], 
+        "Location": ["3155 Commonwealth Ave W #05-16/17 Singapore 129588", "200 Victoria Street #04-06 Singapore 188021"], 
         "Region": ["North-East", "West"], 
         "Type of goods offered": ["Taxi services", "Food delivery", "hahahahahhahahahhahahhahahahhaah", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"],
         "Opening hours": ["00:00 - 23:59", "08:00 - 20:00"], 
-        "Website": "https://www.google.com"
+        "Website": "https://www.eighteenchefs.com/"
     }, 
     {
         "ID": 2, 
