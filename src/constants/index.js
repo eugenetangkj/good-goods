@@ -8,8 +8,8 @@ export const navLinks =[
         route: '/businesses'
     },
     {
-        name: 'Campaigns',
-        route: '/campaigns'
+        name: 'Challenges',
+        route: '/challenges'
     },
     {
         name: 'Recommend',
