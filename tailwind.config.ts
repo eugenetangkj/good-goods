@@ -17,6 +17,8 @@ const config: Config = {
           900: "#023047"
         },
         "good-goods-orange": {
+          500: "#FFB703",
+          800: "#F8A74A",
           900: "#FF9B29"
         }
       },

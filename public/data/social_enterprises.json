@@ -1,0 +1,200 @@
+[
+    {
+        "storeName": "Green Eats",
+        "location": "San Francisco, CA",
+        "typeOfStore": "Restaurant",
+        "typeOfGoodsOffered": "Organic food"
+    },
+    {
+        "storeName": "Tech Toys",
+        "location": "New York, NY",
+        "typeOfStore": "Electronics",
+        "typeOfGoodsOffered": "Gadgets and toys"
+    },
+    {
+        "storeName": "Fashion Forward",
+        "location": "Los Angeles, CA",
+        "typeOfStore": "Clothing",
+        "typeOfGoodsOffered": "Sustainable fashion"
+    },
+    {
+        "storeName": "Book Haven",
+        "location": "Seattle, WA",
+        "typeOfStore": "Bookstore",
+        "typeOfGoodsOffered": "Books and stationery"
+    },
+    {
+        "storeName": "Home Essentials",
+        "location": "Chicago, IL",
+        "typeOfStore": "Home goods",
+        "typeOfGoodsOffered": "Household items"
+    },
+    {
+        "storeName": "Pet Paradise",
+        "location": "Miami, FL",
+        "typeOfStore": "Pet store",
+        "typeOfGoodsOffered": "Pet supplies"
+    },
+    {
+        "storeName": "Crafty Corner",
+        "location": "Portland, OR",
+        "typeOfStore": "Craft store",
+        "typeOfGoodsOffered": "Art supplies"
+    },
+    {
+        "storeName": "Gourmet Bites",
+        "location": "Austin, TX",
+        "typeOfStore": "Grocery",
+        "typeOfGoodsOffered": "Specialty foods"
+    },
+    {
+        "storeName": "Fitness Fusion",
+        "location": "Denver, CO",
+        "typeOfStore": "Fitness center",
+        "typeOfGoodsOffered": "Workout gear"
+    },
+    {
+        "storeName": "Beauty Bliss",
+        "location": "Boston, MA",
+        "typeOfStore": "Beauty salon",
+        "typeOfGoodsOffered": "Cosmetics"
+    },
+    {
+        "storeName": "Vintage Vibes",
+        "location": "Nashville, TN",
+        "typeOfStore": "Antique shop",
+        "typeOfGoodsOffered": "Vintage items"
+    },
+    {
+        "storeName": "Eco-Wares",
+        "location": "San Diego, CA",
+        "typeOfStore": "Retail",
+        "typeOfGoodsOffered": "Sustainable products"
+    },
+    {
+        "storeName": "Travel Essentials",
+        "location": "Orlando, FL",
+        "typeOfStore": "Travel shop",
+        "typeOfGoodsOffered": "Luggage and accessories"
+    },
+    {
+        "storeName": "Toy Kingdom",
+        "location": "Phoenix, AZ",
+        "typeOfStore": "Toy store",
+        "typeOfGoodsOffered": "Toys and games"
+    },
+    {
+        "storeName": "Floral Dreams",
+        "location": "San Jose, CA",
+        "typeOfStore": "Florist",
+        "typeOfGoodsOffered": "Flowers and gifts"
+    },
+    {
+        "storeName": "Brewed Awakenings",
+        "location": "Philadelphia, PA",
+        "typeOfStore": "Café",
+        "typeOfGoodsOffered": "Coffee and pastries"
+    },
+    {
+        "storeName": "Health Hub",
+        "location": "Atlanta, GA",
+        "typeOfStore": "Health food store",
+        "typeOfGoodsOffered": "Nutritional supplements"
+    },
+    {
+        "storeName": "Artisan Bakery",
+        "location": "Kansas City, MO",
+        "typeOfStore": "Bakery",
+        "typeOfGoodsOffered": "Baked goods"
+    },
+    {
+        "storeName": "Outdoor Adventures",
+        "location": "Salt Lake City, UT",
+        "typeOfStore": "Outdoor gear",
+        "typeOfGoodsOffered": "Camping and hiking gear"
+    },
+    {
+        "storeName": "Gadget Galaxy",
+        "location": "Baltimore, MD",
+        "typeOfStore": "Electronics",
+        "typeOfGoodsOffered": "Tech gadgets"
+    },
+    {
+        "storeName": "Kids' Zone",
+        "location": "Indianapolis, IN",
+        "typeOfStore": "Children's store",
+        "typeOfGoodsOffered": "Kids' clothing and toys"
+    },
+    {
+        "storeName": "Homegrown Harvest",
+        "location": "Milwaukee, WI",
+        "typeOfStore": "Farmers market",
+        "typeOfGoodsOffered": "Fresh produce"
+    },
+    {
+        "storeName": "Digital Hub",
+        "location": "Cincinnati, OH",
+        "typeOfStore": "Tech store",
+        "typeOfGoodsOffered": "Computers and accessories"
+    },
+    {
+        "storeName": "Pet Pals",
+        "location": "Las Vegas, NV",
+        "typeOfStore": "Pet grooming",
+        "typeOfGoodsOffered": "Grooming services"
+    },
+    {
+        "storeName": "Wholesome Pantry",
+        "location": "Dallas, TX",
+        "typeOfStore": "Grocery",
+        "typeOfGoodsOffered": "Organic food"
+    },
+    {
+        "storeName": "Fitness Gear",
+        "location": "Fort Worth, TX",
+        "typeOfStore": "Sporting goods",
+        "typeOfGoodsOffered": "Athletic apparel"
+    },
+    {
+        "storeName": "Knit & Purl",
+        "location": "Tampa, FL",
+        "typeOfStore": "Craft store",
+        "typeOfGoodsOffered": "Yarn and knitting supplies"
+    },
+    {
+        "storeName": "Sweets & Treats",
+        "location": "Raleigh, NC",
+        "typeOfStore": "Candy store",
+        "typeOfGoodsOffered": "Confectionery"
+    },
+    {
+        "storeName": "Healthy Harvest",
+        "location": "Virginia Beach, VA",
+        "typeOfStore": "Health food store",
+        "typeOfGoodsOffered": "Natural products"
+    },
+    {
+        "storeName": "Art & Soul",
+        "location": "Atlanta, GA",
+        "typeOfStore": "Art gallery",
+        "typeOfGoodsOffered": "Art pieces"
+    },
+    {
+        "storeName": "Bicycle Bazaar",
+        "location": "Salt Lake City, UT",
+        "typeOfStore": "Bicycle shop",
+        "typeOfGoodsOffered": "Bikes and accessories"
+    },
+    {
+        "storeName": "Stitch & Craft",
+        "location": "Boston, MA",
+        "typeOfStore": "Fabric store",
+        "typeOfGoodsOffered": "Sewing supplies"
+    },
+    {
+        "storeName": "Nature's Gifts",
+        "location": "Denver, CO",
+        "typeOfStore": "Gift shop",
+        "typeOfGoodsOffered": "Natural products"
+    }
+]
