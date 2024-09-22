@@ -133,14 +133,14 @@ function EnterprisePage() {
                     {/* Enterprise Story Container */}
                     <div className="flex flex-col md:flex-row items-start">
                         <div className="flex-1 md:w-1/2">
-                            <p className='text-good-goods-blue-900 text-m sm:text-l lg:text-xl'>
+                            <p className='text-good-goods-blue-900 text-m sm:text-l lg:text-xl' style={{ textAlign: 'justify' }}>
                                 {enterprise['Story'].split('\n').map((line, index) => (
                                     <span key={index}>{line}<br /><br /></span>
                                 ))}
                             </p>
                         </div>
                         {enterprise['Story picture relative path'] && !storyImageError ? (
-                            <div className="flex-none md:w-1/2 h-96 relative">
+                            <div className="flex-none md:w-1/2 h-96 relative ml-4"> 
                                 <Image 
                                     src={enterprise['Story picture relative path']}
                                     alt={`Image of employee for ${enterprise['Enterprise Name']}`}
@@ -154,7 +154,19 @@ function EnterprisePage() {
                             <div className="flex-none md:w-1/2" style={{ minHeight: '24rem' }} />
                         )}
                     </div>
-                    
+
+                    {/* Areas of Impact Section */}
+                    <div className="mt-8">
+                        <h2 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>
+                            What we do
+                        </h2>
+                        <ul className="list-disc pl-5 mt-2 text-good-goods-blue-900 text-lg sm:text-xl lg:text-2xl">
+                            {enterprise["Type of impact"].map((impact, index) => (
+                                <li key={index}>{impact}</li>
+                            ))}
+                        </ul>
+                    </div>
+
                 </div>
             </div>}
             <Footer />
