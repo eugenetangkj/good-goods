@@ -1,5 +1,6 @@
 import { ChatOpenAI } from '@langchain/openai';
 import { PromptTemplate } from '@langchain/core/prompts';
+// import { JSONLoader } from "langchain/document_loaders/fs/json";
 
 // Define type for social enterprise data
 interface SocialEnterprise {

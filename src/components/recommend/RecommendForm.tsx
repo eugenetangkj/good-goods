@@ -10,10 +10,10 @@ export function RecommendForm() {
 
     //Email input value
     const [emailInput, setEmailInput] = useState('');
-    //Business name input value
-    const [businessNameInput, setBusinessNameInput] = useState('');
-    //Business contact input value
-    const [businessContactInput, setBusinessContactInput] = useState('');
+    //Enterprise name input value
+    const [enterpriseNameInput, setBusinessNameInput] = useState('');
+    //Enterprise contact input value
+    const [enterpriseContactInput, setBusinessContactInput] = useState('');
     
 
     //Controls modal
@@ -52,8 +52,8 @@ export function RecommendForm() {
     const handleSubmitQuery = async (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const newMessage = "From: " + emailInput + "\n\n" + "Business to recommend: " + businessNameInput + "\n\n" + "Business Website/Location: " + businessContactInput;
-            await sendEmail("Recommendation: " + businessNameInput, newMessage);
+            const newMessage = "From: " + emailInput + "\n\n" + "Enterprise to recommend: " + enterpriseNameInput + "\n\n" + "Enterprise Website/Location: " + enterpriseContactInput;
+            await sendEmail("Recommendation: " + enterpriseNameInput, newMessage);
            
             //Reset fields
             setEmailInput("");
@@ -114,26 +114,26 @@ export function RecommendForm() {
                     />
                 </div>
 
-                {/* Name of business */}
+                {/* Name of enterprise */}
                 <div className="mb-5">
-                    <label htmlFor="nameOfBusiness" className="block mb-2 font-medium text-gray-900">Name of Business</label>
+                    <label htmlFor="nameOfEnterprise" className="block mb-2 font-medium text-gray-900">Name of Enterprise</label>
                     <input type="text"
-                        id="nameOfBusiness"
+                        id="nameOfEnterprise"
                         className="bg-white border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5 px-3 "
-                        value={ businessNameInput }
+                        value={ enterpriseNameInput }
                         onChange={ handleBusinessNameInputChange }
                         required
                     />
                 </div>
 
 
-                {/* Business Contact */}
+                {/* Enterprise Contact */}
                 <div className="mb-5">
-                    <label htmlFor="businessContact" className="block mb-2 font-medium text-gray-900">Website/Location of Business</label>
+                    <label htmlFor="enterpriseContact" className="block mb-2 font-medium text-gray-900">Website/Location of Enterprise</label>
                     <input type="text"
-                        id="businessContact"
+                        id="enterpriseContact"
                         className="bg-white border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5 px-3 "
-                        value={ businessContactInput }
+                        value={ enterpriseContactInput }
                         onChange={ handleBusinessContactInputChange }
                         required
                     />
