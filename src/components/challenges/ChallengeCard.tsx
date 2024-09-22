@@ -29,7 +29,7 @@ function ChallengeCard(challenge: ChallengeCardProps) {
                     </div>
                 </div>
  
-                <p className="text-sm text-gray-600 ">{ challenge.description }.</p>
+                <p className="text-sm text-gray-600 ">{ challenge.description }</p>
                 <a href={ challenge.route } className='w-full'>
                     <button className='rounded-full w-full text-sm xl:text-base text-semibold text-white bg-good-goods-blue-900 hover:bg-sky-800 py-2 px-4 duration-200'>Learn more</button>
                 </a>
