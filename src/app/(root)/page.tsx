@@ -11,7 +11,7 @@ export default function Home() {
         {/* Body */}
         <div className='flex flex-col justify-center p-4 space-y-16 mt-12.5vh'>
           <div className='flex flex-col justify-center space-y-8'>
-            <h2 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Discover Socially Conscious Businesses</h2>
+            <h2 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Discover Social Enterprises</h2>
             <AISearchBar />
           </div>
 
