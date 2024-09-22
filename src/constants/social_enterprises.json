@@ -10,7 +10,7 @@
         "Story picture relative path": "/images/stories/story1.jpg", 
         "Format": ["Physical", "Online"], 
         "Location": ["3155 Commonwealth Ave W #05-16/17 Singapore 129588", "200 Victoria Street #04-06 Singapore 188021"], 
-        "Region": ["North-East", "West"], 
+        "Region": ["North", "South", "East", "West", "North-East", "North-West", "South-East", "South-West"], 
         "Type of goods offered": ["Taxi services", "Food delivery", "hahahahahhahahahhahahhahahahhaah", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"],
         "Opening hours": ["00:00 - 23:59", "08:00 - 20:00"], 
         "Website": "https://www.eighteenchefs.com/"
