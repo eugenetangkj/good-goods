@@ -12,7 +12,7 @@
         "Location": ["Serangoon Central, 23, Singapore 556083", "21 Lower Kent Ridge Rd, Singapore 119077"], 
         "Region": ["North-East", "West"], 
         "Type of goods offered": ["Taxi services", "Food delivery"],
-        "Opening hours": "00:00 - 23:59"
+        "Opening hours": ["00:00 - 23:59", "08:00 - 20:00"]
     }, 
     {
         "ID": 2, 
@@ -27,6 +27,6 @@
         "Location": [], 
         "Region": [], 
         "Type of goods offered": ["Socks", "Shoes", "Charcoal shoe deodorizers", "Long legged socks", "Spikes"], 
-        "Opening hours": ""
+        "Opening hours": []
     }
 ]
