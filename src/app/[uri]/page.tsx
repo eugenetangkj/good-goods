@@ -17,7 +17,7 @@ interface Enterprise {
     "Detailed impact": string;
     "Story": string;
     "Story picture relative path": string;
-    "Format": string;
+    "Format": string[];
     "Location": string[];
     "Region": string[];
     "Type of goods offered": string[];
@@ -91,8 +91,30 @@ function EnterprisePage() {
                         </a>
                     </div>
 
+                    {/* Enterprise Stores */}
+                    <div className="flex space-x-2">
+                        {enterprise["Format"].includes("Physical") && (
+                            <span 
+                                className="bg-green-100 text-green-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300"
+                                onClick={() => document.getElementById('goods-section')?.scrollIntoView({ behavior: 'smooth' })} // Scroll to Locations section
+                            >
+                                Physical
+                            </span>
+                        )}
+                        {enterprise["Format"].includes("Online") && (
+                            <a 
+                                href={enterprise['Website']} 
+                                rel="noopener noreferrer"
+                                className="bg-yellow-100 text-yellow-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300"
+                            >
+                                Online
+                            </a>
+                        )}
+                    </div>
+
+
                     {/* Enterprise Goods */}
-                    <div className="flex flex-wrap max-w-[75%]">
+                    <div id='goods-section' className="flex flex-wrap max-w-[75%]">
                         {truncatedGoods.map((good, index) => (
                             <span 
                                 key={index} 
@@ -106,7 +128,7 @@ function EnterprisePage() {
                     </div>
                     
                     {/* Render Locations with Opening Hours */}
-                    <div className='space-y-1'>
+                    <div id="locations-section" className='space-y-1'>
                         {enterprise["Location"].map((location, index) => (
                             <EnterpriseLocation 
                                 key={index} 
