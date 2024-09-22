@@ -4,10 +4,6 @@ export const navLinks =[
         route: '/about'
     },
     {
-        name: 'Businesses',
-        route: '/businesses'
-    },
-    {
         name: 'Challenges',
         route: '/challenges'
     },
