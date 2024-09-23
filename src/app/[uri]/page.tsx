@@ -58,7 +58,7 @@ function EnterprisePage() {
             <div className='flex flex-col justify-center p-4 space-y-16 mt-15vh'>
                 <div className='flex flex-col justify-center space-y-8'>
                     {/* Enterprise Image */}
-                    {enterprise["Enterprise picture relative path"] && !enterpriseImageError && 
+                    {/* {enterprise["Enterprise picture relative path"] && !enterpriseImageError && 
                     <a href={enterprise['Website']} className='relative w-full h-96 overflow-hidden rounded-lg'>
                     <Image 
                             src={enterprise["Enterprise picture relative path"]}
@@ -67,118 +67,197 @@ function EnterprisePage() {
                             fill
                             style={{ objectFit: 'cover' }}
                             onError = {() => {
-                                console.log('Enterprise pictuure reelative path invalid.');
+                                console.log('Enterprise picture relative path invalid.');
                                 setenterpriseImageError(true);
                             }}
                     />
-                    </a>}
+                    </a>} */}
 
-                    {/* Enterprise Name */}
-                    <div>
-                        <a 
-                            href={enterprise['Website']} 
-                            className='text-good-goods-blue-900 font-semibold text-4xl sm:text-5xl lg:text-6xl'
-                            style={{ 
-                                display: 'inline-block', 
-                                whiteSpace: 'nowrap',  
-                                overflow: 'hidden', 
-                                textOverflow: 'ellipsis', 
-                                maxWidth: '100%', 
-                                lineHeight: '1.2', 
-                                padding: '0.25rem 0'
-                            }}
-                        >
-                            {enterprise['Enterprise Name']}
-                        </a>
+                    {/* Enterprise Information */}
+                    <div className='flex flex-col justify-center space-y-8'>
+                        <div className='flex flex-row justify-between'>
+                            {/* Name and website */}
+                            <h1 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>{enterprise['Enterprise Name']}</h1>
+                            <a href={enterprise['Website']} className='w-fit' target='_blank'>
+                                <button className='rounded-full w-full text-semibold text-sm md:text-base text-white bg-good-goods-blue-900 hover:bg-sky-700 py-2 px-8 duration-200'>Visit Site</button>
+                            </a>
+                        </div>
+
+                        {/* Location */}
+                        <div className='flex flex-row justify-start flex-wrap gap-y-2'>
+                            {enterprise["Format"].includes("Physical") && (
+                                <span className="bg-sky-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                    Physical
+                                </span>
+                            )}
+
+                            {enterprise["Format"].includes("Online") && (
+                                <span className="bg-sky-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                 Online
+                                </span> 
+                            )}
+
+                            {/* Enterprise Regions */}
+                            {enterprise["Region"].includes("North") && 
+                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                    North
+                                </span>
+                            }
+
+                            {enterprise["Region"].includes("South") && 
+                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                    South
+                                </span>
+                            }
+
+                            {enterprise["Region"].includes("East") && 
+                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                    East
+                                </span>
+                            }
+
+                            {enterprise["Region"].includes("West") && 
+                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                    West
+                                </span>
+                            }
+
+                            {enterprise["Region"].includes("North-East") && 
+                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                    North-East
+                                </span>
+                            }
+
+                            {enterprise["Region"].includes("North-West") && 
+                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                    North-West
+                                </span>
+                            }
+
+                            {enterprise["Region"].includes("South-East") && 
+                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                    South-East
+                                </span>
+                            }
+
+                            {enterprise["Region"].includes("South-West") && 
+                               <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                    South-West
+                                </span>
+                            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+                        
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     {/* Enterprise Stores */}
                     <div className="flex space-x-2">
-                        {enterprise["Format"].includes("Physical") && (
-                            <span 
-                                className="bg-indigo-100 text-indigo-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-indigo-900 dark:text-indigo-300"
-                                onClick={() => document.getElementById('goods-section')?.scrollIntoView({ behavior: 'smooth' })}
-                            >
-                                Physical
-                            </span>
-                        )}
-
-                        {enterprise["Format"].includes("Online") && (
-                            <a 
-                                href={enterprise['Website']} 
-                                rel="noopener noreferrer"
-                                className="bg-gray-100 text-gray-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-900 dark:text-gray-300"
-                            >
-                                Online
-                            </a>
-                        )}
-
-                        {/* Enterprise Regions */}
-                        {enterprise["Region"].includes("North") && 
-                            <span 
-                                className="bg-red-100 text-red-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300"
-                            >
-                                North
-                            </span>
-                        }
-
-                        {enterprise["Region"].includes("South") && 
-                            <span 
-                                className="bg-red-100 text-red-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300"
-                            >
-                                South
-                            </span>
-                        }
-
-                        {enterprise["Region"].includes("East") && 
-                            <span 
-                                className="bg-green-100 text-green-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300"
-                            >
-                                East
-                            </span>
-                        }
-
-                        {enterprise["Region"].includes("West") && 
-                            <span 
-                                className="bg-green-100 text-green-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300"
-                            >
-                                West
-                            </span>
-                        }
-
-                        {enterprise["Region"].includes("North-East") && 
-                            <span 
-                                className="bg-purple-100 text-purple-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300"
-                            >
-                                North-East
-                            </span>
-                        }
-
-                        {enterprise["Region"].includes("North-West") && 
-                            <span 
-                                className="bg-purple-100 text-purple-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300"
-                            >
-                                North-West
-                            </span>
-                        }
-
-                        {enterprise["Region"].includes("South-East") && 
-                            <span 
-                                className="bg-yellow-100 text-yellow-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300"
-                            >
-                                South-East
-                            </span>
-                        }
-
-                        {enterprise["Region"].includes("South-West") && 
-                            <span 
-                                className="bg-yellow-100 text-yellow-800 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300"
-                            >
-                                South-West
-                            </span>
-                        }
-                    </div>
-
+                        
 
                     {/* Enterprise Goods */}
                     <div id='goods-section' className="flex flex-wrap max-w-[75%]">
