@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 
 export const metadata: Metadata = {
-  title: "Good Goods",
-  description: "Effortlessly connecting consumers with socially conscious businesses",
+  title: "Good Goods - View Social Enterprise",
+  description: "View social enterprise",
 };
 
 export default function RootLayout({
