@@ -41,6 +41,7 @@ export function AISearchBar() {
             setDisplay(newDisplay);
         } catch {
             console.log('Ran into an error.');
+            setUserInput("No result found. Please try a different search parameter.")
         }
     };
 
@@ -141,8 +142,8 @@ export function AISearchBar() {
                         <option value="">All</option>
                         <option value="Food delivery">Food Delivery</option>
                         <option value="Taxi services">Taxi services</option>
-                        <option value="socks">Socks</option>
-                        <option value="shoes">Shoes</option>
+                        <option value="Socks">Socks</option>
+                        <option value="Shoes">Shoes</option>
                     </select>
                 </label>
 
