@@ -9,16 +9,13 @@ export default function About() {
       <Navbar />
       {/* Body */}
       <div className="flex flex-col justify-center p-4 space-y-16 mt-12.5vh sm:mt-15vh">
-        <div className="flex justify-center items-center">
-          <h2 className="text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl text-center sm:w-3/4">
-            Here at Good Goods, we aim to build an ecosystem of social
-            enterprises. 💙
-          </h2>
-        </div>
-        <section className="container mx-auto px-6 mb-16">
+          {/* Title  */}
+          <h2 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Here at Good Goods, we aim to build an ecosystem of social enterprises. 🩵</h2>
+
+
           {/* What are social enterprises? */}
-          <div className="mb-10">
-            <h2 className="text-2xl font-semibold text-good-goods-blue-900 mb-4">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-semibold text-good-goods-blue-900 mb-4">
               What are social enterprises?
             </h2>
             <p className="text-gray-700">
@@ -30,8 +27,8 @@ export default function About() {
           </div>
 
           {/* What is Good Goods? */}
-          <div className="mb-10">
-            <h2 className="text-2xl font-semibold text-good-goods-blue-900 mb-4">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-semibold text-good-goods-blue-900 mb-4">
               What is Good Goods?
             </h2>
             <p className="text-gray-700">
@@ -43,29 +40,28 @@ export default function About() {
           </div>
 
           {/* Features */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
-            <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <div className="flex flex-wrap justify-start gap-4">
+            <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-xl shadow ">
               <p className="font-normal text-gray-700 dark:text-gray-400">
                 🔍Find social enterprises that offer your desired products using
                 our AI-powered search bar.
               </p>
             </a>
-            <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-xl shadow ">
               <p className="font-normal text-gray-700 dark:text-gray-400">
                 🎉 Participate in challenges to show support for social
                 enterprises while getting rewarded.
               </p>
             </a>
-            <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-xl shadow">
               <p className="font-normal text-gray-700 dark:text-gray-400 ">
-                📝 Suggest social enterprises that are not found within Good
-                Goods
+                📝 Suggest social enterprises that are not found within Good Goods.
               </p>
             </a>
           </div>
           {/* Team Section */}
           <div className="mb-10">
-            <h2 className="text-2xl font-semibold text-good-goods-blue-900 mb-4">
+            <h2 className="text-xl sm:text-2xl font-semibold text-good-goods-blue-900 mb-4">
               Team behind Good Goods
             </h2>
             <p className="text-gray-700">
@@ -84,7 +80,10 @@ export default function About() {
               />
             </div>
           </div>
-        </section>
+
+
+
+
       </div>
       <Footer />
     </div>

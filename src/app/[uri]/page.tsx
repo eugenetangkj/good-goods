@@ -172,7 +172,7 @@ function EnterprisePage() {
                         
                     {/* Enterprise background and image */}
                     <div className='flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-start lg:items-center lg:space-x-8'>
-                        <p className='text-good-goods-blue-900 text-base sm:text-md lg:text-xl lg:w-3/5'>
+                        <p className='text-gray-700 text-base sm:text-md lg:text-xl lg:w-3/5'>
                                 {enterprise['Detailed impact'].split('\n').map((line, index) => (
                                     <span key={index}>{line}<br /><br /></span>
                                 ))}
@@ -221,20 +221,14 @@ function EnterprisePage() {
                                 <a href="#">
                                     <h5 className="mb-2 text-xl font-bold tracking-tight text-black">{ enterprise['Story title'] }</h5>
                                 </a>
-                                <p className="mb-3 font-normal text-black">{ enterprise['Story'] }</p>
+                                <p className="mb-3 font-normal text-gray-700">{ enterprise['Story'] }</p>
                             </div>
                         </div>
                     </div>
-
-             
-
-
-
-
                 </div>
-
- 
             </div>}
+
+
             <Footer />
         </div>
     );
