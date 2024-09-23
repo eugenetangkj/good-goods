@@ -130,19 +130,21 @@ function EnterprisePage() {
                             </span>
                         }
                     </div> 
+
+                    {/* Render Locations with Opening Hours */}
+                    <div id="locations-section" className='space-y-1 flex flex-row justify-start items-center flex-wrap gap-y-2 gap-x-4'>
+                            {enterprise["Location"].map((location, index) => (
+                                <EnterpriseLocation 
+                                    key={index} 
+                                    name={enterprise["Enterprise Name"]}
+                                    address={location} 
+                                    openingHours={enterprise["Opening hours"][index]} 
+                                />
+                            ))}
+                    </div>
                 </div>
 
-                {/* Render Locations with Opening Hours */}
-                <div id="locations-section" className='space-y-1 flex flex-row justify-start items-center flex-wrap gap-y-2 gap-x-4'>
-                        {enterprise["Location"].map((location, index) => (
-                            <EnterpriseLocation 
-                                key={index} 
-                                name={enterprise["Enterprise Name"]}
-                                address={location} 
-                                openingHours={enterprise["Opening hours"][index]} 
-                            />
-                        ))}
-                </div>
+              
 
                 {/* Enterprise Goods */}
                 <div id='goods-section' className="flex flex-col space-y-4">
