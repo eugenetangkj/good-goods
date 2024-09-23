@@ -1,6 +1,5 @@
 import RightDrawer from './RightDrawer';
 import { navLinks } from '@/constants';
-import Image from 'next/image';
 
 //Navbar
 function Navbar() {

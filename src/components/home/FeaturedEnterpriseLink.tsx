@@ -1,5 +1,4 @@
 "use client"
-import { useState, useEffect } from 'react';
 import enterprisesDetails from '../../constants/social_enterprises.json';
 
 
