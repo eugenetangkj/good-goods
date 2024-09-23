@@ -107,7 +107,7 @@ export function AISearchBar() {
                 {
                     (errorMessage.length === 0)
                     ? null
-                    : <h6 className='text-red-600'>{ errorMessage }</h6>
+                    : <h6 className='text-red-600 text-sm sm:text-base md:text-lg'>{ errorMessage }</h6>
                 }
 
 
