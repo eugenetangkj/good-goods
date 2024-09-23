@@ -15,6 +15,7 @@ export interface Enterprise {
     "Enterprise picture relative path": string;
     "Type of impact": string[];
     "Detailed impact": string;
+    "Story title": string,
     "Story": string;
     "Story picture relative path": string;
     "Format": string[];
@@ -149,7 +150,7 @@ function EnterprisePage() {
 
                     <div className='flex flex-wrap gap-x-4 gap-y-2'>
                         {truncatedGoods.map((good, index) => (
-                            <div key={index}  className='rounded-xl bg-white text-black px-8 py-4 font-semibold text-base lg:text-lg'>{ good }</div>
+                            <div key={index}  className='rounded-xl bg-white text-black p-4 font-semibold text-base lg:text-lg'>{ good }</div>
                         ))}
                     </div>
                 </div>
@@ -158,7 +159,7 @@ function EnterprisePage() {
                 <div className='flex flex-col space-y-8'>
                     <div className='space-y-4'>
                         {/* About title */}
-                        <h2 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>📖 Who are we</h2>
+                        <h2 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>👋 Who are we</h2>
 
                         {/* Impact areas */}
                         <div className='flex justify-start items-center flex-wrap gap-y-2 gap-x-4'>
@@ -182,9 +183,10 @@ function EnterprisePage() {
                             <Image 
                                     src={enterprise["Enterprise picture relative path"]}
                                     alt={enterprise["Enterprise Name"]}
-                                    className='relative h-60 sm:h-80 overflow-hidden rounded-xl w-3/4 lg:w-2/5'
+                                    className='relative max-w-112 h-60 sm:h-80 overflow-hidden rounded-xl w-3/4 lg:w-2/5'
                                     width={ 150 }
                                     height={ 150 }
+                                    layout="responsive"
                                     onError = {() => {
                                         console.log('Enterprise picture relative path invalid.');
                                         setenterpriseImageError(true);
@@ -192,55 +194,46 @@ function EnterprisePage() {
                             />
                         }
                     </div>
-
-                   
-
-
                 </div>
 
 
                 {/* Story */}
-                <div>
+                <div id='stories' className="flex flex-col space-y-4">
+                    <h2 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>📖 Our Stories</h2>
+
+                    {/* Story card */}
+                    <div className='flex flex-row flex-wrap gap-x-4 gap-y-4'>
+                        <div className="max-w-lg bg-white border border-gray-200 rounded-xl shadow">
+                            {enterprise['Story picture relative path'] && !storyImageError ? (
+                                <Image 
+                                    src={enterprise['Story picture relative path']}
+                                    alt={`Image of employee for ${enterprise['Enterprise Name']}`}
+                                    className='rounded-t-lg w-full'
+                                    width='100'
+                                    height='100'
+                                    layout="responsive"
+                                    onError={() => setStoryImageError(true)}
+                                />
+                                ) : (
+                                    <div className="flex-none md:w-1/2" style={{ minHeight: '24rem' }} />
+                            )}
+                            <div className="p-5">
+                                <a href="#">
+                                    <h5 className="mb-2 text-xl font-bold tracking-tight text-black">{ enterprise['Story title'] }</h5>
+                                </a>
+                                <p className="mb-3 font-normal text-black">{ enterprise['Story'] }</p>
+                            </div>
+                        </div>
+                    </div>
+
+             
+
 
 
 
                 </div>
 
-
-
-
-                  
-
-                    
-                <p className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Meet our staff!</p>
-
-                    {/* Enterprise Story Container */}
-                    <div className="flex flex-col md:flex-row items-start">
-                        <div className="flex-1 md:w-1/2">
-                            <p className='text-good-goods-blue-900 text-m sm:text-l lg:text-xl' style={{ textAlign: 'justify' }}>
-                                {enterprise['Story'].split('\n').map((line, index) => (
-                                    <span key={index}>{line}<br /><br /></span>
-                                ))}
-                            </p>
-                        </div>
-                        {enterprise['Story picture relative path'] && !storyImageError ? (
-                            <div className="flex-none md:w-1/2 h-96 relative ml-4"> 
-                                <Image 
-                                    src={enterprise['Story picture relative path']}
-                                    alt={`Image of employee for ${enterprise['Enterprise Name']}`}
-                                    className='object-cover rounded-lg'
-                                    fill
-                                    style={{ borderRadius: '0.5rem' }}
-                                    onError={() => setStoryImageError(true)}
-                                />
-                            </div>
-                        ) : (
-                            <div className="flex-none md:w-1/2" style={{ minHeight: '24rem' }} />
-                        )}
-                    </div>
-
-                   
-
+ 
             </div>}
             <Footer />
         </div>

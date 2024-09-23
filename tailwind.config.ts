@@ -34,6 +34,10 @@ const config: Config = {
         '112': '28rem',
         '128': '32rem'
       },
+      maxWidth: {
+        '112': '28rem',
+        '128': '32rem'
+      },
       margin: {
         '10.vh': '10vh',
         '12.5vh': '12.5vh',
