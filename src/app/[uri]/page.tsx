@@ -194,51 +194,19 @@ function EnterprisePage() {
                         
                     </div>
 
+                </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    </div>
-
-
+                {/* Render Locations with Opening Hours */}
+                <div id="locations-section" className='space-y-1 flex flex-row justify-start items-center flex-wrap gap-y-2 gap-x-4'>
+                        {enterprise["Location"].map((location, index) => (
+                            <EnterpriseLocation 
+                                key={index} 
+                                name={enterprise["Enterprise Name"]}
+                                address={location} 
+                                openingHours={enterprise["Opening hours"][index]} 
+                            />
+                        ))}
+                </div>
 
 
 
@@ -273,17 +241,7 @@ function EnterprisePage() {
                         ))}
                     </div>
                     
-                    {/* Render Locations with Opening Hours */}
-                    <div id="locations-section" className='space-y-1'>
-                        {enterprise["Location"].map((location, index) => (
-                            <EnterpriseLocation 
-                                key={index} 
-                                name={enterprise["Enterprise Name"]}
-                                address={location} 
-                                openingHours={enterprise["Opening hours"][index]} 
-                            />
-                        ))}
-                    </div>
+                    
 
                     {/* Enterprise Impact */}
                     <p className='text-good-goods-blue-900 text-l sm:text-xl lg:text-2xl' style={{ textAlign: 'justify' }}>
