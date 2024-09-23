@@ -34,7 +34,7 @@ export default function Challenges() {
                 {/* Iterate through upcoming and ongoing challenges*/}
                 {
                   pastChallengesData.length === 0
-                  ? (<h6 className='text-good-goods-blue-900'>There are no past challenges yet.</h6>)
+                  ? (<h6 className='text-gray-700'>There are no past challenges yet.</h6>)
                   : (
                     pastChallengesData.map((challenge, index) => (
                       <ChallengeCard

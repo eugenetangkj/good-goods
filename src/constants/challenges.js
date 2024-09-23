@@ -15,7 +15,7 @@ export const pastChallengesData = [
 export const tasteOfGoodnessInstructions = [
     {
         step: '01 Explore',
-        content: 'Use Good Goods to explore F&B social enterprises across Singapore',
+        content: 'Use Good Goods to explore F&B social enterprises across Singapore.',
         imageLink: '/assets/challenges/graphic-1.png'
     },
     {

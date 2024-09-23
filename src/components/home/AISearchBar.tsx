@@ -83,7 +83,7 @@ export function AISearchBar() {
                         <FaArrowCircleUp />
                     </button>
                 </div>
-                <div className={`mt-4 text-sm sm:text-base block ${userInput.length === maxNumberOfCharacters ? 'text-red-500' : 'text-gray-500'}`}>
+                <div className={`mt-4 text-sm sm:text-base block ${userInput.length === maxNumberOfCharacters ? 'text-red-500' : 'text-gray-700'}`}>
                     {userInput.length} / {maxNumberOfCharacters} characters
                 </div>
             </form>

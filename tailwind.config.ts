@@ -14,6 +14,7 @@ const config: Config = {
         "good-goods-blue": {
           100: "#EEF9FF",
           500: "#6CD0FF",
+          700: "#219EBC",
           900: "#023047"
         },
         "good-goods-orange": {
@@ -30,6 +31,10 @@ const config: Config = {
       },
       width: {
         'screen-4/5': '80vw',
+        '112': '28rem',
+        '128': '32rem'
+      },
+      maxWidth: {
         '112': '28rem',
         '128': '32rem'
       },

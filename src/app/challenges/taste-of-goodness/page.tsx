@@ -33,7 +33,7 @@ export default function TasteOfGoodness() {
           
 
           {/* Description */}
-          <p className='text-good-goods-blue-900'>
+          <p className='text-gray-700'>
           Singapore is home to a growing number of F&B social enterprises—businesses that use food and beverage services as a platform to create positive social impact. By supporting these social enterprises, you can enjoy delicious food while contributing to meaningful causes.<br/><br/>
           With the <span className='font-semibold'>Taste of Goodness</span> challenge, we invite you to embark on a journey to discover the incredible work of these F&B social enterprises. It&apos;s not just about dining; it&apos;s about making a difference with every bite.
           </p>

@@ -9,7 +9,16 @@ function Navbar() {
             <nav className="fixed w-full top-0 start-0 z-20 bg-good-goods-blue-100 p-8">         
                 <div className="flex flex-wrap items-center justify-between mx-auto p-4">  
                     {/* Good Goods Brand */}
-                    <a href="/" className="self-center text-xl sm:text-2xl font-semibold whitespace-nowrap text-good-goods-blue-900">🩵 Good Goods</a>
+                    <a href="/" className="self-center text-xl sm:text-2xl font-semibold whitespace-nowrap text-good-goods-blue-900">
+                    {/* <Image
+                        src="/assets/logo.png" 
+                        alt="Good Goods"
+                        width="61"
+                        height="43"   
+                    /> */}
+                    Good Goods 🩵
+                
+                    </a>
 
                     {/* CTA and Mobile menu */}
                     <div className="flex md:hidden md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
