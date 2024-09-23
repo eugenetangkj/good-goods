@@ -63,7 +63,7 @@ export async function POST(req: Request) {
                 "Type of goods offered": ["Taxi services", "Food delivery", "hahahahahhahahahhahahhahahahhaah", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"],
                 "Opening hours": ["00:00 - 23:59", "08:00 - 20:00"], 
                 "Website": "https://www.eighteenchefs.com/",
-                "logo image": "/images/logos/teaideas.webp"
+                "logo image": "/assets/brands/teaideas.webp"
                 
             },
             {
@@ -81,7 +81,7 @@ export async function POST(req: Request) {
                 "Type of goods offered": ["Taxi services", "Food delivery", "hahahahahhahahahhahahhahahahhaah", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"],
                 "Opening hours": ["00:00 - 23:59", "08:00 - 20:00"], 
                 "Website": "https://www.eighteenchefs.com/",
-                "logo image": "/images/logos/eighteen.png"
+                "logo image": "/assets/brands/eighteen.png"
             }, 
             {
                 "ID": 3, 
@@ -98,7 +98,7 @@ export async function POST(req: Request) {
                 "Type of goods offered": ["Socks", "Shoes", "Charcoal shoe deodorizers", "Long legged socks", "Spikes"], 
                 "Opening hours": [], 
                 "Website": "https://www.google.com",
-                "logo image": "/images/logos/boxgreen.webp"
+                "logo image": "/assets/brands/boxgreen.webp"
             }
         ]
         // Hardcoded docs
