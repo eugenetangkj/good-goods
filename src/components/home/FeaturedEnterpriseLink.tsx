@@ -1,5 +1,5 @@
 "use client"
-import enterprisesDetails from '../../constants/social_enterprises.json';
+import enterprisesDetails from '../../../public/social_enterprises.json';
 
 
 
@@ -18,6 +18,7 @@ function FeaturedEnterpriseLink() {
 
         // Calculate the selected ID based on the day and total enterprises
         const selectedId = day % totalNumberOfEnterprises;
+        return 1;
         return selectedId;
     };
       

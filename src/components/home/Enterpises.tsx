@@ -9,7 +9,6 @@ interface EnterprisesProps {
 export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises }) => {
     return (
         <div className='flex flex-col justify-center items-start space-y-12'>
-            <h2 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>Stores</h2>
             <div className='flex flex-wrap justify-start'>
                 {enterprises.map((ent) => {
                     return (
