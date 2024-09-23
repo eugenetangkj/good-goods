@@ -1,8 +1,8 @@
 "use client"
 
 import { FaArrowCircleUp } from "react-icons/fa";
-import { useState } from "react";
-import doc from "../../constants/social_enterprises.json"
+import { useState, useRef } from "react";
+import doc from "../../../public/social_enterprises.json"
 import { Enterprises } from "./Enterpises";
 
 // Constants
@@ -12,12 +12,14 @@ const promptTwo = "I want catering services"
 const docs = doc
 
 export function AISearchBar() {
+    const formRef = useRef<HTMLFormElement>(null);
     const [userInput, setUserInput] = useState('');
     const [display, setDisplay] = useState(docs);
     const [format, setFormat] = useState('');
     const [region, setRegion] = useState('');
     const [goodsType, setGoodsType] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
@@ -29,6 +31,7 @@ export function AISearchBar() {
     const handleSubmitQuery = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
+        setErrorMessage('');
         console.log("Submitted query:", userInput);
         try {
             const response = await fetch("/api/queryChatbot", {
@@ -45,7 +48,7 @@ export function AISearchBar() {
             setIsLoading(false);
         } catch {
             console.log('Ran into an error.');
-            setUserInput("No result found. Please try a different search parameter.")
+            setErrorMessage("No result found. Please try a different search parameter.")
             setIsLoading(false);
         }
     };
@@ -72,7 +75,8 @@ export function AISearchBar() {
 
     return (
         <div className='flex flex-col space-y-8'>
-            <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery}>
+            {/* Search bar form */}
+            <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery} ref={formRef}>
 
                 {/* Search bar */}
                 <div className="relative lg:w-4/5">
@@ -98,16 +102,37 @@ export function AISearchBar() {
                     }
                 </div>
 
-                <div className={`mt-4 text-sm sm:text-base block ${userInput.length === maxNumberOfCharacters ? 'text-red-500' : 'text-gray-700'}`}>
+
+                {/* Error message, if any */}
+                {
+                    (errorMessage.length === 0)
+                    ? null
+                    : <h6 className='text-red-600'>{ errorMessage }</h6>
+                }
+
+
+
+                <div className={`mt-4 text-sm sm:text-base block ${userInput.length === maxNumberOfCharacters ? 'text-red-600' : 'text-gray-700'}`}>
                     {userInput.length} / {maxNumberOfCharacters} characters
                 </div>
             </form>
+
+
+
+
+
             {/* Suggested prompts */}
             <div className='flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4 mt-8'>
-                <div className='bg-sky-200 hover:bg-sky-300 px-4 py-2 text-sm md:text-base rounded-full cursor-pointer duration-200 w-fit' onClick={() => setUserInput(promptOne)}>
+                <div className='bg-sky-200 hover:bg-sky-300 px-4 py-2 text-sm md:text-base rounded-full cursor-pointer duration-200 w-fit' onClick={() => {
+                    setUserInput(promptOne);
+                    formRef.current?.dispatchEvent(new Event('submit', { bubbles: true }));
+                    }}>
                     <h6 className='font-bold text-good-goods-blue-900'>{promptOne}</h6>
                 </div>
-                <div className='bg-sky-200 hover:bg-sky-300 px-4 py-2 text-sm md:text-base rounded-full cursor-pointer duration-200 w-fit' onClick={() => setUserInput(promptTwo)}>
+                <div className='bg-sky-200 hover:bg-sky-300 px-4 py-2 text-sm md:text-base rounded-full cursor-pointer duration-200 w-fit' onClick={() => {
+                    setUserInput(promptTwo);
+                    formRef.current?.dispatchEvent(new Event('submit', { bubbles: true }));
+                }}>
                     <h6 className='font-bold text-good-goods-blue-900'>{promptTwo}</h6>
                 </div>
             </div>
