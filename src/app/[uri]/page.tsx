@@ -208,15 +208,16 @@ function EnterprisePage() {
                         ))}
                 </div>
 
+                {/* Enterprise Goods */}
+                <div id='goods-section' className="flex flex-col space-y-4">
+                    <h1 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>🛍️ What we sell</h1>
 
-
-
-
-
-
-
-
-
+                    <div className='flex flex-wrap gap-x-4 gap-y-2'>
+                        {truncatedGoods.map((good, index) => (
+                            <div key={index}  className='rounded-xl bg-white text-black px-8 py-4 font-semibold text-base lg:text-lg'>{ good }</div>
+                        ))}
+                    </div>
+                </div>
 
 
 
@@ -227,19 +228,7 @@ function EnterprisePage() {
                     <div className="flex space-x-2">
                         
 
-                    {/* Enterprise Goods */}
-                    <div id='goods-section' className="flex flex-wrap max-w-[75%]">
-                        {truncatedGoods.map((good, index) => (
-                            <span 
-                                key={index} 
-                                className="bg-blue-100 text-blue-800 text-xs sm:text-sm lg:text-lg font-medium px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 mr-2 mb-2 overflow-hidden whitespace-nowrap text-ellipsis"
-                                style={{ maxWidth: '300px' }}
-                                title={good}
-                            >
-                                {good}
-                            </span>
-                        ))}
-                    </div>
+                    
                     
                     
 
