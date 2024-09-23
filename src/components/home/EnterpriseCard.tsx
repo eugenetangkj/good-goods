@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Enterprise } from '@/app/[uri]/page';
+import Link from 'next/link';
 
 interface EnterpriseCardProps {
     enterprise: Enterprise;
@@ -8,6 +9,7 @@ interface EnterpriseCardProps {
 
 export const EnterpriseCard: React.FC<EnterpriseCardProps> = ({ enterprise }) => {
     return (
+    <Link href={`./${enterprise['URL Param']}`} passHref>  
         <div className="cursor-pointer p-6 space-y-4">
             <div className="flex flex-row space-x-4 items-start">
                 {/* Image */}
@@ -30,5 +32,6 @@ export const EnterpriseCard: React.FC<EnterpriseCardProps> = ({ enterprise }) =>
                 </div>
             </div>
         </div>
+       </Link>
     );
 };

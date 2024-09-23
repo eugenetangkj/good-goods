@@ -2,7 +2,7 @@
     {
         "ID": 1,
         "Enterprise Name": "Charitable Eats",
-        "URL Param": "",
+        "URL Param": "charitable_eats",
         "Enterprise picture relative path": "", 
         "Type of impact": ["Provision of basic human needs", "Provision of products and services to improve the mental health & well-being"], 
         "Detailed impact": "Blind Spots was founded by visionary entrepreneur Clair Voyant, who believed that the phrase “you can’t judge a driver by their vision” should be taken literally. After years of hearing that blind people couldn’t become taxi drivers, Clair said, “Hold my cane!” and launched Blind Spots—the world’s first taxi service run entirely by blind drivers.\nWith the motto, “Who needs sight when you’ve got insight?” Blind Spots empowers blind individuals to take the wheel (quite literally), challenging the norms of what it means to be a driver. The cars are equipped with cutting-edge Tactile Guidance Systems (TGS), combining advanced AI, sonar, and haptic feedback to help drivers feel the road. The technology provides subtle vibrations on the steering wheel and floor mats, guiding drivers around obstacles, traffic, and pedestrians like a real-life game of Marco Polo—only way safer!", 
@@ -15,7 +15,7 @@
         "Type of goods offered": ["Taxi services", "Food delivery", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"],
         "Opening hours": ["00:00 - 23:59", "08:00 - 20:00"], 
         "Website": "https://www.eighteenchefs.com/",
-        "logo image": "/imgs/teaideas.webp"
+        "logo image": "/assets/brands/teaideas.webp"
         
     },
     {
@@ -34,7 +34,7 @@
         "Type of goods offered": ["Taxi services", "Food delivery", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"],
         "Opening hours": ["00:00 - 23:59", "08:00 - 20:00"], 
         "Website": "https://www.eighteenchefs.com/",
-        "logo image": "/imgs/eighteen.png"
+        "logo image": "/assets/brands/eighteen.png"
     }, 
     {
         "ID": 3, 
@@ -52,6 +52,6 @@
         "Type of goods offered": ["Socks", "Shoes", "Charcoal shoe deodorizers", "Long legged socks", "Spikes"], 
         "Opening hours": [], 
         "Website": "https://www.google.com",
-        "logo image": "/imgs/boxgreen.webp"
+        "logo image": "/assets/brands/boxgreen.webp"
     }
 ]
