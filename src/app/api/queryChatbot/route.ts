@@ -1,7 +1,7 @@
 import { ChatOpenAI } from '@langchain/openai';
 import { PromptTemplate } from '@langchain/core/prompts';
+// import path from 'path';
 // import { JSONLoader } from "langchain/document_loaders/fs/json";
-
 // Define type for social enterprise data
 interface Enterprise {
     "ID": number, 
@@ -22,8 +22,8 @@ interface Enterprise {
 }
 
 // const loader = new JSONLoader(
-//     "./social_enterprises.json", // Path to social enterprises data
-//     ["/store name", "/location", "/type of store", "/type of goods offered"]
+//     path.join(process.cwd(), 'public', 'data', 'social_enterprises.json'), // Path to social enterprises data
+//     ["/ID", "/Enterprise Name", "/Location", "/Type of goods offered", "/Format"]
 // );
 // Temporarily read from file, but may obtain from MongoDB instead
 
@@ -45,12 +45,11 @@ export async function POST(req: Request) {
 
         // Extract the question from the request body
         const { question } = await req.json();
-
-        // const docs = await loader.load() as unknown as SocialEnterprise[]; 
-        // Hardcoded docs
+        // console.log(path.join(process.cwd(), 'public', 'data', 'social_enterprises.json'))
+        // const docs = await loader.load() as unknown as Enterprise[]; 
         const docs = [
             {
-                "ID": 6,
+                "ID": 1,
                 "Enterprise Name": "Charitable Eats",
                 "URL Param": "",
                 "Enterprise picture relative path": "", 
@@ -64,11 +63,11 @@ export async function POST(req: Request) {
                 "Type of goods offered": ["Taxi services", "Food delivery", "hahahahahhahahahhahahhahahahhaah", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"],
                 "Opening hours": ["00:00 - 23:59", "08:00 - 20:00"], 
                 "Website": "https://www.eighteenchefs.com/",
-                "logo image": "/imgs/teaideas.webp"
+                "logo image": "/images/logos/teaideas.webp"
                 
             },
             {
-                "ID": 1, 
+                "ID": 2, 
                 "Enterprise Name": "18 Chefs", 
                 "URL Param": "blind_spots", 
                 "Enterprise picture relative path": "/images/enterprises/enterprise1.jpg",
@@ -82,10 +81,10 @@ export async function POST(req: Request) {
                 "Type of goods offered": ["Taxi services", "Food delivery", "hahahahahhahahahhahahhahahahhaah", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"],
                 "Opening hours": ["00:00 - 23:59", "08:00 - 20:00"], 
                 "Website": "https://www.eighteenchefs.com/",
-                "logo image": "/imgs/eighteen.png"
+                "logo image": "/images/logos/eighteen.png"
             }, 
             {
-                "ID": 2, 
+                "ID": 3, 
                 "Enterprise Name": "Sock exchange", 
                 "URL Param": "sock_exchange", 
                 "Enterprise picture relative path": "", 
@@ -99,9 +98,11 @@ export async function POST(req: Request) {
                 "Type of goods offered": ["Socks", "Shoes", "Charcoal shoe deodorizers", "Long legged socks", "Spikes"], 
                 "Opening hours": [], 
                 "Website": "https://www.google.com",
-                "logo image": "/imgs/boxgreen.webp"
+                "logo image": "/images/logos/boxgreen.webp"
             }
         ]
+        // Hardcoded docs
+        
 
         // Create the context string from the loaded data
         const context = docs.map((doc: Enterprise) => {
