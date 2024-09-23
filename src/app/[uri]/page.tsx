@@ -99,94 +99,52 @@ function EnterprisePage() {
 
                             {/* Enterprise Regions */}
                             {enterprise["Region"].includes("North") && 
-                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                     North
                                 </span>
                             }
 
                             {enterprise["Region"].includes("South") && 
-                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                     South
                                 </span>
                             }
 
                             {enterprise["Region"].includes("East") && 
-                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                     East
                                 </span>
                             }
 
                             {enterprise["Region"].includes("West") && 
-                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                     West
                                 </span>
                             }
 
                             {enterprise["Region"].includes("North-East") && 
-                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                     North-East
                                 </span>
                             }
 
                             {enterprise["Region"].includes("North-West") && 
-                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                     North-West
                                 </span>
                             }
 
                             {enterprise["Region"].includes("South-East") && 
-                                <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                     South-East
                                 </span>
                             }
 
                             {enterprise["Region"].includes("South-West") && 
-                               <span className="bg-orange-300 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                               <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                     South-West
                                 </span>
                             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
 
 
@@ -210,7 +168,7 @@ function EnterprisePage() {
 
                 {/* Enterprise Goods */}
                 <div id='goods-section' className="flex flex-col space-y-4">
-                    <h1 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>🛍️ What we sell</h1>
+                    <h2 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>🛍️ What we sell</h2>
 
                     <div className='flex flex-wrap gap-x-4 gap-y-2'>
                         {truncatedGoods.map((good, index) => (
@@ -219,8 +177,28 @@ function EnterprisePage() {
                     </div>
                 </div>
 
+                {/* About Enterprise */}
+                <div className='flex flex-col space-y-8'>
+                    <div className='space-y-4'>
+                        {/* About title */}
+                        <h2 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>📖 Who are we</h2>
 
-
+                        {/* Impact areas */}
+                        <div className='flex justify-start items-center flex-wrap gap-y-2 gap-x-4'>
+                            {enterprise["Type of impact"].map((impact, index) => (
+                                <span key={ index } className="bg-good-goods-orange-900 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-semibold me-2 px-2.5 py-0.5 rounded-full ">🩵 { impact }</span> 
+                            ))}
+                        </div>
+                    </div>
+                   
+                        
+                    {/* Enterprise background */}
+                    <p className='text-good-goods-blue-900 text-base sm:text-md lg:text-xl'>
+                            {enterprise['Detailed impact'].split('\n').map((line, index) => (
+                                <span key={index}>{line}<br /><br /></span>
+                            ))}
+                    </p>
+                </div>
 
 
 
