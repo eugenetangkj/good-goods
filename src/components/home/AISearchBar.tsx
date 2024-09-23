@@ -36,7 +36,7 @@ export function AISearchBar() {
             });
             const test = await response.json();
             const keep = JSON.parse(test.answer);
-            const newDisplay = docs.filter(x => keep.includes(parseInt(x.KEY)));
+            const newDisplay = docs.filter(x => keep.includes(x.ID));
             console.log(newDisplay)
             setDisplay(newDisplay);
         } catch {
@@ -49,13 +49,13 @@ export function AISearchBar() {
         let filteredDocs = docs;
 
         if (format !== "") {
-            filteredDocs = filteredDocs.filter(x => x.format === format);
+            filteredDocs = filteredDocs.filter(x => x.Format.includes(format));
         }
         if (region !== "") {
-            filteredDocs = filteredDocs.filter(x => x.region === region); // Corrected region comparison
+            filteredDocs = filteredDocs.filter(x => x.Region.includes(region)); // Corrected region comparison
         }
         if (goodsType !== "") {
-            filteredDocs = filteredDocs.filter(x => x["type of goods offered"] === goodsType);
+            filteredDocs = filteredDocs.filter(x => x["Type of goods offered"].includes(goodsType));
         }
 
         setDisplay(filteredDocs);
@@ -64,32 +64,26 @@ export function AISearchBar() {
     }
     return (
         <div className='flex flex-col space-y-8'>
-
-            <form className="flex flex-col gap-4 space-y-8" onSubmit={ handleSubmitQuery }>
-                <div>
-                    <div className="relative lg:w-4/5">
-                        {/* Input field */}
-                        <input
-                            className="block border border-gray-300 bg-white text-gray-900 text-sm sm:text-base md:text-lg focus:border-cyan-500 focus:ring-cyan-500 p-3 lg:p-4 pr-12 rounded-full w-full sm:w-4/5 lg:w-3/4"
-                            type="text"
-                            id="searchQuery"
-                            placeholder="What goods or services are you looking for?"
-                            value={userInput}
-                            onChange={handleInputChange}
-                            style={{ paddingRight: '4rem' }}
-                            required
-                        />
-
-                        {/* Submit button */}
-                        <button
-                            type="submit"
-                            className="absolute top-1/2 left-0.9 sm:left-0.7 text-xl sm:text-2xl lg:text-3xl transform -translate-y-1/2 text-good-goods-blue-900 hover:text-gray-900 duration-200">
-                            <FaArrowCircleUp />
-                        </button>
-                    </div>
-
-                    {/* Character counter */}
-                    <div className={`mt-4 text-sm sm:text-base block ${userInput.length === maxNumberOfCharacters ? 'text-red-500' : 'text-gray-500'}`}>{userInput.length} / { maxNumberOfCharacters } characters</div>
+            <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery}>
+                <div className="relative lg:w-4/5">
+                    <input
+                        className="block border border-gray-300 bg-white text-gray-900 text-sm sm:text-base md:text-lg focus:border-cyan-500 focus:ring-cyan-500 p-3 lg:p-4 pr-12 rounded-full w-full sm:w-4/5 lg:w-3/4"
+                        type="text"
+                        id="searchQuery"
+                        placeholder="What goods or services are you looking for?"
+                        value={userInput}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <button
+                        type="submit"
+                        className="absolute top-1/2 left-0.9 sm:left-0.7 text-xl sm:text-2xl lg:text-3xl transform -translate-y-1/2 text-good-goods-blue-900 hover:text-gray-900 duration-200"
+                    >
+                        <FaArrowCircleUp />
+                    </button>
+                </div>
+                <div className={`mt-4 text-sm sm:text-base block ${userInput.length === maxNumberOfCharacters ? 'text-red-500' : 'text-gray-500'}`}>
+                    {userInput.length} / {maxNumberOfCharacters} characters
                 </div>
             </form>
             {/* Suggested prompts */}
@@ -158,7 +152,7 @@ export function AISearchBar() {
                     Filter
                 </button>
             </form>
-            <Enterprises enterpises={display}></Enterprises>
+            <Enterprises enterprises={display}></Enterprises>
         </div>
     );
 }
