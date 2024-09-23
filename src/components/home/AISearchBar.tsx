@@ -52,7 +52,7 @@ export function AISearchBar() {
             filteredDocs = filteredDocs.filter(x => x.Format.includes(format));
         }
         if (region !== "") {
-            filteredDocs = filteredDocs.filter(x => x.Region.includes(region)); // Corrected region comparison
+            filteredDocs = filteredDocs.filter(x => x.Region.includes(region));
         }
         if (goodsType !== "") {
             filteredDocs = filteredDocs.filter(x => x["Type of goods offered"].includes(goodsType));
@@ -120,14 +120,14 @@ export function AISearchBar() {
                         className="border border-gray-300 rounded px-2 py-1"
                     >
                         <option value="">All</option>
-                        <option value="NE">NE</option>
-                        <option value="NW">NW</option>
-                        <option value="SE">SE</option>
-                        <option value="SW">SW</option>
-                        <option value="N">N</option>
-                        <option value="S">S</option>
-                        <option value="E">E</option>
-                        <option value="W">W</option>
+                        <option value="North-East">NE</option>
+                        <option value="North-West">NW</option>
+                        <option value="South-East">SE</option>
+                        <option value="South-West">SW</option>
+                        <option value="North">N</option>
+                        <option value="South">S</option>
+                        <option value="East">E</option>
+                        <option value="West">W</option>
                     </select>
                 </label>
 
@@ -139,8 +139,10 @@ export function AISearchBar() {
                         className="border border-gray-300 rounded px-2 py-1"
                     >
                         <option value="">All</option>
-                        <option value="Food and Beverages">Food and Beverages</option>
-                        <option value="Retail">Retail</option>
+                        <option value="Food delivery">Food Delivery</option>
+                        <option value="Taxi services">Taxi services</option>
+                        <option value="socks">Socks</option>
+                        <option value="shoes">Shoes</option>
                     </select>
                 </label>
 
