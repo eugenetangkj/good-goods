@@ -8,7 +8,7 @@ import Navbar from "@/components/common/Navbar";
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
-interface Enterprise {
+export interface Enterprise {
     "ID": number, 
     "Enterprise Name": string;
     "URL Param": string;
@@ -23,6 +23,7 @@ interface Enterprise {
     "Type of goods offered": string[];
     "Opening hours": string[];
     "Website": string;
+    "logo image": string;
 }
 
 function getEnterpriseByParam(param: string) {
