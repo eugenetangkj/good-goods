@@ -1,9 +1,13 @@
 "use client"
 
 import { FaArrowCircleUp } from "react-icons/fa";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import doc from "../../../public/social_enterprises.json"
 import { Enterprises } from "./Enterpises";
+import CheckboxFormat from "./CheckboxFormat";
+import CheckboxRegion from "./CheckboxRegion";
+import CheckboxProduct from "./CheckboxProduct";
+import { IoCloseOutline } from "react-icons/io5";
 
 // Constants
 const maxNumberOfCharacters = 100;
@@ -15,11 +19,17 @@ export function AISearchBar() {
     const formRef = useRef<HTMLFormElement>(null);
     const [userInput, setUserInput] = useState('');
     const [display, setDisplay] = useState(docs);
-    const [format, setFormat] = useState('');
-    const [region, setRegion] = useState('');
-    const [goodsType, setGoodsType] = useState('');
+    const [format, setFormat] = useState<string[]>(["Physical", "Online"]); 
+    const [region, setRegion] = useState<string[]>(["North", "South", "East", "West", "North-East", "North-West", "South-East", "South-West"]); 
+    const [product, setProduct] = useState<string[]>(["Taxi services", "Food delivery", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"]); 
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [userSearchQuery, setUserSearchQuery] = useState('');
+    const [userSearchResults, setUserSearchResults] = useState(docs);
+
+
+
+
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
@@ -46,31 +56,46 @@ export function AISearchBar() {
             console.log(newDisplay)
             setDisplay(newDisplay);
             setIsLoading(false);
+            setUserSearchResults(newDisplay);
+            setUserSearchQuery(userInput); //User searched something
         } catch {
             console.log('Ran into an error.');
             setErrorMessage("No result found. Please try a different search parameter.")
             setIsLoading(false);
+            setUserSearchResults([]);
+            setUserSearchQuery(userInput); //User searched something
         }
     };
 
-    const handleManualFilter = (event:React.FormEvent<HTMLFormElement>)=>{
-        event.preventDefault();
-        let filteredDocs = docs;
-
-        if (format !== "") {
-            filteredDocs = filteredDocs.filter(x => x.Format.includes(format));
+    const handleManualFilter = ()=> {
+        //If user searched something, we will filter from the results he obtained.
+        //If user did not search anything, we will filter from all the data available.
+        let filteredDocs = (userSearchQuery.length !== 0) ? userSearchResults : docs;
+        
+        if (format.length === 0 || region.length === 0 || product.length === 0) {
+            filteredDocs = [];
+        } else {
+            //Must contain all the checkbox values
+            filteredDocs = filteredDocs.filter(doc =>
+                format.some(item => doc.Format.includes(item))
+            );
+            filteredDocs.filter(doc =>
+                region.some(item => doc.Region.includes(item))
+            );
+            filteredDocs.filter(doc =>
+                product.some(item => doc["Type of goods offered"].includes(item))
+            );
         }
-        if (region !== "") {
-            filteredDocs = filteredDocs.filter(x => x.Region.includes(region));
-        }
-        if (goodsType !== "") {
-            filteredDocs = filteredDocs.filter(x => x["Type of goods offered"].includes(goodsType));
-        }
-
         setDisplay(filteredDocs);
-        console.log(filteredDocs)
-       
     }
+
+
+    // Run filter whenever checkbox options change
+    useEffect(() => {
+       handleManualFilter();
+    }, [format, region, product, display]);
+
+
 
 
     return (
@@ -117,7 +142,7 @@ export function AISearchBar() {
                 </div>
             </form>
 
-
+            
 
 
 
@@ -138,63 +163,35 @@ export function AISearchBar() {
             </div>
 
 
-            {/* Filters on the same row */}
-            <form className="flex items-center gap-4 w-full" onSubmit={handleManualFilter}>
-                <label className="flex flex-col w-full">
-                    Format:
-                    <select
-                        value={format}
-                        onChange={(e) => setFormat(e.target.value)}
-                        className="border border-gray-300 rounded px-2 py-1"
-                    >
-                        <option value="">All</option>
-                        <option value="Physical">Physical</option>
-                        <option value="Online">Online</option>
-                    </select>
-                </label>
+            {/* Filter checkboxes */}
+            <div className='flex justify-end items-center space-x-8 px-4'>
+                <h2 className='text-good-goods-blue-900 font-semibold text-base sm:text-lg lg:text-xl'>Filter</h2>
+                <CheckboxFormat setFormat={ setFormat } />
+                <CheckboxRegion setRegion={ setRegion } />
+                <CheckboxProduct setProduct={ setProduct } />
+            </div>
 
-                <label className="flex flex-col w-full">
-                    Region:
-                    <select
-                        value={region}
-                        onChange={(e) => setRegion(e.target.value)}
-                        className="border border-gray-300 rounded px-2 py-1"
-                    >
-                        <option value="">All</option>
-                        <option value="North-East">NE</option>
-                        <option value="North-West">NW</option>
-                        <option value="South-East">SE</option>
-                        <option value="South-West">SW</option>
-                        <option value="North">N</option>
-                        <option value="South">S</option>
-                        <option value="East">E</option>
-                        <option value="West">W</option>
-                    </select>
-                </label>
+            {/* User's search query */}
+            {
+                (userSearchQuery.length !== 0)
+                ? <div className='flex flex-row justify-start items-center space-x-2 w-fit'>
+                    <h6 className='text-sm sm:text-base'>You searched for:</h6>
+                    <div className= 'text-sm sm:text-base text-white font-semibold bg-good-goods-blue-900 hover:bg-sky-700 px-4 py-1 rounded-full w-fit flex flex-row items-center justify-center'>
+                        <h6>{ userSearchQuery }</h6>
+                        <div onClick={() => {setUserSearchQuery(''); setUserSearchResults(docs); setUserInput('')}} className="cursor-pointer">
+                            <IoCloseOutline size={24} /> {/* You can adjust the size */}
+                        </div>
 
-                <label className="flex flex-col w-full">
-                    Type of Goods:
-                    <select
-                        value={goodsType}
-                        onChange={(e) => setGoodsType(e.target.value)}
-                        className="border border-gray-300 rounded px-2 py-1"
-                    >
-                        <option value="">All</option>
-                        <option value="Food delivery">Food Delivery</option>
-                        <option value="Taxi services">Taxi services</option>
-                        <option value="Socks">Socks</option>
-                        <option value="Shoes">Shoes</option>
-                    </select>
-                </label>
+                    </div>
+                </div>
+                : null
+            }
+            
 
-                {/* Submit Button */}
-                <button
-                    type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-                >
-                    Filter
-                </button>
-            </form>
+
+       
+
+            {/* Enterprises */}
             <Enterprises enterprises={display}></Enterprises>
         </div>
     );
