@@ -35,6 +35,7 @@ export function AISearchBar() {
                 body: JSON.stringify({ question: userInput }),
             });
             const test = await response.json();
+            console.log(test.answer);
             const keep = JSON.parse(test.answer);
             const newDisplay = docs.filter(x => keep.includes(x.ID));
             console.log(newDisplay)
