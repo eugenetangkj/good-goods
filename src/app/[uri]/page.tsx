@@ -56,102 +56,79 @@ function EnterprisePage() {
             {/* Body */}
             {!loading && enterprise && 
             <div className='flex flex-col justify-center p-4 space-y-16 mt-15vh'>
+                {/* Enterprise Information */}
                 <div className='flex flex-col justify-center space-y-8'>
-                    {/* Enterprise Image */}
-                    {/* {enterprise["Enterprise picture relative path"] && !enterpriseImageError && 
-                    <a href={enterprise['Website']} className='relative w-full h-96 overflow-hidden rounded-lg'>
-                    <Image 
-                            src={enterprise["Enterprise picture relative path"]}
-                            alt={enterprise["Enterprise Name"]}
-                            className='object-cover rounded-lg'
-                            fill
-                            style={{ objectFit: 'cover' }}
-                            onError = {() => {
-                                console.log('Enterprise picture relative path invalid.');
-                                setenterpriseImageError(true);
-                            }}
-                    />
-                    </a>} */}
-
-                    {/* Enterprise Information */}
-                    <div className='flex flex-col justify-center space-y-8'>
-                        <div className='flex flex-row justify-between'>
-                            {/* Name and website */}
-                            <h1 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>{enterprise['Enterprise Name']}</h1>
-                            <a href={enterprise['Website']} className='w-fit' target='_blank'>
-                                <button className='rounded-full w-full text-semibold text-sm md:text-base text-white bg-good-goods-blue-900 hover:bg-sky-700 py-2 px-8 duration-200'>Visit Site</button>
-                            </a>
-                        </div>
-
-                        {/* Location */}
-                        <div className='flex flex-row justify-start flex-wrap gap-y-2'>
-                            {enterprise["Format"].includes("Physical") && (
-                                <span className="bg-sky-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                    Physical
-                                </span>
-                            )}
-
-                            {enterprise["Format"].includes("Online") && (
-                                <span className="bg-sky-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                 Online
-                                </span> 
-                            )}
-
-                            {/* Enterprise Regions */}
-                            {enterprise["Region"].includes("North") && 
-                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                    North
-                                </span>
-                            }
-
-                            {enterprise["Region"].includes("South") && 
-                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                    South
-                                </span>
-                            }
-
-                            {enterprise["Region"].includes("East") && 
-                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                    East
-                                </span>
-                            }
-
-                            {enterprise["Region"].includes("West") && 
-                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                    West
-                                </span>
-                            }
-
-                            {enterprise["Region"].includes("North-East") && 
-                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                    North-East
-                                </span>
-                            }
-
-                            {enterprise["Region"].includes("North-West") && 
-                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                    North-West
-                                </span>
-                            }
-
-                            {enterprise["Region"].includes("South-East") && 
-                                <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                    South-East
-                                </span>
-                            }
-
-                            {enterprise["Region"].includes("South-West") && 
-                               <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
-                                    South-West
-                                </span>
-                            }
-                        </div>
-
-
-
-                        
+                    <div className='flex flex-row justify-between'>
+                        {/* Name and website */}
+                        <h1 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>{enterprise['Enterprise Name']}</h1>
+                        <a href={enterprise['Website']} className='w-fit' target='_blank'>
+                            <button className='rounded-full w-full text-semibold text-sm md:text-base text-white bg-good-goods-blue-900 hover:bg-sky-700 py-2 px-8 duration-200'>Visit Site</button>
+                        </a>
                     </div>
 
+                    {/* Location */}
+                    <div className='flex flex-row justify-start flex-wrap gap-y-2'>
+                        {enterprise["Format"].includes("Physical") && (
+                            <span className="bg-sky-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                Physical
+                            </span>
+                        )}
+
+                        {enterprise["Format"].includes("Online") && (
+                            <span className="bg-sky-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                Online
+                            </span> 
+                        )}
+
+                        {/* Enterprise Regions */}
+                        {enterprise["Region"].includes("North") && 
+                            <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                North
+                            </span>
+                        }
+
+                        {enterprise["Region"].includes("South") && 
+                            <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                South
+                            </span>
+                        }
+
+                        {enterprise["Region"].includes("East") && 
+                            <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                East
+                            </span>
+                        }
+
+                        {enterprise["Region"].includes("West") && 
+                            <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                West
+                            </span>
+                        }
+
+                        {enterprise["Region"].includes("North-East") && 
+                            <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                North-East
+                            </span>
+                        }
+
+                        {enterprise["Region"].includes("North-West") && 
+                            <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                North-West
+                            </span>
+                        }
+
+                        {enterprise["Region"].includes("South-East") && 
+                            <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                South-East
+                            </span>
+                        }
+
+                        {enterprise["Region"].includes("South-West") && 
+                            <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
+                                South-West
+                            </span>
+                        }
+                    </div> 
                 </div>
 
                 {/* Render Locations with Opening Hours */}
@@ -177,7 +154,7 @@ function EnterprisePage() {
                     </div>
                 </div>
 
-                {/* About Enterprise */}
+                {/* About Enterprise With Image */}
                 <div className='flex flex-col space-y-8'>
                     <div className='space-y-4'>
                         {/* About title */}
@@ -192,37 +169,50 @@ function EnterprisePage() {
                     </div>
                    
                         
-                    {/* Enterprise background */}
-                    <p className='text-good-goods-blue-900 text-base sm:text-md lg:text-xl'>
-                            {enterprise['Detailed impact'].split('\n').map((line, index) => (
-                                <span key={index}>{line}<br /><br /></span>
-                            ))}
-                    </p>
+                    {/* Enterprise background and image */}
+                    <div className='flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:justify-start lg:items-center lg:space-x-8'>
+                        <p className='text-good-goods-blue-900 text-base sm:text-md lg:text-xl lg:w-3/5'>
+                                {enterprise['Detailed impact'].split('\n').map((line, index) => (
+                                    <span key={index}>{line}<br /><br /></span>
+                                ))}
+                        </p>
+
+                        {/* Enterprise image */}
+                        {enterprise["Enterprise picture relative path"] && !enterpriseImageError && 
+                            <Image 
+                                    src={enterprise["Enterprise picture relative path"]}
+                                    alt={enterprise["Enterprise Name"]}
+                                    className='relative h-60 sm:h-80 overflow-hidden rounded-xl w-3/4 lg:w-2/5'
+                                    width={ 150 }
+                                    height={ 150 }
+                                    onError = {() => {
+                                        console.log('Enterprise picture relative path invalid.');
+                                        setenterpriseImageError(true);
+                                    }}
+                            />
+                        }
+                    </div>
+
+                   
+
+
+                </div>
+
+
+                {/* Story */}
+                <div>
+
+
+
                 </div>
 
 
 
-                    {/* Enterprise Stores */}
-                    <div className="flex space-x-2">
-                        
+
+                  
 
                     
-                    
-                    
-
-                    {/* Enterprise Impact */}
-                    <p className='text-good-goods-blue-900 text-l sm:text-xl lg:text-2xl' style={{ textAlign: 'justify' }}>
-                        {enterprise['Detailed impact'].split('\n').map((line, index) => (
-                            <span key={index}>{line}<br /><br /></span>
-                        ))}
-                    </p>
-
-                    {/* Visit Line */}
-                    <p className='text-good-goods-blue-900 text-m sm:text-xl lg:text-2xl'>
-                        Visit <a href={enterprise['Website']} className='text-blue-500 underline text-m sm:text-xl lg:text-2xl'>{enterprise['Enterprise Name']}</a> now!
-                    </p>
-
-                    <p className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Meet our staff!</p>
+                <p className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Meet our staff!</p>
 
                     {/* Enterprise Story Container */}
                     <div className="flex flex-col md:flex-row items-start">
@@ -249,19 +239,8 @@ function EnterprisePage() {
                         )}
                     </div>
 
-                    {/* Areas of Impact Section */}
-                    <div className="mt-8">
-                        <h2 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>
-                            What we do
-                        </h2>
-                        <ul className="list-disc pl-5 mt-2 text-good-goods-blue-900 text-lg sm:text-xl lg:text-2xl">
-                            {enterprise["Type of impact"].map((impact, index) => (
-                                <li key={index}>{impact}</li>
-                            ))}
-                        </ul>
-                    </div>
+                   
 
-                </div>
             </div>}
             <Footer />
         </div>
