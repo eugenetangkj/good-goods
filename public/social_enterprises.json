@@ -5,7 +5,7 @@
         "URL Param": "foreword_coffee",
         "Enterprise picture relative path": "/images/enterprises/foreword-coffee.webp", 
         "Type of impact": ["Empowers persons with disabilities, special needs and mental health conditions through employment opportunities", "Work with green coffee companies"], 
-        "Detailed impact": "We are a coffee company dedicated to inspiring the can-do spirit and helping every individual realize their full potential. Our inclusive work environment supports persons with disabilities, special needs, and mental health conditions.\nWe practice direct sourcing for our specialty coffee beans, which are roasted locally. Currently, we operate in 8 locations across Singapore, and 80% of our workforce is composed of individuals from our target beneficiary groups.\nIn 2021, Foreword received the prestigious Enabling Mark (Platinum) Award at the inaugural Enabling Awards organized by SG Enable. This is the highest recognition for organizations demonstrating excellence in disability-inclusive employment practices and outcomes.\nIn February 2022, Foreword became a certified B-Corporation, joining a global community of 5,000 businesses committed to building an inclusive, equitable, and regenerative economy. As the 17th B-Corp certified business in Singapore, Foreword’s impact extends across five key areas: governance, workers, community, environment, and customers.", 
+        "Detailed impact": "Foreword Coffee is a coffee company dedicated to inspiring the can-do spirit and helping every individual realize their full potential. Its inclusive work environment supports persons with disabilities, special needs, and mental health conditions.\nWe practice direct sourcing for our specialty coffee beans, which are roasted locally. Currently, it operate in 8 locations across Singapore, and 80% of our workforce is composed of individuals from our target beneficiary groups.\nIn 2021, Foreword received the prestigious Enabling Mark (Platinum) Award at the inaugural Enabling Awards organized by SG Enable. This is the highest recognition for organizations demonstrating excellence in disability-inclusive employment practices and outcomes.\nIn February 2022, Foreword became a certified B-Corporation, joining a global community of 5,000 businesses committed to building an inclusive, equitable, and regenerative economy. As the 17th B-Corp certified business in Singapore, Foreword’s impact extends across five key areas: governance, workers, community, environment, and customers.", 
         "Story title": "",
         "Story": "", 
         "Story picture relative path": "", 
@@ -63,7 +63,7 @@
         "URL Param": "the-fashion-pulpit", 
         "Enterprise picture relative path": "/images/enterprises/the-fashion-pulpit.png", 
         "Type of impact": ["Environmental education", "Reducing fashion waste"], 
-        "Detailed impact": "After 3 years of hard work in promoting and advancing sustainable fashion in Singapore through organising 15 swaps, several workshops, panel discussions, and collaborations with various companies and government agencies, we noticed that people are extremely motivated to create positive change. Unfortunately, due to the lack of flexibility and inconsistent location of swapping events, creating a positive change was something they had to fit into their schedules. Now, how do we fix this problem? \nA permanent swapping fashion space! One location, swap anytime, bring everyone. Not only will you be able to swap from the best selection of pre-loved fashion pieces, you can now upcycle and learn fashion tricks all at one place! We aim to provide convenience and flexibility on however and whenever you want to help us create a purpose-driven economy around sustainable fashion and conscious consumerism. The Fashion Pulpit is also the very first of its kind in Singapore. So as you can see, we have a lot to be excited about!  ", 
+        "Detailed impact": "After 3 years of hard work in promoting and advancing sustainable fashion in Singapore through organising 15 swaps, several workshops, panel discussions, and collaborations with various companies and government agencies, we noticed that people are extremely motivated to create positive change. Unfortunately, due to the lack of flexibility and inconsistent location of swapping events, creating a positive change was something they had to fit into their schedules. Now, how do we fix this problem? \nA permanent swapping fashion space! One location, swap anytime, bring everyone. Not only will you be able to swap from the best selection of pre-loved fashion pieces, you can now upcycle and learn fashion tricks all at one place! We aim to provide convenience and flexibility on however and whenever you want to help us create a purpose-driven economy around sustainable fashion and conscious consumerism. The Fashion Pulpit is also the very first of its kind in Singapore. So as you can see, we have a lot to be excited about!", 
         "Story": "", 
         "Story title": "",
         "Story picture relative path": "", 
@@ -77,7 +77,45 @@
         "logo image": "/assets/brands/the-fashion-pulpit.png"
     },
     {
-        "ID": 5,
+        "ID": 5, 
+        "Enterprise Name": "Professor Brawn Cafe", 
+        "URL Param": "professor-brawn-cafe", 
+        "Enterprise picture relative path": "/images/enterprises/professor-brawn.webp", 
+        "Type of impact": ["Employment opportunities for adults with special needs"], 
+        "Detailed impact": "Professor Brawn Cafe is a cafe run by Autism Resource Centre Singapore that offers a wide range of Western and Italian cuisine. Its social impact lies in providing employment and training opportunities for students and adults with special needs, such as the autistic and deaf.", 
+        "Story": "", 
+        "Story title": "",
+        "Story picture relative path": "", 
+        "Format": ["Physical"], 
+        "Location": ["Enabling Village, 20 Lengkok Bahru, Academy #01-17, 20 Lengkok Bahru, 159053", "5 Ang Mo Kio Ave 10, Singapore 569739"], 
+        "Region": ["North", "South"], 
+        "Products": ["Venue booking", "Fish and chips", "Steak", "Spaghetti", "Salads", "Burger", "Waffles", "Floats", "Gelato", "Wine"], 
+        "Opening hours": ["Mon - Sat and PH 11:00 - 21:00", "Mon-Sat and PH 09:00 - 21:00"], 
+        "Business Type": "Food and Beverage",
+        "Website": "https://www.profbrawn.com.sg/",
+        "logo image": "/assets/brands/professor-brawn.png"
+    },
+    {
+        "ID": 6, 
+        "Enterprise Name": "PLove", 
+        "URL Param": "plove", 
+        "Enterprise picture relative path": "/images/enterprises/plove.webp", 
+        "Type of impact": ["Employment opportunities for adults with special needs", "Environment Sustainability"], 
+        "Detailed impact": "PLove (Personalised Love) provides handcrafted leather artisanal and corporate gifts created by special needs artisans. PLove provides training and employment opportunities for students with special needs, such as Autism Spectrum Disorder, Mild Intellectual Disability and Cerebral Palsy. With personalisation options, PLove's products include cardholders and keyrings. Some of the products are also made from upcycled materials, being environmentally sustainable products. PLove also provides workshops for crafting, such as for luggage tags.", 
+        "Story": "", 
+        "Story title": "",
+        "Story picture relative path": "", 
+        "Format": ["Online"], 
+        "Location": [], 
+        "Region": ["North", "South", "East", "West", "North-East", "North-West", "South-East", "South-West"], 
+        "Products": ["Gift Sets", "Key Rings", "Trinket Trays", "Corporate Gifts", "Craft Workshops"], 
+        "Opening hours": [], 
+        "Business Type": "Fashion and Retail",
+        "Website": "https://www.plove.com.sg/",
+        "logo image": "/assets/brands/plove.png"
+    },
+    {
+        "ID": 7,
         "Enterprise Name": "Artease", 
         "URL Param": "artease",    
         "Enterprise picture relative path":"/images/enterprises/artease.jpeg", 
@@ -96,7 +134,7 @@
         "logo image": "/assets/brands/artease.png"
     },
     {
-        "ID": 6,
+        "ID": 8,
         "Enterprise Name":"Tea Ideas",
         "URL Param":"tea-ideas",
         "Enterprise picture relative path":"/images/enterprises/teaideas.jpg",
@@ -114,4 +152,10 @@
         "Website":"https://www.tea-ideas.com/pages/shop-now",
         "logo image":"/assets/brands/teaideas.jpg"
     }
+
+
+
+
+
+
 ]
