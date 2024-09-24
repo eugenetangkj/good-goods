@@ -20,10 +20,11 @@ interface Enterprise {
     "Format": string[];
     "Location": string[];
     "Region": string[];
-    "Type of goods offered": string[];
+    "Products": string[];
     "Opening hours": string[];
     "Website": string;
     "logo image": string;
+    "Business Type": string;
 }
 
 // const loader = new JSONLoader(
@@ -61,9 +62,8 @@ export async function POST(req: Request) {
       
         // Create the context string from the loaded data
         const context = docs.map((doc: Enterprise) => {
-            return `ID: ${doc['ID']}: ${doc['Enterprise Name']} is located in ${doc['Location']}, offers ${doc['Type of goods offered']} and is a ${doc['Format']}.`;
+            return `ID: ${doc['ID']}: ${doc['Enterprise Name']} is located in ${doc['Location']}, offers ${doc['Products']} and is a ${doc['Format']}.`;
         }).join('\n');
-        
 
         // Create the prompt using the TEMPLATE and context
         const prompt = PromptTemplate.fromTemplate(TEMPLATE);
