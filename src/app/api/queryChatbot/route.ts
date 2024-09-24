@@ -34,9 +34,7 @@ interface Enterprise {
 
 export const dynamic = 'force-dynamic';
 
-const TEMPLATE = `Answer the user's questions about social enterprises based only on the following context. Give the enterprises that apply
- by returning a list [ID1,ID2,...] where the IDs(which are numbers) are the IDs of the social enterprises that apply. Example: ID of Charitable Eats is 6.
- If the answer is not in the context, reply politely that you do not have that information available.:
+const TEMPLATE = `You are tasked with answering user queries about social enterprises. Based on the context provided, return a list [ID1,ID2,...] where the IDs(which are numbers) are the IDs of the social enterprises that apply. If the answer is not in the context, reply politely that you do not have that information available.:
 ==============================
 Context: {context}
 ==============================
@@ -63,7 +61,7 @@ export async function POST(req: Request) {
       
         // Create the context string from the loaded data
         const context = docs.map((doc: Enterprise) => {
-            return `KEY ${doc['ID']}: ${doc['Enterprise Name']} is located in ${doc['Location']}, offers ${doc['Type of goods offered']} and is a ${doc['Format']}.`;
+            return `ID: ${doc['ID']}: ${doc['Enterprise Name']} is located in ${doc['Location']}, offers ${doc['Type of goods offered']} and is a ${doc['Format']}.`;
         }).join('\n');
         
 
@@ -74,7 +72,8 @@ export async function POST(req: Request) {
         
         const model = new ChatOpenAI({
             apiKey: process.env.OPENAI_API_KEY!,
-            model: 'gpt-3.5-turbo', //Can choose better model
+            model: 'gpt-4o-mini', 
+            // model:'gpt-3.5-turbo',
             temperature: 0,
         });
 
