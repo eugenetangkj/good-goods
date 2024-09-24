@@ -93,7 +93,7 @@ export function AISearchBar() {
     // Run filter whenever checkbox options change
     useEffect(() => {
        handleManualFilter();
-    }, [format, region, product, display]);
+    }, [format, region, product]);
 
 
 
