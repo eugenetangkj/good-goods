@@ -12,6 +12,7 @@ interface EnterprisesProps {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
+const enterprisesPerPageDefault = 10;
 const enterprisesPerPageXXL = 16;
 const enterprisesPerPageXL = 12;
 const enterprisesPerPageSM = 8;
@@ -20,14 +21,7 @@ const enterprisesPerPageXS = 4;
 
 export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises, currentPage, setCurrentPage }) => {
     //States to track number of enterprises per page and also current page
-    const [enterprisesPerPage, setEnterprisesPerPage] = useState(
-        window.innerWidth >= breakpoints['2.5xl']
-        ? enterprisesPerPageXXL
-        : (window.innerWidth >= breakpoints.xl)
-        ? enterprisesPerPageXL
-        : (window.innerWidth >= breakpoints.sm)
-        ? enterprisesPerPageSM
-        : enterprisesPerPageXS);
+    const [enterprisesPerPage, setEnterprisesPerPage] = useState(10);
         
 
     // Update the number of enterprises per page depending on the screen size

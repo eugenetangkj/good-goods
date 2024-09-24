@@ -67,6 +67,7 @@ export function AISearchBar() {
             setDisplay([]);
             setIsLoading(false);
             setUserInput('');
+            setUserSearchResults([]);
 
         }
     };
