@@ -149,7 +149,7 @@ export function AISearchBar() {
 
 
             {/* Suggested prompts */}
-            <div className='flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4 mt-8'>
+            <div className='flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4 mt-8' id="prompts">
                 <div className='bg-sky-200 hover:bg-sky-300 px-4 py-2 text-sm md:text-base rounded-full cursor-pointer duration-200 w-fit' onClick={() => {
                     setUserInput(promptOne);
                     }}>
