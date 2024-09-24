@@ -29,7 +29,7 @@ const CheckboxFormat: React.FC<CheckboxFormatProps> = ({ setFormat }) => {
     return (
         <div>
             {/* Button */}
-            <button id="dropdownCheckboxFormatButton" data-dropdown-toggle="dropdownCheckboxFormat" className="text-white bg-good-goods-blue-900 hover:bg-sky-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center duration-200" type="button">Format<svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <button id="dropdownCheckboxFormatButton" data-dropdown-toggle="dropdownCheckboxFormat" className="text-white bg-good-goods-blue-900 hover:bg-sky-700 font-medium rounded-xl text-xs sm:text-sm px-3 py-1 text-center inline-flex items-center duration-200" type="button">Format<svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
             </svg>
             </button>
@@ -37,7 +37,7 @@ const CheckboxFormat: React.FC<CheckboxFormatProps> = ({ setFormat }) => {
             {/* Dropdown menu */}
             <div id="dropdownCheckboxFormat" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60">
                 
-                <ul className="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxFormatButton">
+                <ul className="p-3 space-y-1 text-sm text-gray-700" aria-labelledby="dropdownCheckboxFormatButton">
                     {/* Iterate through options */}
                     {
                         filterFormatTypes.map((format, index) => {
@@ -48,7 +48,7 @@ const CheckboxFormat: React.FC<CheckboxFormatProps> = ({ setFormat }) => {
                                             <input type="checkbox" value={ format }  onChange={() => handleCheckboxChange(format)} className="w-4 h-4 text-good-goods-blue-900 bg-gray-100 border-gray-300 rounded" checked={formats.includes(format)}/>
                                         </div>
                                         <div className="ms-2 text-sm">
-                                            <div className="font-medium text-gray-900 dark:text-gray-300">{ format }</div>
+                                            <div className="font-medium text-gray-900">{ format }</div>
                                         </div>
                                     </div>
                                 </li>

@@ -8,7 +8,7 @@ interface EnterprisesProps {
 
 export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises }) => {
     return (
-        <div className='flex flex-col justify-center items-start space-y-12'>
+        <div className='flex flex-col justify-center items-start space-y-12 self-start'>
             <div className='flex flex-wrap justify-start'>
                 {enterprises.map((ent) => {
                     return (
