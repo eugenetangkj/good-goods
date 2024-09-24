@@ -8,6 +8,8 @@ import { breakpoints } from '@/constants';
 
 interface EnterprisesProps {
     enterprises: Enterprise[];
+    currentPage: number;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const enterprisesPerPageXXL = 16;
@@ -16,7 +18,7 @@ const enterprisesPerPageSM = 8;
 const enterprisesPerPageXS = 4;
 
 
-export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises }) => {
+export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises, currentPage, setCurrentPage }) => {
     //States to track number of enterprises per page and also current page
     const [enterprisesPerPage, setEnterprisesPerPage] = useState(
         window.innerWidth >= breakpoints['2.5xl']
@@ -28,15 +30,13 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises }) => {
         : enterprisesPerPageXS);
         
 
-    const [currentPage, setCurrentPage] = useState(1);
-
     // Update the number of enterprises per page depending on the screen size
     const updateEnterprisesPerPage = () => {
         const screenWidth = window.innerWidth;
 
         if (screenWidth >= breakpoints['2.5xl']) {
             if (enterprisesPerPage != enterprisesPerPageXXL) {
-                setCurrentPage(1);
+                setCurrentPage(1);      
                 setEnterprisesPerPage(enterprisesPerPageXXL);
             }
         } else if (screenWidth >= breakpoints.xl) {
@@ -45,7 +45,6 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises }) => {
                 setEnterprisesPerPage(enterprisesPerPageXL);
             }
         } else if (screenWidth >= breakpoints.sm) {
-            console.log(enterprisesPerPage);
             if (enterprisesPerPage != enterprisesPerPageSM) {
                 setCurrentPage(1);
                 setEnterprisesPerPage(enterprisesPerPageSM);
@@ -89,27 +88,28 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises }) => {
 
 
     return (
-        <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2.5xl:grid-cols-4 gap-8 w-fit self-center">
-        {currentEnterprises.map((ent) => (
-          <EnterpriseCard key={ent.ID} enterprise={ent} />
-        ))}
-      </div>
+        <div className='flex flex-col items-center'>
+            {/* Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2.5xl:grid-cols-4 gap-8 w-fit self-center">
+                {currentEnterprises.map((ent) => (
+                <EnterpriseCard key={ent.ID} enterprise={ent} />
+                ))}
+            </div>
 
-      {/* Pagination Controls */}
-      <div className="flex justify-center mt-4 space-x-2">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i + 1}
-            onClick={() => handlePageChange(i + 1)}
-            className={`px-3 py-1 rounded-full ${
-              currentPage === i + 1 ? 'bg-blue-600 text-white' : 'bg-gray-300'
-            }`}
-          >
-            {i + 1}
-          </button>
-        ))}
-      </div>
+            {/* Pagination Controls */}
+            <div className="flex justify-center flex-wrap mt-8 gap-2">
+                {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                    key={i + 1}
+                    onClick={() => handlePageChange(i + 1)}
+                    className={`px-3 py-1 rounded-full ${
+                    currentPage === i + 1 ? 'bg-good-goods-blue-900 text-white' : 'bg-gray-300 hover:bg-gray-400 duration-200'
+                    }`}
+                >
+                    {i + 1}
+                </button>
+                ))}
+            </div>
     </div>
     );
 }

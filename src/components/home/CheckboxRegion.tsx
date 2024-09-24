@@ -7,9 +7,10 @@ import { useState } from 'react';
 
 interface CheckboxRegionProps {
     setRegion: React.Dispatch<React.SetStateAction<string[]>>;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CheckboxRegion: React.FC<CheckboxRegionProps> = ({ setRegion }) => {
+const CheckboxRegion: React.FC<CheckboxRegionProps> = ({ setRegion, setCurrentPage }) => {
     const [regions, setRegions] = useState<string[]>(["North", "South", "East", "West", "North-East", "North-West", "South-East", "South-West"]);
 
 
@@ -21,6 +22,7 @@ const CheckboxRegion: React.FC<CheckboxRegionProps> = ({ setRegion }) => {
                 : [...prevRegions, region]; // Add the region if it does not exist
 
             setRegion(updatedRegions); // Update the parent state with the new regions
+            setCurrentPage(1);
             return updatedRegions; // Return the updated regions
         });
     };

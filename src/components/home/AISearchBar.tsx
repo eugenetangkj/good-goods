@@ -26,6 +26,7 @@ export function AISearchBar() {
     const [errorMessage, setErrorMessage] = useState('');
     const [userSearchQuery, setUserSearchQuery] = useState('');
     const [userSearchResults, setUserSearchResults] = useState(docs);
+    const [currentPage , setCurrentPage] = useState<number>(1);
 
 
 
@@ -42,6 +43,7 @@ export function AISearchBar() {
         event.preventDefault();
         setIsLoading(true);
         setErrorMessage('');
+        setCurrentPage(1);
         console.log("Submitted query:", userInput);
         setUserSearchQuery(userInput); //User searched something
         try {
@@ -167,9 +169,9 @@ export function AISearchBar() {
             <div className='pt-20 flex flex-col items-center gap-y-8'>
                  {/* Filter checkboxes */}
                 <div className='flex flex-row justify-start sm:justify-end items-center flex-wrap gap-x-4 gap-y-2 lg:gap-x-8 self-start sm:self-end'>
-                        <CheckboxFormat setFormat={ setFormat } />
-                        <CheckboxRegion setRegion={ setRegion } />
-                        <CheckboxProduct setProduct={ setProduct } />
+                        <CheckboxFormat setFormat={ setFormat } setCurrentPage={ setCurrentPage } />
+                        <CheckboxRegion setRegion={ setRegion }  setCurrentPage={ setCurrentPage } />
+                        <CheckboxProduct setProduct={ setProduct }  setCurrentPage={ setCurrentPage } />
                     
                 </div>
 
@@ -180,7 +182,7 @@ export function AISearchBar() {
                         <h6 className='text-sm sm:text-base'>You searched for:</h6>
                         <div className= 'text-white font-semibold bg-good-goods-blue-900 hover:bg-sky-700 text-xs sm:text-sm px-3 py-1 rounded-full w-fit flex flex-row items-center justify-center space-x-2'>
                             <h6>{ userSearchQuery }</h6>
-                            <div onClick={() => {setUserSearchQuery(''); setUserSearchResults(docs); setUserInput(''); setDisplay(docs); setErrorMessage('');}} className="cursor-pointer">
+                            <div onClick={() => {setUserSearchQuery(''); setUserSearchResults(docs); setUserInput(''); setDisplay(docs); setErrorMessage(''); setCurrentPage(1)}} className="cursor-pointer">
                                 <IoCloseOutline size={24} /> {/* You can adjust the size */}
                             </div>
 
@@ -190,7 +192,7 @@ export function AISearchBar() {
                 }
                 
                 {/* Enterprises list */}
-                <Enterprises enterprises={display}></Enterprises>
+                <Enterprises enterprises={display} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
 
                 
 

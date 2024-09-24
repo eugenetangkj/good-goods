@@ -7,9 +7,10 @@ import { useState } from 'react';
 
 interface CheckboxProductProps {
     setProduct: React.Dispatch<React.SetStateAction<string[]>>;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CheckboxProduct: React.FC<CheckboxProductProps> = ({ setProduct }) => {
+const CheckboxProduct: React.FC<CheckboxProductProps> = ({ setProduct, setCurrentPage }) => {
     const [products, setProducts] = useState<string[]>(["Taxi services", "Food delivery", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"]);
 
 
@@ -21,6 +22,7 @@ const CheckboxProduct: React.FC<CheckboxProductProps> = ({ setProduct }) => {
                 : [...prevProducts, product]; // Add the product if it does not exist
 
             setProduct(updatedProducts); // Update the parent state with the new products
+            setCurrentPage(1);
             return updatedProducts; // Return the updated products
         });
     };

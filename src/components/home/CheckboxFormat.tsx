@@ -7,9 +7,10 @@ import { useState } from 'react';
 
 interface CheckboxFormatProps {
     setFormat: React.Dispatch<React.SetStateAction<string[]>>;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CheckboxFormat: React.FC<CheckboxFormatProps> = ({ setFormat }) => {
+const CheckboxFormat: React.FC<CheckboxFormatProps> = ({ setFormat, setCurrentPage }) => {
     const [formats, setFormats] = useState<string[]>(["Physical", "Online"]);
 
 
@@ -21,6 +22,7 @@ const CheckboxFormat: React.FC<CheckboxFormatProps> = ({ setFormat }) => {
                 : [...prevFormats, format]; // Add the format if it does not exist
 
             setFormat(updatedFormats); // Update the parent state with the new formats
+            setCurrentPage(1);
             return updatedFormats; // Return the updated formats
         });
     };
