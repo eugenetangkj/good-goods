@@ -8,19 +8,12 @@ interface EnterprisesProps {
 
 export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises }) => {
     return (
-        <div className='flex flex-col justify-center items-start space-y-12 self-start'>
-            <div className='flex flex-wrap justify-start'>
-                {enterprises.map((ent) => {
-                    return (
-                        <div 
-                            key={ent.ID}
-                            className='card bg-good-goods-white-500 border rounded-xl p-6 h-70 sm:h-60 w-full sm:w-72 lg:w-1/4 flex flex-row space-y-8 mb-4 mx-12 last:mb-0'
-                        >
-                            <EnterpriseCard enterprise={ent} />
-                        </div>
-                    );
-                })}
-            </div>
+        <div className="grid grid-cols-1 md-l:grid-cols-2 xl:grid-cols-3 2.5xl:grid-cols-4 gap-8 w-fit self-center">
+            {enterprises.map((ent) => {
+                return (
+                    <EnterpriseCard key={ent.ID} enterprise={ent} />
+                );
+            })}
         </div>
     );
 }
