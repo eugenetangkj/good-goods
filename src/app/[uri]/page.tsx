@@ -83,49 +83,49 @@ function EnterprisePage() {
                         )}
 
                         {/* Enterprise Regions */}
-                        {enterprise["Region"].includes("North") && 
+                        {enterprise["Region"].includes("North") && !(enterprise["Format"].length === 1 && enterprise["Format"][0] === "Online") &&
                             <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                 North
                             </span>
                         }
 
-                        {enterprise["Region"].includes("South") && 
+                        {enterprise["Region"].includes("South") && !(enterprise["Format"].length === 1 && enterprise["Format"][0] === "Online") &&
                             <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                 South
                             </span>
                         }
 
-                        {enterprise["Region"].includes("East") && 
+                        {enterprise["Region"].includes("East") && !(enterprise["Format"].length === 1 && enterprise["Format"][0] === "Online") &&
                             <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                 East
                             </span>
                         }
 
-                        {enterprise["Region"].includes("West") && 
+                        {enterprise["Region"].includes("West") && !(enterprise["Format"].length === 1 && enterprise["Format"][0] === "Online") &&
                             <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                 West
                             </span>
                         }
 
-                        {enterprise["Region"].includes("North-East") && 
+                        {enterprise["Region"].includes("North-East") && !(enterprise["Format"].length === 1 && enterprise["Format"][0] === "Online") &&
                             <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                 North-East
                             </span>
                         }
 
-                        {enterprise["Region"].includes("North-West") && 
+                        {enterprise["Region"].includes("North-West") && !(enterprise["Format"].length === 1 && enterprise["Format"][0] === "Online") &&
                             <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                 North-West
                             </span>
                         }
 
-                        {enterprise["Region"].includes("South-East") && 
+                        {enterprise["Region"].includes("South-East") && !(enterprise["Format"].length === 1 && enterprise["Format"][0] === "Online") &&
                             <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                 South-East
                             </span>
                         }
 
-                        {enterprise["Region"].includes("South-West") && 
+                        {enterprise["Region"].includes("South-West") && !(enterprise["Format"].length === 1 && enterprise["Format"][0] === "Online") &&
                             <span className="bg-blue-200 text-good-goods-blue-900 text-xs sm:text-sm lg:text-lg font-medium me-2 px-2.5 py-0.5 rounded-full ">
                                 South-West
                             </span>
@@ -149,7 +149,7 @@ function EnterprisePage() {
 
                 {/* Enterprise Goods */}
                 <div id='goods-section' className="flex flex-col space-y-4">
-                    <h2 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>🛍️ What we sell</h2>
+                    <h2 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>🛍️ Some items that we sell</h2>
 
                     <div className='flex flex-wrap gap-x-4 gap-y-2'>
                         {truncatedGoods.map((good, index) => (
