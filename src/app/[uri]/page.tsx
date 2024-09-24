@@ -200,8 +200,8 @@ function EnterprisePage() {
                 </div>
 
 
-                {/* Story */}
-                <div id='stories' className="flex flex-col space-y-4">
+                {/* Story only appeals if it is not empty string*/}
+                {enterprise['Story'] != "" && (<div id='stories' className="flex flex-col space-y-4">
                     <h2 className='text-good-goods-blue-900 font-semibold text-xl sm:text-2xl lg:text-3xl'>📖 Our Stories</h2>
 
                     {/* Story card */}
@@ -228,7 +228,7 @@ function EnterprisePage() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>}
 
 
