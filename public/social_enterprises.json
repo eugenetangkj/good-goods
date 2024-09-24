@@ -75,5 +75,43 @@
         "Business Type": "Fashion and Retail",
         "Website": "http://flourpower.sg/",
         "logo image": "/assets/brands/the-fashion-pulpit.png"
+    },
+    {
+        "ID": 5,
+        "Enterprise Name": "Artease", 
+        "URL Param": "artease",    
+        "Enterprise picture relative path":"/images/enterprises/artease.jpeg", 
+        "Type of impact": ["Provision of employment opportunities", "Empowering students with special needs"],
+        "Detailed impact": "Artease is deeply committed to addressing the unique needs of students with special needs such as the students from Mountbatten Vocational School. Our passion for inclusivity drives an initiative that is central to our beliefs - bridging the existing social gap by providing tailored support and opportunities for these students, empowering them to reach their full potential and lead meaningful lives.",
+        "Story": "", 
+        "Story title": "",
+        "Story picture relative path": "", 
+        "Format": ["Physical"], 
+        "Location":["5 Woodlands Avenue 9, #01-01, Republic Polytechnic, Singapore 738962", "900 S Woodlands Dr, #01-03, Singapore 730900", "1 Punggol Drive One, #02-45, Singapore 828629"],
+        "Region": ["North", "North-East"],
+        "Products":["Food","Western", "Small bites", "Desserts", "Tea", "Coffee"],
+        "Opening hours":["07:30 - 19:30", "10:00 - 21:00", "10:00 - 21:00"],
+        "Business Type": "Food and Beverage",
+        "Website": "https://artease.sg/",
+        "logo image": "/assets/brands/artease.png"
+    },
+    {
+        "ID": 6,
+        "Enterprise Name":"Tea Ideas",
+        "URL Param":"tea-ideas",
+        "Enterprise picture relative path":"/images/enterprises/teaideas.jpg",
+        "Type of impact":["Provision of employment opportunities", "Provide employment opportunities for the elderly and renal patients"],
+        "Detailed impact":"Tea Ideas is a remarkable social enterprise dedicated to making a positive impact on society. Our mission is to provide employment opportunities for the elderly and renal patients while uplifting their social, mental, and physical well-being. We achieve this through flexible work arrangements and streamlined processes that cater to the specific needs of our beneficiaries.",
+        "Story":"",
+        "Story title":"",
+        "Story picture relative path":"",
+        "Format":["Online","Physical"],
+        "Location":["181 Orchard Road #04-29"],
+        "Region":["South"],
+        "Products":["Coffee", "Tea", "Gifts", "Cookies", "Tea Accessories"],
+        "Opening hours":["12:00 - 19:00"],
+        "Business Type":"Food and Beverage",
+        "Website":"https://www.tea-ideas.com/pages/shop-now",
+        "logo image":"/assets/brands/teaideas.jpg"
     }
 ]
