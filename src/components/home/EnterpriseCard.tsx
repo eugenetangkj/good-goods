@@ -10,14 +10,14 @@ interface EnterpriseCardProps {
 export const EnterpriseCard: React.FC<EnterpriseCardProps> = ({ enterprise }) => {
     return (
     <Link href={`./${enterprise['URL Param']}`} passHref>  
-        <div className="cursor-pointer p-6 space-y-4 bg-white rounded-xl card w-96 h-56 flex flex-row space-x-4">
+        <div className="cursor-pointer p-2 sm:p-6 space-y-4 bg-white rounded-xl card w-72 h-72 lg:w-96 lg:h-56 flex flex-col justify-center lg:flex-row space-x-4">
                 {/* Image */}
                 <Image 
                     src={enterprise['logo image']} 
                     alt={enterprise['Enterprise Name']} 
-                    width={100}
-                    height={100}
-                    className="rounded-lg self-center"
+                    width={96}
+                    height={96}
+                    className="rounded-lg self-center h-24 w-24"
                 />
 
                 {/* Store name and Description */}
