@@ -56,7 +56,6 @@ export function AISearchBar() {
             console.log(test.answer);
             const keep = JSON.parse(test.answer);
             const newDisplay = docs.filter(x => keep.includes(x.ID));
-            console.log(newDisplay)
             setDisplay(newDisplay);
             setIsLoading(false);
             setUserSearchResults(newDisplay);
