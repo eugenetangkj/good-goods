@@ -6,7 +6,7 @@ import doc from "../../../public/social_enterprises.json"
 import { Enterprises } from "./Enterpises";
 import CheckboxFormat from "./CheckboxFormat";
 import CheckboxRegion from "./CheckboxRegion";
-import CheckboxProduct from "./CheckboxProduct";
+import CheckboxBusinessType from "./CheckboxBusinessType";
 import { IoCloseOutline } from "react-icons/io5";
 
 // Constants
@@ -21,7 +21,7 @@ export function AISearchBar() {
     const [display, setDisplay] = useState(docs);
     const [format, setFormat] = useState<string[]>(["Physical", "Online"]); 
     const [region, setRegion] = useState<string[]>(["North", "South", "East", "West", "North-East", "North-West", "South-East", "South-West"]); 
-    const [product, setProduct] = useState<string[]>(["Taxi services", "Food delivery", "Driving Lessons", "White Canes", "Guide Dogs", "Sunglasses"]); 
+    const [businessType, setBusinessType] = useState<string[]>(["Food and Beverage", "Fashion and Retail"]); 
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [userSearchQuery, setUserSearchQuery] = useState('');
@@ -76,18 +76,14 @@ export function AISearchBar() {
         //If user did not search anything, we will filter from all the data available.
         let filteredDocs = (userSearchQuery.length !== 0) ? userSearchResults : docs;
         
-        if (format.length === 0 || region.length === 0 || product.length === 0) {
+        if (format.length === 0 || region.length === 0 || businessType.length === 0) {
             filteredDocs = [];
         } else {
             //Must contain all the checkbox values
-            filteredDocs = filteredDocs.filter(doc =>
-                format.some(item => doc.Format.includes(item))
-            );
-            filteredDocs.filter(doc =>
-                region.some(item => doc.Region.includes(item))
-            );
-            filteredDocs.filter(doc =>
-                product.some(item => doc["Type of goods offered"].includes(item))
+            filteredDocs = filteredDocs.filter(doc => 
+                region.some(item => doc.Region.includes(item)) &&
+                format.some(item => doc.Format.includes(item)) &&
+                businessType.some(item => doc["Business Type"].includes(item))
             );
         }
         setDisplay(filteredDocs);
@@ -97,7 +93,7 @@ export function AISearchBar() {
     // Run filter whenever checkbox options change
     useEffect(() => {
        handleManualFilter();
-    }, [format, region, product]);
+    }, [format, region, businessType]);
 
 
 
@@ -171,7 +167,7 @@ export function AISearchBar() {
                 <div className='flex flex-row justify-start sm:justify-end items-center flex-wrap gap-x-4 gap-y-2 lg:gap-x-8 self-start sm:self-end'>
                         <CheckboxFormat setFormat={ setFormat } setCurrentPage={ setCurrentPage } />
                         <CheckboxRegion setRegion={ setRegion }  setCurrentPage={ setCurrentPage } />
-                        <CheckboxProduct setProduct={ setProduct }  setCurrentPage={ setCurrentPage } />
+                        <CheckboxBusinessType setBusinessType={ setBusinessType }  setCurrentPage={ setCurrentPage } />
                     
                 </div>
 

@@ -21,10 +21,11 @@ export interface Enterprise {
     "Format": string[];
     "Location": string[];
     "Region": string[];
-    "Type of goods offered": string[];
+    "Products": string[];
     "Opening hours": string[];
     "Website": string;
     "logo image": string;
+    "Business Type": string;
 }
 
 function getEnterpriseByParam(param: string) {
@@ -46,7 +47,7 @@ function EnterprisePage() {
                 ? getEnterpriseByParam(enterpriseName[0])
                 : getEnterpriseByParam(enterpriseName);
             setEnterprise(foundEnterprise || null);
-            setTruncatedGoods(foundEnterprise === undefined ? [] : foundEnterprise["Type of goods offered"].slice(0, 10));
+            setTruncatedGoods(foundEnterprise === undefined ? [] : foundEnterprise["Products"].slice(0, 10));
             setLoading(false);
         }
     }, [enterpriseName]);
