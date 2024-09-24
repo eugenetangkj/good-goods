@@ -26,6 +26,7 @@ export function AISearchBar() {
     const [errorMessage, setErrorMessage] = useState('');
     const [userSearchQuery, setUserSearchQuery] = useState('');
     const [userSearchResults, setUserSearchResults] = useState(docs);
+    const [currentPage , setCurrentPage] = useState<number>(1);
 
 
 
@@ -42,7 +43,9 @@ export function AISearchBar() {
         event.preventDefault();
         setIsLoading(true);
         setErrorMessage('');
+        setCurrentPage(1);
         console.log("Submitted query:", userInput);
+        setUserSearchQuery(userInput); //User searched something
         try {
             const response = await fetch("/api/queryChatbot", {
                 method: 'POST',
@@ -57,13 +60,15 @@ export function AISearchBar() {
             setDisplay(newDisplay);
             setIsLoading(false);
             setUserSearchResults(newDisplay);
-            setUserSearchQuery(userInput); //User searched something
+            setUserInput('');
         } catch {
             console.log('Ran into an error.');
-            setErrorMessage("No result found. Please try a different search parameter.")
+            setErrorMessage("No result found. Please try a different search term.")
+            setDisplay([]);
             setIsLoading(false);
+            setUserInput('');
             setUserSearchResults([]);
-            setUserSearchQuery(userInput); //User searched something
+
         }
     };
 
@@ -147,52 +152,55 @@ export function AISearchBar() {
 
 
             {/* Suggested prompts */}
-            <div className='flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4 mt-8'>
+            <div className='flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4 mt-8' id="prompts">
                 <div className='bg-sky-200 hover:bg-sky-300 px-4 py-2 text-sm md:text-base rounded-full cursor-pointer duration-200 w-fit' onClick={() => {
                     setUserInput(promptOne);
-                    formRef.current?.dispatchEvent(new Event('submit', { bubbles: true }));
                     }}>
                     <h6 className='font-bold text-good-goods-blue-900'>{promptOne}</h6>
                 </div>
                 <div className='bg-sky-200 hover:bg-sky-300 px-4 py-2 text-sm md:text-base rounded-full cursor-pointer duration-200 w-fit' onClick={() => {
                     setUserInput(promptTwo);
-                    formRef.current?.dispatchEvent(new Event('submit', { bubbles: true }));
                 }}>
                     <h6 className='font-bold text-good-goods-blue-900'>{promptTwo}</h6>
                 </div>
             </div>
 
 
-            {/* Filter checkboxes */}
-            <div className='flex justify-end items-center space-x-8 px-4'>
-                <h2 className='text-good-goods-blue-900 font-semibold text-base sm:text-lg lg:text-xl'>Filter</h2>
-                <CheckboxFormat setFormat={ setFormat } />
-                <CheckboxRegion setRegion={ setRegion } />
-                <CheckboxProduct setProduct={ setProduct } />
+            {/* Enterprises */}
+            <div className='pt-20 flex flex-col items-center gap-y-8'>
+                 {/* Filter checkboxes */}
+                <div className='flex flex-row justify-start sm:justify-end items-center flex-wrap gap-x-4 gap-y-2 lg:gap-x-8 self-start sm:self-end'>
+                        <CheckboxFormat setFormat={ setFormat } setCurrentPage={ setCurrentPage } />
+                        <CheckboxRegion setRegion={ setRegion }  setCurrentPage={ setCurrentPage } />
+                        <CheckboxProduct setProduct={ setProduct }  setCurrentPage={ setCurrentPage } />
+                    
+                </div>
+
+                {/* User's search query */}
+                {
+                    (userSearchQuery.length !== 0)
+                    ? <div className='flex flex-col sm:flex-row justify-start items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 w-fit self-start'>
+                        <h6 className='text-sm sm:text-base'>You searched for:</h6>
+                        <div className= 'text-white font-semibold bg-good-goods-blue-900 hover:bg-sky-700 text-xs sm:text-sm px-3 py-1 rounded-full w-fit flex flex-row items-center justify-center space-x-2'>
+                            <h6>{ userSearchQuery }</h6>
+                            <div onClick={() => {setUserSearchQuery(''); setUserSearchResults(docs); setUserInput(''); setDisplay(docs); setErrorMessage(''); setCurrentPage(1)}} className="cursor-pointer">
+                                <IoCloseOutline size={24} /> {/* You can adjust the size */}
+                            </div>
+
+                        </div>
+                    </div>
+                    : null
+                }
+                
+                {/* Enterprises list */}
+                <Enterprises enterprises={display} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
+
+                
+
             </div>
 
-            {/* User's search query */}
-            {
-                (userSearchQuery.length !== 0)
-                ? <div className='flex flex-row justify-start items-center space-x-2 w-fit'>
-                    <h6 className='text-sm sm:text-base'>You searched for:</h6>
-                    <div className= 'text-sm sm:text-base text-white font-semibold bg-good-goods-blue-900 hover:bg-sky-700 px-4 py-1 rounded-full w-fit flex flex-row items-center justify-center'>
-                        <h6>{ userSearchQuery }</h6>
-                        <div onClick={() => {setUserSearchQuery(''); setUserSearchResults(docs); setUserInput('')}} className="cursor-pointer">
-                            <IoCloseOutline size={24} /> {/* You can adjust the size */}
-                        </div>
 
-                    </div>
-                </div>
-                : null
-            }
-            
-
-
-       
-
-            {/* Enterprises */}
-            <Enterprises enterprises={display}></Enterprises>
+           
         </div>
     );
 }
