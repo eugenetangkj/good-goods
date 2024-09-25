@@ -82,15 +82,14 @@ export function AISearchBar() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ question: userInput }),
             });
-            const test = await response.json();
-            console.log(test.answer);
-            const keep = JSON.parse(test.answer);
-            console.log(socialEnterprises);
-            const newDisplay = socialEnterprises.filter(x => keep.includes(x.eid));
-            //console.log(newDisplay);
-            setDisplay(newDisplay);
+            const output = await response.json();
+            const matchingOutput = output.answer;
+            const filteredSocialEnterprises = socialEnterprises.filter(socialEnterprise =>
+                matchingOutput.includes(socialEnterprise.eid)
+            );
+            setDisplay(filteredSocialEnterprises);
             setIsLoading(false);
-            setUserSearchResults(newDisplay);
+            setUserSearchResults(filteredSocialEnterprises);
             setUserInput('');
         } catch {
             console.log('Ran into an error.');

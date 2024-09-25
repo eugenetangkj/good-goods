@@ -1,31 +1,38 @@
-import { ChatOpenAI } from '@langchain/openai';
-import { PromptTemplate } from '@langchain/core/prompts';
 import { NextResponse } from 'next/server';
-import { Enterprise } from '@/constants/Enterprise';
-import connectToDB from "../../../../lib/mongodb";
-import SocialEnterprise from "../../../../models/socialEnterprise";
 import { OpenAI } from 'openai';
 import { MongoClient } from 'mongodb';
+import { Enterprise } from '@/constants/Enterprise';
+import { ChatOpenAI } from '@langchain/openai';
+import { PromptTemplate } from '@langchain/core/prompts';
+
+
+/**
+Approach:
+https://www.mongodb.com/docs/atlas/atlas-vector-search/rag/
+https://www.mongodb.com/docs/atlas/atlas-vector-search/tutorials/vector-search-tutorial/#create-the-atlas-vector-search-index
+*/
+
 
 const client = new MongoClient(process.env.MONGODB_URI as string);
 const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY,});
 
-async function searchEnterprises(userQuery: string) {
+//Retrieve most relevant output
+async function searchEnterprisesRAG(userQuery: string) {
+    //Initialisation
     await client.connect();
     const db = client.db('goodgoods');
     const coll = db.collection("socialenterprises");
 
 
-    // Step 1: Generate embedding for the user query
+    //Generate embedding for user query
     const queryEmbedding = await openai.embeddings.create({
         input: userQuery,
         model: 'text-embedding-3-small',
     });
-
-   
-
     const queryVector = queryEmbedding.data[0].embedding;
 
+
+    //Perform aggregation pipeline
     const agg = [
         {
             '$vectorSearch': {
@@ -33,70 +40,65 @@ async function searchEnterprises(userQuery: string) {
                 'path': 'plot_embedding', // Your embedding field
                 'queryVector': queryVector,
                 'numCandidates': 200, 
-                'limit': 2
+                'limit': 5 //Return the 5 most relevant results, we can change this if required
             }
         }
     ];
-
-
     const results = await coll.aggregate(agg).toArray();
-    console.log(results);
-    return results;
+    const filteredResults = results.map(({ plot_embedding, ...rest }) => rest); //Remove embeddings key
 
+    console.log(filteredResults);
+   
+    return filteredResults
+}
 
+//Answering based on given context
+const TEMPLATE = `Your job is to remove social enterprises that are not relevant or related to the user's query. You are given context that has a list of social enterprises. Based on the context,
+return a list [ID1, ID2, ...] where the IDs (which are numbers) are the enterprise IDs of the social enterprises that apply. For example, a possible output is [1, 2, 3].
+==============================
+Context: {context}
+==============================
+User: {question}
+Assistant:
+`
 
+//For filtering of documents
+async function filterResultsWithPrompt(filteredResults: any, question:string) {
+    const context = filteredResults.map((doc: Enterprise) => {
+        return `ID ${doc['eid']}: ${doc['enterpriseName']} is located in ${doc['location']}, offers ${doc['products']}, has these impacts: ${doc['typeOfImpact']} and is a ${doc['format']}. ${doc['detailedImpact']}`;
+    }).join('\n');
 
+    const prompt = PromptTemplate.fromTemplate(TEMPLATE);
+    const formattedPrompt = await prompt.format({ context, question });
 
+    const model = new ChatOpenAI({
+        apiKey: process.env.OPENAI_API_KEY!,
+        model: 'gpt-4o-mini', 
+        temperature: 0,
+    });
 
+    // Prepare the input for the model
+    console.log(question)
+    const messages = [
+        { role: 'system', content: formattedPrompt},
+        { role: 'user', content: question }
+    ];
 
-
-
-
-
-
-
-
-
-
-
-
-
-    // // Step 2: Retrieve all embeddings from the collection
-    // const embeddings = await db.collection('socialenterpriseembeddings').find().toArray();
-
-    // // Step 3: Calculate similarity and find the closest matches
-    // const results = embeddings.map(enterprise => {
-    //     const similarity = calculateCosineSimilarity(queryVector, enterprise.embedding); // Implement this function
-    //     return { eid: enterprise.eid, similarity };  // Only keep eid and similarity
-    // }).sort((a, b) => b.similarity - a.similarity); // Sort by similarity
-
-    // // Step 4: Get top N results based on similarity
-    // const topResults = results.slice(0, 5);  // Adjust the number as needed
-
-    // // Step 5: Fetch corresponding social enterprise documents
-    // const matchedEnterprises = await db.collection('socialenterprises')
-    //     .find({ eid: { $in: topResults.map(e => e.eid) } })
-    //     .toArray();
-
-    // // Optionally, add similarity score to matched enterprises for reference
-    // const topMatchedEnterprises = matchedEnterprises.map(enterprise => {
-    //     const correspondingResult = topResults.find(result => result.eid === enterprise.eid);
-    //     return { ...enterprise, similarity: correspondingResult?.similarity };
-    // });
-
-    //return topMatchedEnterprises;
+    const response = await model.invoke(messages);
+    return response.content;
 }
 
 
 
-
-
+//Logic that runs when user submits a query
 export async function POST(req: Request) {
-        const output = await req.json();
-        const topMatchEnterprises = await searchEnterprises(output["question"]);
+        //Prepare user input
+        const userInput = await req.json();
 
-        console.log(topMatchEnterprises);
+        //Perform RAG to find most relevant results
+        const topMatchEnterprises = await searchEnterprisesRAG(userInput["question"]);
 
-        return NextResponse.json({ answer: topMatchEnterprises }, { status: 200 });
+        const output = await filterResultsWithPrompt(topMatchEnterprises, userInput["question"]);
+        return NextResponse.json({ answer: output }, { status: 200 },);
 }
 
