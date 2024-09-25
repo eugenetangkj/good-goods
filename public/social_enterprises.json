@@ -151,6 +151,44 @@
         "Business Type":"Food and Beverage",
         "Website":"https://www.tea-ideas.com/pages/shop-now",
         "logo image":"/assets/brands/teaideas.jpg"
+    },
+    {
+        "ID":9,
+        "Enterprise Name":"Crossings Cafe",
+        "URL Param":"crossings-cafe",
+        "Enterprise picture relative path":"/images/enterprises/crossings-cafe.jpg",
+        "Type of impact":["Provision of employment opportunities", "Provide meals for beneficiaries", "Profits go towards charitable and social causes"],
+        "Detailed impact":"Crossings Café is a social enterprise that serves quality food at great prices.  Nourishing connections in the community is at the heart of our business. We support in the following ways: All our profits go towards charitable and social causes. We support charities by providing meals for their beneficiaries. We provide employment opportunities, personal development and dignity for the disadvantaged so that they can have more paths in society. We collaborate with organisations such as Assumption Pathway School and Bettr Barista to take on interns and graduates to work at the café as servers, cooks and baristas.",
+        "Story":"",
+        "Story title":"",
+        "Story picture relative path":"",
+        "Format":["Physical","Online"],
+        "Location":["55 Waterloo Street Singapore 187954"],
+        "Region":["South"],
+        "Products":["Food", "Western", "Desserts","Coffee","Tea","Alcohol"],
+        "Opening hours":["10:00 - 22:00"],
+        "Business Type":"Food and Beverage",
+        "Website":"https://crossingscafe.com.sg/",
+        "logo image": "/assets/brands/crossings-cafe.png"
+    },
+    {
+        "ID":10,
+        "Enterprise Name":"Box Green",
+        "URL Param":"box-green",
+        "Enterprise picture relative path":"/images/enterprises/boxgreen.webp",
+        "Type of impact":["Provision of employment opportunities", "Employment for ex-offenders", "Employment opportunities for people with special needs"],
+        "Detailed impact":"It all starts with creating job opportunities for those who need it most. We believe in the power of human potential, breaking down the hiring barriers for the marginalised. All our delightful snacks and treats have been lovingly prepared by our wonderful team members from the ex-offender and special needs community. Through our empowering production workshops in partnership with Yellow Ribbon Project and MINDS, we offer training and employment opportunities, fostering a sense of pride and a chance to transform lives.",
+        "Story":"",
+        "Story title":"",
+        "Story picture relative path":"",
+        "Format":["Online"],
+        "Location":[],
+        "Region":[],
+        "Products":["Snacks","Tea","Gifts"],
+        "Opening hours":[],
+        "Business Type":"Food and Beverage",
+        "Website":"www.boxgreen.co",
+        "logo image": "/assets/brands/boxgreen.webp"
     }
 
 
