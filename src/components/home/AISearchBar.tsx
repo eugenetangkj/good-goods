@@ -8,28 +8,70 @@ import CheckboxFormat from "./CheckboxFormat";
 import CheckboxRegion from "./CheckboxRegion";
 import CheckboxBusinessType from "./CheckboxBusinessType";
 import { IoCloseOutline } from "react-icons/io5";
+import { Enterprise } from "@/constants/Enterprise";
 
 // Constants
 const maxNumberOfCharacters = 100;
 const promptOne = "I want to dine near Serangoon"
 const promptTwo = "I want catering services"
-const docs = doc
+let docs: Enterprise[] = [];
+
+
+
+
+
+
+
 
 export function AISearchBar() {
-    const formRef = useRef<HTMLFormElement>(null);
+
+    //List of social enterprises
+    const [socialEnterprises, setSocialEnterprises] = useState([]);
     const [userInput, setUserInput] = useState('');
-    const [display, setDisplay] = useState(docs);
+    const [display, setDisplay] = useState<Enterprise[]>();
     const [format, setFormat] = useState<string[]>(["Physical", "Online"]); 
     const [region, setRegion] = useState<string[]>(["North", "South", "East", "West", "North-East", "North-West", "South-East", "South-West"]); 
     const [businessType, setBusinessType] = useState<string[]>(["Food and Beverage", "Fashion and Retail"]); 
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [userSearchQuery, setUserSearchQuery] = useState('');
-    const [userSearchResults, setUserSearchResults] = useState(docs);
+    const [userSearchResults, setUserSearchResults] = useState<Enterprise[]>();
     const [currentPage , setCurrentPage] = useState<number>(1);
 
 
 
+
+    useEffect(() => {
+        // Function to fetch data from the API
+        const fetchSocialEnterprises = async () => {
+          try {
+            const response = await fetch("/api/socialEnterprises"); // API call to your route
+            if (!response.ok) {
+              throw new Error("Failed to fetch data");
+            }
+            const data = await response.json(); // Convert response to JSON
+            //console.log(data["enterprises"]);
+            setSocialEnterprises(data["enterprises"] || []); // Store the data in state
+            setDisplay(data["enterprises"] || []);
+            setUserSearchResults(data["enterprises"] || []);
+            docs = data["enterprises"] || [];
+          } catch (error) {
+                setSocialEnterprises([]); // Store the data in state
+                setDisplay([]);
+                setUserSearchResults([]);
+          } finally {
+            // TODO: Run clean up code
+          }
+        };
+        fetchSocialEnterprises();
+    }, []);
+
+
+
+    
+
+
+ 
 
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +143,7 @@ export function AISearchBar() {
     return (
         <div className='flex flex-col space-y-8'>
             {/* Search bar form */}
-            <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery} ref={formRef}>
+            <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery}>
 
                 {/* Search bar */}
                 <div className="relative lg:w-4/5">
@@ -188,7 +230,7 @@ export function AISearchBar() {
                 }
                 
                 {/* Enterprises list */}
-                <Enterprises enterprises={display} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
+                <Enterprises enterprises={display || []} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
 
                 
 

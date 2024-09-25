@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { EnterpriseCard } from "./EnterpriseCard";
-import { Enterprise } from '@/app/[uri]/page';
+import { Enterprise } from '@/constants/Enterprise';
 import { useState, useEffect } from 'react';
 import { breakpoints } from '@/constants';
 
@@ -22,7 +22,6 @@ const enterprisesPerPageXS = 4;
 export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises, currentPage, setCurrentPage }) => {
     //States to track number of enterprises per page and also current page
     const [enterprisesPerPage, setEnterprisesPerPage] = useState(enterprisesPerPageDefault);
-        
 
     // Update the number of enterprises per page depending on the screen size
     const updateEnterprisesPerPage = () => {
@@ -86,7 +85,7 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises, currentPa
             {/* Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2.5xl:grid-cols-4 gap-8 w-fit self-center">
                 {currentEnterprises.map((ent) => (
-                <EnterpriseCard key={ent.ID} enterprise={ent} />
+                <EnterpriseCard key={ent.eid} enterprise={ent} />
                 ))}
             </div>
 

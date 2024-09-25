@@ -3,35 +3,9 @@ import { PromptTemplate } from '@langchain/core/prompts';
 import path from 'path';
 import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
-// import { JSONLoader } from "langchain/document_loaders/fs/json";
+import { Enterprise } from '@/constants/Enterprise';
 
 
-// Define type for social enterprise data
-interface Enterprise {
-    "ID": number, 
-    "Enterprise Name": string;
-    "URL Param": string;
-    "Enterprise picture relative path": string;
-    "Type of impact": string[];
-    "Detailed impact": string;
-    "Story title": string; 
-    "Story": string;
-    "Story picture relative path": string;
-    "Format": string[];
-    "Location": string[];
-    "Region": string[];
-    "Products": string[];
-    "Opening hours": string[];
-    "Website": string;
-    "logo image": string;
-    "Business Type": string;
-}
-
-// const loader = new JSONLoader(
-//     path.join(process.cwd(), 'public', 'data', 'social_enterprises.json'), // Path to social enterprises data
-//     ["/ID", "/Enterprise Name", "/Location", "/Type of goods offered", "/Format"]
-// );
-// Temporarily read from file, but may obtain from MongoDB instead
 
 export const dynamic = 'force-dynamic';
 
@@ -62,7 +36,7 @@ export async function POST(req: Request) {
       
         // Create the context string from the loaded data
         const context = docs.map((doc: Enterprise) => {
-            return `ID: ${doc['ID']}: ${doc['Enterprise Name']} is located in ${doc['Location']}, offers ${doc['Products']} and is a ${doc['Format']}.`;
+            return `ID: ${doc['eid']}: ${doc['enterpriseName']} is located in ${doc['location']}, offers ${doc['products']} and is a ${doc['format']}.`;
         }).join('\n');
 
         // Create the prompt using the TEMPLATE and context

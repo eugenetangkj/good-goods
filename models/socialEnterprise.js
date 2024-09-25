@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 
 const SocialEnterpriseSchema = new mongoose.Schema({
-  ID: Number,
+  eid: Number,
   enterpriseName: String,
   urlParam: String,
   enterprisePictureRelativePath: String,
