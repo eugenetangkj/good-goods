@@ -14,19 +14,13 @@ import { Enterprise } from "@/constants/Enterprise";
 const maxNumberOfCharacters = 100;
 const promptOne = "I want to dine near Serangoon"
 const promptTwo = "I want catering services"
-let docs: Enterprise[] = [];
-
-
-
-
-
 
 
 
 export function AISearchBar() {
 
-    //List of social enterprises
-    const [socialEnterprises, setSocialEnterprises] = useState([]);
+    //States
+    const [socialEnterprises, setSocialEnterprises] = useState<Enterprise[]>([]); //Maintains full list of social enterprises available in MongoDB
     const [userInput, setUserInput] = useState('');
     const [display, setDisplay] = useState<Enterprise[]>();
     const [format, setFormat] = useState<string[]>(["Physical", "Online"]); 
@@ -39,8 +33,7 @@ export function AISearchBar() {
     const [currentPage , setCurrentPage] = useState<number>(1);
 
 
-
-
+    //Populate data when page loads
     useEffect(() => {
         // Function to fetch data from the API
         const fetchSocialEnterprises = async () => {
@@ -50,11 +43,9 @@ export function AISearchBar() {
               throw new Error("Failed to fetch data");
             }
             const data = await response.json(); // Convert response to JSON
-            //console.log(data["enterprises"]);
             setSocialEnterprises(data["enterprises"] || []); // Store the data in state
             setDisplay(data["enterprises"] || []);
             setUserSearchResults(data["enterprises"] || []);
-            docs = data["enterprises"] || [];
           } catch (error) {
                 setSocialEnterprises([]); // Store the data in state
                 setDisplay([]);
@@ -68,12 +59,6 @@ export function AISearchBar() {
 
 
 
-    
-
-
- 
-
-
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
         if (value.length <= maxNumberOfCharacters) {
@@ -81,6 +66,8 @@ export function AISearchBar() {
         }
     };
 
+
+    //Handle user submitting a query
     const handleSubmitQuery = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
@@ -97,7 +84,9 @@ export function AISearchBar() {
             const test = await response.json();
             console.log(test.answer);
             const keep = JSON.parse(test.answer);
-            const newDisplay = docs.filter(x => keep.includes(x.ID));
+            console.log(socialEnterprises);
+            const newDisplay = socialEnterprises.filter(x => keep.includes(x.eid));
+            //console.log(newDisplay);
             setDisplay(newDisplay);
             setIsLoading(false);
             setUserSearchResults(newDisplay);
@@ -113,19 +102,21 @@ export function AISearchBar() {
         }
     };
 
+
+    //Filtering
     const handleManualFilter = ()=> {
         //If user searched something, we will filter from the results he obtained.
         //If user did not search anything, we will filter from all the data available.
-        let filteredDocs = (userSearchQuery.length !== 0) ? userSearchResults : docs;
+        let filteredDocs = (userSearchQuery.length !== 0) ? userSearchResults : socialEnterprises;
         
         if (format.length === 0 || region.length === 0 || businessType.length === 0) {
             filteredDocs = [];
         } else {
             //Must contain all the checkbox values
-            filteredDocs = filteredDocs.filter(doc => 
-                region.some(item => doc.Region.includes(item)) &&
-                format.some(item => doc.Format.includes(item)) &&
-                businessType.some(item => doc["Business Type"].includes(item))
+            filteredDocs = filteredDocs?.filter(doc => 
+                region.some(item => doc.region.includes(item)) &&
+                format.some(item => doc.format.includes(item)) &&
+                businessType.some(item => doc["businessType"].includes(item))
             );
         }
         setDisplay(filteredDocs);
@@ -220,7 +211,7 @@ export function AISearchBar() {
                         <h6 className='text-sm sm:text-base'>You searched for:</h6>
                         <div className= 'text-white font-semibold bg-good-goods-blue-900 hover:bg-sky-700 text-xs sm:text-sm px-3 py-1 rounded-full w-fit flex flex-row items-center justify-center space-x-2'>
                             <h6>{ userSearchQuery }</h6>
-                            <div onClick={() => {setUserSearchQuery(''); setUserSearchResults(docs); setUserInput(''); setDisplay(docs); setErrorMessage(''); setCurrentPage(1)}} className="cursor-pointer">
+                            <div onClick={() => {setUserSearchQuery(''); setUserSearchResults(socialEnterprises); setUserInput(''); setDisplay(socialEnterprises); setErrorMessage(''); setCurrentPage(1)}} className="cursor-pointer">
                                 <IoCloseOutline size={24} /> {/* You can adjust the size */}
                             </div>
 

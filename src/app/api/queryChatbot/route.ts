@@ -1,9 +1,9 @@
 import { ChatOpenAI } from '@langchain/openai';
 import { PromptTemplate } from '@langchain/core/prompts';
-import path from 'path';
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
 import { Enterprise } from '@/constants/Enterprise';
+import connectToDB from "../../../../lib/mongodb";
+import SocialEnterprise from "../../../../models/socialEnterprise";
 
 
 
@@ -20,23 +20,46 @@ Assistant:`;
 
 
 export async function POST(req: Request) {
+    //Get social enterprises data from MongoDB
+    let enterprises: Enterprise[] = [];
+    
+    try {
+        // Connect to MongoDB
+        await connectToDB();
+    
+        //Fetch social enterprises
+        enterprises = (await SocialEnterprise.find().lean()).map((enterprise: any) => {
+            return {
+            "eid": enterprise.eid,
+            "enterpriseName": enterprise.enterpriseName,
+            "urlParam": enterprise.urlParam,
+            "enterprisePictureRelativePath": enterprise.enterprisePictureRelativePath,
+            "typeOfImpact": enterprise.typeOfImpact,
+            "detailedImpact": enterprise.detailedImpact,
+            "format": enterprise.format,
+            "location": enterprise.location,
+            "region": enterprise.region,
+            "products": enterprise.products,
+            "openingHours": enterprise.openingHours,
+            "website": enterprise.website,
+            "logoImage": enterprise.logoImage,
+            "businessType": enterprise.businessType
+        };
+        });
+      } catch (error) {
+        enterprises = [];
+      }
+
+
 
         // Extract the question from the request body
         const { question } = await req.json();
 
 
-       // Construct the full path to the JSON file in the public directory
-        const filePath = path.join(process.cwd(), 'public', 'social_enterprises.json');
-        
-        // Read the file asynchronously
-        const jsonData = await fs.readFile(filePath, 'utf-8');
-        
-        // Parse the JSON data
-        const docs = JSON.parse(jsonData);
-      
+    
         // Create the context string from the loaded data
-        const context = docs.map((doc: Enterprise) => {
-            return `ID: ${doc['eid']}: ${doc['enterpriseName']} is located in ${doc['location']}, offers ${doc['products']} and is a ${doc['format']}.`;
+        const context = enterprises.map((enterprise: any) => {
+            return `ID ${enterprise['eid']}: ${enterprise['enterpriseName']} is located in ${enterprise['location']}, offers ${enterprise['products']} and is a ${enterprise['format']}.`;
         }).join('\n');
 
         // Create the prompt using the TEMPLATE and context

@@ -24,27 +24,3 @@ export async function GET() {
     );
   }
 }
-
-// FIND SOCIAL ENTERPRISE GIVEN NAME
-export async function POST(request: Request) {
-    await connectToDB(); // Ensure the DB is connected
-  
-    try {
-      // Extract the enterprise name from the request body
-      const { enterpriseName } = await request.json();
-  
-      // Find the enterprise by name in the database
-      const enterprise = await SocialEnterprise.findOne({ enterpriseName });
-  
-      // Check if the enterprise was found
-      if (!enterprise) {
-        return NextResponse.json({ message: 'Enterprise not found' }, { status: 404 });
-      }
-      // Return the found enterprise
-      return NextResponse.json(enterprise, { status: 200 });
-    } catch (error) {
-      console.error('Error fetching enterprise:', error);
-      return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
-    }
-  }
-

@@ -20,6 +20,7 @@ const enterprisesPerPageXS = 4;
 
 
 export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises, currentPage, setCurrentPage }) => {
+
     //States to track number of enterprises per page and also current page
     const [enterprisesPerPage, setEnterprisesPerPage] = useState(enterprisesPerPageDefault);
 
