@@ -14,7 +14,7 @@ export async function GET(request:NextRequest) {
     }
 
     try {
-        const enterprise = await SocialEnterprise.findOne({ urlParam: name });
+        const enterprise = await SocialEnterprise.findOne({ urlParam: name }).select('-plot_embedding');
 
         if (!enterprise) {
             return NextResponse.json({ enterprise: null }, { status: 404 }); // Return 404 if not found
