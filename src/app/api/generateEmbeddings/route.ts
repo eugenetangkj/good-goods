@@ -65,7 +65,6 @@ async function generateEmbeddings() {
     }
 
     // Store embeddings in a new collection
-    await db.collection('socialenterpriseembeddings').insertMany(embeddings);
     console.log('Embeddings stored successfully');
 }
 
