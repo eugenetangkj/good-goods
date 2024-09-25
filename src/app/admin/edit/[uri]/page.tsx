@@ -9,6 +9,7 @@ import { Enterprise } from '@/constants/Enterprise';
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 import CreatableSelect from 'react-select/creatable';
 import { MultiValue } from 'react-select';
+import { filterFormatTypes, filterRegionTypes } from "../../../../constants/index";
 
 
 interface OptionType {
@@ -25,12 +26,17 @@ function EditEnterprisePage() {
 
 
     // Form states
-    const [enterpriseName, setEnterpriseName] = useState(enterprise?.enterpriseName);
-    const [businessType, setBusinessType] = useState(enterprise?.businessType);
-    const [format, setFormat] = useState(enterprise?.format);
+    const [enterpriseName, setEnterpriseName] = useState('');
+    const [businessType, setBusinessType] = useState('');
 
 
-   
+
+    //Format
+    const [format, setFormat] = useState<string[]>();
+
+    //Region
+    const [region, setRegion] = useState<string[]>();
+
 
     //Products options
     const [selectedProductOptions, setSelectedProductOptions] = useState<OptionType[]>([]);
@@ -54,6 +60,14 @@ function EditEnterprisePage() {
         const newOption: OptionType = { value: inputValue, label: inputValue };
         setSelectedTypeOfImpactOptions((prev) => [...prev, newOption]);
     };
+
+
+    //Enterprise description
+    const [detailedImpact, setDetailedImpact] = useState<string>();
+
+
+    //Website
+    const [website, setWebsite] = useState<string>();
 
 
 
@@ -84,9 +98,14 @@ function EditEnterprisePage() {
                 const foundEnterprise = await getEnterpriseByParam(enterpriseNameUri);
                 setEnterprise(foundEnterprise || null);
                 if (foundEnterprise) {
-                    //Set all states initially
+                    //Set enterprise name
+                    setEnterpriseName(foundEnterprise.enterpriseName);
 
+                    //Set format checkboxes
+                    setFormat(foundEnterprise.format);
 
+                    //Set region checkboxes
+                    setRegion(foundEnterprise.region);
 
                     //Set product options
                     setSelectedProductOptions(foundEnterprise.products.map((product:string) => ({
@@ -99,7 +118,6 @@ function EditEnterprisePage() {
                     })));
 
 
-
                     //Set type of impact options
                     setSelectedTypeOfImpactOptions(foundEnterprise.typeOfImpact.map((impact:string) => ({
                         value: impact,
@@ -109,6 +127,12 @@ function EditEnterprisePage() {
                         value: impact,
                         label: impact,
                     })));
+
+                    //Set website
+                    setWebsite(foundEnterprise.website);
+
+                    //Set detailed impact
+                    setWebsite(foundEnterprise.detailedImpact);
 
 
 
@@ -205,6 +229,8 @@ function EditEnterprisePage() {
             {
                 (!isLoading && enterprise)
                 ?<div className='flex flex-col justify-center p-4 space-y-16 mt-15vh'>
+                    <h2 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl'>Edit Enterprise</h2>
+
                     <form className='flex flex-col space-y-8'>
                         {/* Enterprise name */}
                         <div>
@@ -231,48 +257,69 @@ function EditEnterprisePage() {
                             </select>
                         </div>
                        
-
-
                         {/* Format */}
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Business Type</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Format</label>
                             <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
-                                <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                    <div className="flex items-center ps-3">
-                                        <input id="physical-checkbox-list" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2"
-                                        checked={ format?.includes("Physical") }
-                                        onChange={(e) => {
-                                            if (e.target.checked) {
-                                              // Add "Physical" to the format array
-                                              setFormat([...(format || []), "Physical"]);
-                                            } else {
-                                              // Remove "Physical" from the format array
-                                              setFormat(format?.filter(item => item !== "Physical"));
-                                            }}}
-                                        />
-                                        <label htmlFor="physical-checkbox-list" className="w-full py-3 ms-2 text-sm font-medium text-gray-900">Physical</label>
-                                    </div>
-                                </li>
-                                <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
-                                    <div className="flex items-center ps-3">
-                                        <input id="online-checkbox-list" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-                                            checked={ format?.includes("Online") }
-                                            onChange={(e) => {
-                                                if (e.target.checked) {
-                                                  // Add "Physical" to the format array
-                                                  setFormat([...(format || []), "Online"]);
-                                                } else {
-                                                  // Remove "Physical" from the format array
-                                                  setFormat(format?.filter(item => item !== "Online"));
-                                            }}}
-                                        />
-                                        <label htmlFor="online-checkbox-list" className="w-full py-3 ms-2 text-sm font-medium text-gray-900">Online</label>
-                                    </div>
-                                </li>
-                            </ul>
-    
                             
+                                {
+                                    filterFormatTypes.map((formatType, index) => {
+                                        return (
+                                            <li key={ index } className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                                <div className="flex items-center ps-3">
+                                                    <input id={`${formatType}-checkbox-list`} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2"
+                                                    checked={ format?.includes(formatType) }
+                                                    onChange={(e) => {
+                                                        if (e.target.checked) {
+                                                        // Add "Physical" to the format array
+                                                        setFormat([...(format || []), formatType]);
+                                                        } else {
+                                                        // Remove "Physical" from the format array
+                                                        setFormat(format?.filter(item => item !== formatType));
+                                                        }}}
+                                                    />
+                                                    <label htmlFor={`${formatType}-checkbox-list`} className="w-full py-3 ms-2 text-sm font-medium text-gray-900">{ formatType }</label>
+                                                </div>
+                                            </li>
+                                        );
+                                    })
+                                    }
+                            </ul>
                         </div>
+
+                        {/* Region */}
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Region</label>
+                            <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
+                            
+                                {
+                                    filterRegionTypes.map((regionType, index) => {
+                                        return (
+                                            <li key={ index } className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                                <div className="flex items-center ps-3">
+                                                    <input id={`${regionType}-checkbox-list`} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500focus:ring-2"
+                                                    checked={ region?.includes(regionType) }
+                                                    onChange={(e) => {
+                                                        if (e.target.checked) {
+                                                        // Add item to the region array
+                                                        setFormat([...(region || []), regionType]);
+                                                        } else {
+                                                        // Remove item from the region array
+                                                        setFormat(region?.filter(item => item !== regionType));
+                                                        }}}
+                                                    />
+                                                    <label htmlFor={`${regionType}-checkbox-list`} className="w-full py-3 ms-2 text-sm font-medium text-gray-900">{ regionType }</label>
+                                                </div>
+                                            </li>
+                                        );
+                                    })
+                                    }
+                            </ul>
+                        </div>
+
+
+
+
 
 
 
@@ -306,6 +353,31 @@ function EditEnterprisePage() {
                                     placeholder="Type and press enter to create type of impact"
                             />
                         </div>
+
+                         {/* Detailed impact */}
+                         <div>
+                            <label htmlFor="detailedImpact" className="block mb-2 text-sm font-medium text-gray-900">Detailed Impact</label>
+                            <textarea id="detailedImpact" rows={5} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300
+                            focus:ring-blue-500 focus:border-blue-500" placeholder="Describe social enterprise" value= { enterprise.detailedImpact}
+                            onChange={(e) => setDetailedImpact(e.target.value) }></textarea>
+                        </div>
+
+
+                        {/* Website */}
+                        <div>
+                            <label htmlFor="website" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enterprise Website</label>
+                            <input
+                                type="text"
+                                id="website"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                            focus:border-blue-500 block w-full p-2.5"
+                                placeholder="Enter social enterprise website"
+                                required
+                                value={ enterprise.website }
+                                onChange={(e) => setWebsite(e.target.value)}
+                            />
+                        </div>
+
                         
 
 
