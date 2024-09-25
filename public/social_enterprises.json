@@ -14,7 +14,7 @@
         "Region": ["North-East","South-West","West"], 
         "Products": ["Coffee", "Cafe", "Mobile Barista Carts", "Teambuilding Workshops", "Learning Journeys and Sharing", "Wedding Favours", "Corporate welfare packs / gifting"],
         "Business Type": "Food and Beverage",
-        "Opening hours": ["09:00- 17:00", "09:00 - 16:00", "08:00 - 1700"], 
+        "Opening hours": ["09:00 - 17:00", "09:00 - 16:00", "08:00 - 1700"], 
         "Website": "http://www.forewordcoffee.com",
         "logo image": "/assets/brands/foreword-coffee.png"
         
@@ -73,7 +73,7 @@
         "Products": ["Swapping", "Preloved shopping", "Upcycling", "Alteration / Tailoring", "Community events"], 
         "Opening hours": ["11:00 - 20:00"], 
         "Business Type": "Fashion and Retail",
-        "Website": "http://flourpower.sg/",
+        "Website": "https://www.thefashionpulpit.com/",
         "logo image": "/assets/brands/the-fashion-pulpit.png"
     },
     {

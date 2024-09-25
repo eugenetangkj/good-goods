@@ -1,92 +1,104 @@
+import { NextResponse } from 'next/server';
+import { OpenAI } from 'openai';
+import { MongoClient } from 'mongodb';
+import { Enterprise } from '@/constants/Enterprise';
 import { ChatOpenAI } from '@langchain/openai';
 import { PromptTemplate } from '@langchain/core/prompts';
-import path from 'path';
-import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-// import { JSONLoader } from "langchain/document_loaders/fs/json";
 
 
-// Define type for social enterprise data
-interface Enterprise {
-    "ID": number, 
-    "Enterprise Name": string;
-    "URL Param": string;
-    "Enterprise picture relative path": string;
-    "Type of impact": string[];
-    "Detailed impact": string;
-    "Story title": string; 
-    "Story": string;
-    "Story picture relative path": string;
-    "Format": string[];
-    "Location": string[];
-    "Region": string[];
-    "Products": string[];
-    "Opening hours": string[];
-    "Website": string;
-    "logo image": string;
-    "Business Type": string;
+/**
+Approach:
+https://www.mongodb.com/docs/atlas/atlas-vector-search/rag/
+https://www.mongodb.com/docs/atlas/atlas-vector-search/tutorials/vector-search-tutorial/#create-the-atlas-vector-search-index
+*/
+
+
+const client = new MongoClient(process.env.MONGODB_URI as string);
+const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY,});
+
+//Retrieve most relevant output
+async function searchEnterprisesRAG(userQuery: string) {
+    //Initialisation
+    await client.connect();
+    const db = client.db('goodgoods');
+    const coll = db.collection("socialenterprises");
+
+
+    //Generate embedding for user query
+    const queryEmbedding = await openai.embeddings.create({
+        input: userQuery,
+        model: 'text-embedding-3-small',
+    });
+    const queryVector = queryEmbedding.data[0].embedding;
+
+
+    //Perform aggregation pipeline
+    const agg = [
+        {
+            '$vectorSearch': {
+                'index': 'vector_index', // Replace with your actual search index name
+                'path': 'plot_embedding', // Your embedding field
+                'queryVector': queryVector,
+                'numCandidates': 200, 
+                'limit': 5 //Return the 5 most relevant results, we can change this if required
+            }
+        }
+    ];
+    const results = await coll.aggregate(agg).toArray();
+    //const filteredResults = results.map(({ plot_embedding, ...rest }) => rest); //Remove embeddings key
+
+    console.log(results);
+   
+    return results;
 }
 
-// const loader = new JSONLoader(
-//     path.join(process.cwd(), 'public', 'data', 'social_enterprises.json'), // Path to social enterprises data
-//     ["/ID", "/Enterprise Name", "/Location", "/Type of goods offered", "/Format"]
-// );
-// Temporarily read from file, but may obtain from MongoDB instead
-
-export const dynamic = 'force-dynamic';
-
-const TEMPLATE = `You are tasked with answering user queries about social enterprises. Based on the context provided, return a list [ID1,ID2,...] where the IDs(which are numbers) are the IDs of the social enterprises that apply. If the answer is not in the context, reply politely that you do not have that information available.:
+//Answering based on given context
+const TEMPLATE = `Your job is to remove social enterprises that are not relevant or related to the user's query. You are given context that has a list of social enterprises. Based on the context,
+return a list [ID1, ID2, ...] where the IDs (which are numbers) are the enterprise IDs of the social enterprises that apply. For example, a possible output is [1, 2, 3].
 ==============================
 Context: {context}
 ==============================
 User: {question}
-Assistant:`;
+Assistant:
+`
+
+//For filtering of documents
+async function filterResultsWithPrompt(filteredResults: [], question:string) {
+    const context = filteredResults.map((doc: Enterprise) => {
+        return `ID ${doc['eid']}: ${doc['enterpriseName']} is located in ${doc['location']}, offers ${doc['products']}, has these impacts: ${doc['typeOfImpact']} and is a ${doc['format']}. ${doc['detailedImpact']}`;
+    }).join('\n');
+
+    const prompt = PromptTemplate.fromTemplate(TEMPLATE);
+    const formattedPrompt = await prompt.format({ context, question });
+
+    const model = new ChatOpenAI({
+        apiKey: process.env.OPENAI_API_KEY!,
+        model: 'gpt-4o-mini', 
+        temperature: 0,
+    });
+
+    // Prepare the input for the model
+    console.log(question)
+    const messages = [
+        { role: 'system', content: formattedPrompt},
+        { role: 'user', content: question }
+    ];
+
+    const response = await model.invoke(messages);
+    return response.content;
+}
 
 
 
-
+//Logic that runs when user submits a query
 export async function POST(req: Request) {
+        //Prepare user input
+        const userInput = await req.json();
 
-        // Extract the question from the request body
-        const { question } = await req.json();
+        //Perform RAG to find most relevant results
+        const topMatchEnterprises = await searchEnterprisesRAG(userInput["question"]);
 
-
-       // Construct the full path to the JSON file in the public directory
-        const filePath = path.join(process.cwd(), 'public', 'social_enterprises.json');
-        
-        // Read the file asynchronously
-        const jsonData = await fs.readFile(filePath, 'utf-8');
-        
-        // Parse the JSON data
-        const docs = JSON.parse(jsonData);
-      
-        // Create the context string from the loaded data
-        const context = docs.map((doc: Enterprise) => {
-            return `ID: ${doc['ID']}: ${doc['Enterprise Name']} is located in ${doc['Location']}, offers ${doc['Products']}, has these impacts: ${doc['Type of impact']} and is a ${doc['Format']}.`;
-        }).join('\n');
-
-        // Create the prompt using the TEMPLATE and context
-        const prompt = PromptTemplate.fromTemplate(TEMPLATE);
-        const formattedPrompt = await prompt.format({ context, question });
-        console.log("Formatted Prompt:", formattedPrompt);
-        
-        const model = new ChatOpenAI({
-            apiKey: process.env.OPENAI_API_KEY!,
-            model: 'gpt-4o-mini', 
-            // model:'gpt-3.5-turbo',
-            temperature: 0,
-        });
-
-        // Prepare the input for the model
-        console.log(question)
-        const messages = [
-            { role: 'system', content: formattedPrompt},
-            { role: 'user', content: question }
-        ];
-
-        // Call the model with the correctly formatted messages
-        const response = await model.invoke(messages);
-
-        return NextResponse.json({ answer: response.content }, { status: 200 });
+        const output = await filterResultsWithPrompt(topMatchEnterprises as [], userInput["question"]);
+        return NextResponse.json({ answer: output }, { status: 200 },);
 }
 

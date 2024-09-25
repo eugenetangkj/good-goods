@@ -1,34 +1,61 @@
 "use client"
 
 import { FaArrowCircleUp } from "react-icons/fa";
-import { useState, useRef, useEffect } from "react";
-import doc from "../../../public/social_enterprises.json"
+import { useState, useEffect } from "react";
 import { Enterprises } from "./Enterpises";
 import CheckboxFormat from "./CheckboxFormat";
 import CheckboxRegion from "./CheckboxRegion";
 import CheckboxBusinessType from "./CheckboxBusinessType";
 import { IoCloseOutline } from "react-icons/io5";
+import { Enterprise } from "@/constants/Enterprise";
 
 // Constants
 const maxNumberOfCharacters = 100;
 const promptOne = "I want to dine near Serangoon"
 const promptTwo = "I want catering services"
-const docs = doc
+
+
 
 export function AISearchBar() {
-    const formRef = useRef<HTMLFormElement>(null);
+
+    //States
+    const [socialEnterprises, setSocialEnterprises] = useState<Enterprise[]>([]); //Maintains full list of social enterprises available in MongoDB
     const [userInput, setUserInput] = useState('');
-    const [display, setDisplay] = useState(docs);
+    const [display, setDisplay] = useState<Enterprise[]>();
     const [format, setFormat] = useState<string[]>(["Physical", "Online"]); 
     const [region, setRegion] = useState<string[]>(["North", "South", "East", "West", "North-East", "North-West", "South-East", "South-West"]); 
     const [businessType, setBusinessType] = useState<string[]>(["Food and Beverage", "Fashion and Retail"]); 
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [userSearchQuery, setUserSearchQuery] = useState('');
-    const [userSearchResults, setUserSearchResults] = useState(docs);
+    const [userSearchResults, setUserSearchResults] = useState<Enterprise[]>();
     const [currentPage , setCurrentPage] = useState<number>(1);
 
 
+    //Populate data when page loads
+    useEffect(() => {
+        // Function to fetch data from the API
+        const fetchSocialEnterprises = async () => {
+          try {
+            const response = await fetch("/api/socialEnterprises"); // API call to your route
+            if (!response.ok) {
+              throw new Error("Failed to fetch data");
+            }
+            const data = await response.json(); // Convert response to JSON
+            console.log(data);
+            setSocialEnterprises(data["enterprises"] || []); // Store the data in state
+            setDisplay(data["enterprises"] || []);
+            setUserSearchResults(data["enterprises"] || []);
+          } catch (error) {
+                setSocialEnterprises([]); // Store the data in state
+                setDisplay([]);
+                setUserSearchResults([]);
+          } finally {
+            // TODO: Run clean up code
+          }
+        };
+        fetchSocialEnterprises();
+    }, []);
 
 
 
@@ -39,6 +66,8 @@ export function AISearchBar() {
         }
     };
 
+
+    //Handle user submitting a query
     const handleSubmitQuery = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
@@ -52,13 +81,14 @@ export function AISearchBar() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ question: userInput }),
             });
-            const test = await response.json();
-            console.log(test.answer);
-            const keep = JSON.parse(test.answer);
-            const newDisplay = docs.filter(x => keep.includes(x.ID));
-            setDisplay(newDisplay);
+            const output = await response.json();
+            const matchingOutput = output.answer;
+            const filteredSocialEnterprises = socialEnterprises.filter(socialEnterprise =>
+                matchingOutput.includes(socialEnterprise.eid)
+            );
+            setDisplay(filteredSocialEnterprises);
             setIsLoading(false);
-            setUserSearchResults(newDisplay);
+            setUserSearchResults(filteredSocialEnterprises);
             setUserInput('');
         } catch {
             console.log('Ran into an error.');
@@ -71,19 +101,21 @@ export function AISearchBar() {
         }
     };
 
+
+    //Filtering
     const handleManualFilter = ()=> {
         //If user searched something, we will filter from the results he obtained.
         //If user did not search anything, we will filter from all the data available.
-        let filteredDocs = (userSearchQuery.length !== 0) ? userSearchResults : docs;
+        let filteredDocs = (userSearchQuery.length !== 0) ? userSearchResults : socialEnterprises;
         
         if (format.length === 0 || region.length === 0 || businessType.length === 0) {
             filteredDocs = [];
         } else {
             //Must contain all the checkbox values
-            filteredDocs = filteredDocs.filter(doc => 
-                region.some(item => doc.Region.includes(item)) &&
-                format.some(item => doc.Format.includes(item)) &&
-                businessType.some(item => doc["Business Type"].includes(item))
+            filteredDocs = filteredDocs?.filter(doc => 
+                region.some(item => doc.region.includes(item)) &&
+                format.some(item => doc.format.includes(item)) &&
+                businessType.some(item => doc["businessType"].includes(item))
             );
         }
         setDisplay(filteredDocs);
@@ -101,7 +133,7 @@ export function AISearchBar() {
     return (
         <div className='flex flex-col space-y-8'>
             {/* Search bar form */}
-            <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery} ref={formRef}>
+            <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery}>
 
                 {/* Search bar */}
                 <div className="relative lg:w-4/5">
@@ -178,7 +210,7 @@ export function AISearchBar() {
                         <h6 className='text-sm sm:text-base'>You searched for:</h6>
                         <div className= 'text-white font-semibold bg-good-goods-blue-900 hover:bg-sky-700 text-xs sm:text-sm px-3 py-1 rounded-full w-fit flex flex-row items-center justify-center space-x-2'>
                             <h6>{ userSearchQuery }</h6>
-                            <div onClick={() => {setUserSearchQuery(''); setUserSearchResults(docs); setUserInput(''); setDisplay(docs); setErrorMessage(''); setCurrentPage(1)}} className="cursor-pointer">
+                            <div onClick={() => {setUserSearchQuery(''); setUserSearchResults(socialEnterprises); setUserInput(''); setDisplay(socialEnterprises); setErrorMessage(''); setCurrentPage(1)}} className="cursor-pointer">
                                 <IoCloseOutline size={24} /> {/* You can adjust the size */}
                             </div>
 
@@ -188,7 +220,7 @@ export function AISearchBar() {
                 }
                 
                 {/* Enterprises list */}
-                <Enterprises enterprises={display} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
+                <Enterprises enterprises={display || []} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
 
                 
 
