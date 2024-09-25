@@ -1,6 +1,5 @@
 'use client';
 
-import enterprisesDetails from '../../../public/social_enterprises.json'
 import EnterpriseLocation from '@/components/enterprises/EnterpriseLocation';
 import Footer from "@/components/common/Footer";
 import Image from "next/image";

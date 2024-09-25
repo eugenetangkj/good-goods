@@ -45,11 +45,11 @@ async function searchEnterprisesRAG(userQuery: string) {
         }
     ];
     const results = await coll.aggregate(agg).toArray();
-    const filteredResults = results.map(({ plot_embedding, ...rest }) => rest); //Remove embeddings key
+    //const filteredResults = results.map(({ plot_embedding, ...rest }) => rest); //Remove embeddings key
 
-    console.log(filteredResults);
+    console.log(results);
    
-    return filteredResults
+    return results;
 }
 
 //Answering based on given context
@@ -63,7 +63,7 @@ Assistant:
 `
 
 //For filtering of documents
-async function filterResultsWithPrompt(filteredResults: any, question:string) {
+async function filterResultsWithPrompt(filteredResults: [], question:string) {
     const context = filteredResults.map((doc: Enterprise) => {
         return `ID ${doc['eid']}: ${doc['enterpriseName']} is located in ${doc['location']}, offers ${doc['products']}, has these impacts: ${doc['typeOfImpact']} and is a ${doc['format']}. ${doc['detailedImpact']}`;
     }).join('\n');
@@ -98,7 +98,7 @@ export async function POST(req: Request) {
         //Perform RAG to find most relevant results
         const topMatchEnterprises = await searchEnterprisesRAG(userInput["question"]);
 
-        const output = await filterResultsWithPrompt(topMatchEnterprises, userInput["question"]);
+        const output = await filterResultsWithPrompt(topMatchEnterprises as [], userInput["question"]);
         return NextResponse.json({ answer: output }, { status: 200 },);
 }
 

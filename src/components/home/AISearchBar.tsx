@@ -1,8 +1,7 @@
 "use client"
 
 import { FaArrowCircleUp } from "react-icons/fa";
-import { useState, useRef, useEffect } from "react";
-import doc from "../../../public/social_enterprises.json"
+import { useState, useEffect } from "react";
 import { Enterprises } from "./Enterpises";
 import CheckboxFormat from "./CheckboxFormat";
 import CheckboxRegion from "./CheckboxRegion";
