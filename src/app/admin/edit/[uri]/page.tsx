@@ -44,6 +44,18 @@ function EditEnterprisePage() {
     };
 
 
+    //Type of impact options
+    const [selectedTypeOfImpactOptions, setSelectedTypeOfImpactOptions] = useState<OptionType[]>([]);
+    const [defaultTypeOfImpactOptions, setDefaultTypeOfImpactOptions] = useState<OptionType[]>([]);
+    const handleTypeOfImpactChange = (newValue: MultiValue<OptionType>) => {
+        setSelectedTypeOfImpactOptions(newValue as OptionType[]);
+      };
+    const handleTypeOfImpactCreate = (inputValue: string) => {
+        const newOption: OptionType = { value: inputValue, label: inputValue };
+        setSelectedTypeOfImpactOptions((prev) => [...prev, newOption]);
+    };
+
+
 
 
 
@@ -84,6 +96,18 @@ function EditEnterprisePage() {
                     setDefaultProductOptions(foundEnterprise.products.map((product:string) => ({
                         value: product,
                         label: product,
+                    })));
+
+
+
+                    //Set type of impact options
+                    setSelectedTypeOfImpactOptions(foundEnterprise.typeOfImpact.map((impact:string) => ({
+                        value: impact,
+                        label: impact,
+                    })));
+                    setDefaultTypeOfImpactOptions(foundEnterprise.typeOfImpact.map((impact:string) => ({
+                        value: impact,
+                        label: impact,
                     })));
 
 
@@ -264,11 +288,24 @@ function EditEnterprisePage() {
                                 className="basic-multi-select"
                                 classNamePrefix="select"
                                 placeholder="Type and press enter to create product"
-                                />
+                            />
                         </div>
 
 
                         {/* Type of Impact */}
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type of Impact</label>
+                                <CreatableSelect
+                                    isMulti
+                                    options={defaultTypeOfImpactOptions}
+                                    value={selectedTypeOfImpactOptions} // Prepopulate with selected values
+                                    onChange={handleTypeOfImpactChange}
+                                    onCreateOption={handleTypeOfImpactCreate}
+                                    className="basic-multi-select"
+                                    classNamePrefix="select"
+                                    placeholder="Type and press enter to create type of impact"
+                            />
+                        </div>
                         
 
 
