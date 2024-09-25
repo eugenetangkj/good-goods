@@ -13,7 +13,6 @@ export async function GET() {
 
     // // Fetch social enterprises
     const enterprises = await SocialEnterprise.find();
-    console.log(enterprises);
 
     // Return the enterprises as JSON
     return NextResponse.json({enterprises});

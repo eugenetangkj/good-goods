@@ -43,6 +43,7 @@ export function AISearchBar() {
               throw new Error("Failed to fetch data");
             }
             const data = await response.json(); // Convert response to JSON
+            console.log(data);
             setSocialEnterprises(data["enterprises"] || []); // Store the data in state
             setDisplay(data["enterprises"] || []);
             setUserSearchResults(data["enterprises"] || []);

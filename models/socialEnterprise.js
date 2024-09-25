@@ -17,7 +17,6 @@ const SocialEnterpriseSchema = new mongoose.Schema({
   website: String,
   logoImage: String,
 },
-{ collection: 'socialEnterprises' }
 );
 
 export default mongoose.models.SocialEnterprise ||
