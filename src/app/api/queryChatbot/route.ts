@@ -62,7 +62,7 @@ export async function POST(req: Request) {
       
         // Create the context string from the loaded data
         const context = docs.map((doc: Enterprise) => {
-            return `ID: ${doc['ID']}: ${doc['Enterprise Name']} is located in ${doc['Location']}, offers ${doc['Products']} and is a ${doc['Format']}.`;
+            return `ID: ${doc['ID']}: ${doc['Enterprise Name']} is located in ${doc['Location']}, offers ${doc['Products']}, has these impacts: ${doc['Type of impact']} and is a ${doc['Format']}.`;
         }).join('\n');
 
         // Create the prompt using the TEMPLATE and context
