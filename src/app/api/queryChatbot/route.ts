@@ -96,9 +96,9 @@ export async function POST(req: Request) {
         const userInput = await req.json();
 
         //Perform RAG to find most relevant results
-        const topMatchEnterprises = await searchEnterprisesRAG(userInput["question"]);
+        const topMatchEnterprises = await searchEnterprisesRAG(userInput["question"].toLowerCase());
 
-        const output = await filterResultsWithPrompt(topMatchEnterprises as [], userInput["question"]);
+        const output = await filterResultsWithPrompt(topMatchEnterprises as [], userInput["question"].toLowerCase());
         return NextResponse.json({ answer: output }, { status: 200 },);
 }
 

@@ -12,7 +12,7 @@ export async function GET() {
     await connectToDB();
 
     // // Fetch social enterprises
-    const enterprises = await SocialEnterprise.find();
+    const enterprises = await SocialEnterprise.find().select('-plot_embedding');
 
     // Return the enterprises as JSON
     return NextResponse.json({enterprises});
