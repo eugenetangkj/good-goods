@@ -7,10 +7,6 @@ import { MongoClient } from 'mongodb';
 const client = new MongoClient(process.env.MONGODB_URI as string);
 const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY,});
 
-type Embedding = {
-    eid: number;
-    embedding: number[];  // Array of numbers representing the embedding vector
-};
 
 async function generateEmbeddings() {
     await client.connect();
@@ -18,7 +14,6 @@ async function generateEmbeddings() {
     const enterprises = await db.collection('socialenterprises').find().toArray();
 
     const batchSize = 3; // Number of embeddings to generate per API call
-    const embeddings: Embedding[] = [];
 
     for (let i = 0; i < enterprises.length; i += batchSize) {
         const batch = enterprises.slice(i, i + batchSize);
