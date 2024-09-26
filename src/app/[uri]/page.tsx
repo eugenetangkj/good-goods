@@ -53,6 +53,11 @@ function EnterprisePage() {
         <div className='bg-good-goods-blue-100 p-8 h-screen flex flex-col justify-between'>
             <Navbar />
             {/* Body */}
+            {loading && (
+            <div className='absolute inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center'>
+                <div className='w-16 h-16 border-4 border-t-4 border-t-transparent border-white rounded-full animate-spin'></div>
+            </div>)}
+            
             {!loading && enterprise && 
             <div className='flex flex-col justify-center p-4 space-y-16 mt-15vh'>
                 {/* Enterprise Information */}

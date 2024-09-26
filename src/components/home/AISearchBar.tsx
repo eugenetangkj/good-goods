@@ -31,6 +31,7 @@ export function AISearchBar() {
     const [region, setRegion] = useState<string[]>(["North", "South", "East", "West", "North-East", "North-West", "South-East", "South-West"]); 
     const [businessType, setBusinessType] = useState<string[]>(["Food and Beverage", "Fashion and Retail"]); 
     const [isLoading, setIsLoading] = useState(false);
+    const [enterprisesIsLoading, setEnterprisesIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
     const [userSearchQuery, setUserSearchQuery] = useState('');
     const [userSearchResults, setUserSearchResults] = useState<Enterprise[]>();
@@ -47,11 +48,13 @@ export function AISearchBar() {
               throw new Error("Failed to fetch data");
             }
             const data = await response.json(); // Convert response to JSON
+            setEnterprisesIsLoading(false)
             console.log(data);
             setSocialEnterprises(data["enterprises"] || []); // Store the data in state
             setDisplay(data["enterprises"] || []);
             setUserSearchResults(data["enterprises"] || []);
           } catch (error) {
+                setEnterprisesIsLoading(false)
                 setSocialEnterprises([]); // Store the data in state
                 setDisplay([]);
                 setUserSearchResults([]);
@@ -136,6 +139,10 @@ export function AISearchBar() {
 
 
     return (
+        (enterprisesIsLoading || isLoading) ? 
+        (<div className="absolute inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center">
+          <div className="w-16 h-16 border-4 border-t-4 border-t-transparent border-white rounded-full animate-spin"></div>
+        </div>) :
         <div className='flex flex-col space-y-8'>
             {/* Search bar form */}
             <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery}>
