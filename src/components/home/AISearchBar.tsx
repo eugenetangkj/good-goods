@@ -135,7 +135,7 @@ export function AISearchBar() {
 
 
 
-    return (isClient &&
+    return (
         <div className='flex flex-col space-y-8'>
             {/* Search bar form */}
             <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery}>
@@ -225,7 +225,10 @@ export function AISearchBar() {
                 }
                 
                 {/* Enterprises list */}
-                <Enterprises enterprises={display || []} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
+                {isClient &&
+                    <Enterprises enterprises={display || []} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
+            
+                }
 
                 
 
