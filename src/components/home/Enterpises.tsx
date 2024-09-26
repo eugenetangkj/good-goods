@@ -30,22 +30,22 @@ export const Enterprises: React.FC<EnterprisesProps> = ({ enterprises, currentPa
 
         if (screenWidth >= breakpoints['2.5xl']) {
             if (enterprisesPerPage != enterprisesPerPageXXL) {
-                setCurrentPage(1);      
+                // setCurrentPage(1);      
                 setEnterprisesPerPage(enterprisesPerPageXXL);
             }
         } else if (screenWidth >= breakpoints.xl) {
             if (enterprisesPerPage != enterprisesPerPageXL) {
-                setCurrentPage(1);
+                // setCurrentPage(1);
                 setEnterprisesPerPage(enterprisesPerPageXL);
             }
         } else if (screenWidth >= breakpoints.sm) {
             if (enterprisesPerPage != enterprisesPerPageSM) {
-                setCurrentPage(1);
+                // setCurrentPage(1);
                 setEnterprisesPerPage(enterprisesPerPageSM);
             }
         } else {
             if (enterprisesPerPage != enterprisesPerPageXS) {
-                setCurrentPage(1);
+                // setCurrentPage(1);
                 setEnterprisesPerPage(enterprisesPerPageXS);
             }
         }
