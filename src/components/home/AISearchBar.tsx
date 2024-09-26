@@ -17,6 +17,11 @@ const promptTwo = "I want catering services"
 
 
 export function AISearchBar() {
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
 
     //States
     const [socialEnterprises, setSocialEnterprises] = useState<Enterprise[]>([]); //Maintains full list of social enterprises available in MongoDB
@@ -227,7 +232,10 @@ export function AISearchBar() {
                 }
                 
                 {/* Enterprises list */}
-                <Enterprises enterprises={display || []} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
+                {isClient &&
+                    <Enterprises enterprises={display || []} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
+            
+                }
 
                 
 
