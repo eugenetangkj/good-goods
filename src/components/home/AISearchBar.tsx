@@ -17,6 +17,11 @@ const promptTwo = "I want catering services"
 
 
 export function AISearchBar() {
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
 
     //States
     const [socialEnterprises, setSocialEnterprises] = useState<Enterprise[]>([]); //Maintains full list of social enterprises available in MongoDB
@@ -130,7 +135,7 @@ export function AISearchBar() {
 
 
 
-    return (
+    return (isClient &&
         <div className='flex flex-col space-y-8'>
             {/* Search bar form */}
             <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery}>
