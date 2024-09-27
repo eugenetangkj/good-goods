@@ -8,8 +8,8 @@ export const navLinks = [
         route: '/challenges'
     },
     {
-        name: 'Recommend',
-        route: '/recommend'
+        name: 'Recommendations',
+        route: '/recommendations'
     },
 ];
 
