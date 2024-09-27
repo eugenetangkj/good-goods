@@ -1,6 +1,6 @@
 // app/api/retrieveRecommendations/route.ts
 import connectToDB from "../../../../lib/mongodb";
-import Recommendation from "../../../../models/recommendation";
+import CommunityRecommendation from "../../../../models/communityRecommendation";
 import { NextResponse } from "next/server";
 
 // RETRIEVES ALL RECOMMENDATIONS
@@ -10,13 +10,15 @@ export async function GET() {
     await connectToDB();
 
     // // Fetch recommendations
-    const recommendations = await Recommendation.find();
+    const recommendations = await CommunityRecommendation.find();
+    console.log(recommendations);
+
 
     // Return the enterprises as JSON
     return NextResponse.json({recommendations});
   } catch (error) {
     return NextResponse.json(
-      { message: "Cannot fetch recommendations", error },
+      { message: "Cannot fetch community recommendations", error },
       { status: 500 }
     );
   }
