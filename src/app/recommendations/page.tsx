@@ -26,7 +26,6 @@ export default function Recommendations() {
           throw new Error("Cannot get recommendations");
         }
         const data = await response.json(); // Convert response to JSON
-        console.log(data["recommendations"]);
         setAreRecommendationsLoading(false)
         setCommunityRecommendation(data["recommendations"] || []);
 
@@ -70,9 +69,8 @@ export default function Recommendations() {
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2.5xl:grid-cols-4 gap-8 w-fit self-center">
                 {communityRecommendations.map((recommendation) => (
 
-                    <Link href={`./${recommendation['enterpriseName']}`} passHref>  
+                    <Link href={`./recommendations/${recommendation['_id']}`} passHref>  
                     <div className="cursor-pointer p-4 sm:p-6 space-y-4 bg-white rounded-xl card w-72 h-72 lg:w-96 lg:h-56 flex flex-col justify-center lg:flex-row space-x-4">
-                            {/* Image */}
                             
                             {/* Store name and Description */}
                             <div className="flex flex-col space-y-4">
@@ -87,14 +85,14 @@ export default function Recommendations() {
                                 <div className='flex flex-row self-end'>
                                 {/* Likes */}
                                 <div className="text-blue-700 border font-medium rounded-full text-sm p-2.5 text-center flex flex-row justify-center items-center duration-200 border-none space-x-1">
-                                  <h6 className='text-gray-700 font-semibold'>{recommendation['numberOfLikes']}</h6>
                                   <FaRegThumbsUp />
+                                  <h6 className='text-gray-700 font-semibold'>{recommendation['numberOfLikes']}</h6>
                                 </div>
 
                                 {/* Dislikes */}
                                 <div className="text-gray-500 border font-medium rounded-full text-sm p-2.5 text-center flex flex-row justify-center items-center duration-200 border-none space-x-1">
-                                  <h6 className='text-gray-700 font-semibold'>{recommendation['numberOfDislikes']}</h6>
                                   <FaRegThumbsDown />
+                                  <h6 className='text-gray-700 font-semibold'>{recommendation['numberOfDislikes']}</h6>
                                 </div>
 
                                 </div>
