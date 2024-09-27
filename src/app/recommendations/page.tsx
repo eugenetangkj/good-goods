@@ -12,6 +12,7 @@ import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 export default function Recommendations() {
   //List of recommendations to display
   const [communityRecommendations, setCommunityRecommendation] = useState<CommunityRecommendation[]>([]);
+  const [areRecommendationsLoading, setAreRecommendationsLoading] = useState(true);
 
 
   //Populate data when page loads
@@ -19,17 +20,18 @@ export default function Recommendations() {
     // Function to fetch data from the API
     const fetchRecommendations = async () => {
       try {
-        const response = await fetch("/api/retrieveCommunityRecommendations"); // API call to your route
+        setAreRecommendationsLoading(true);
+        const response = await fetch("/api/retrieveCommunityRecommendations");
         if (!response.ok) {
           throw new Error("Cannot get recommendations");
         }
         const data = await response.json(); // Convert response to JSON
         console.log(data["recommendations"]);
-        // setEnterprisesIsLoading(false)
+        setAreRecommendationsLoading(false)
         setCommunityRecommendation(data["recommendations"] || []);
 
       } catch (error) {
-            // setEnterprisesIsLoading(false)
+            setAreRecommendationsLoading(false);
             setCommunityRecommendation([]); //Just return no recommendation
       } finally {
       }
@@ -58,13 +60,21 @@ export default function Recommendations() {
     <div className='bg-good-goods-blue-100 p-8 h-screen flex flex-col justify-between'>
       <div className='flex flex-col justify-start'>
         <Navbar />
-        {/* Body */}
-        <div className='flex flex-col justify-center p-4 space-y-16 mt-12.5vh'>
+
+        {(areRecommendationsLoading)
+        ?
+            (<div className="absolute inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center">
+            <div className="w-16 h-16 border-4 border-t-4 border-t-transparent border-white rounded-full animate-spin"></div>
+            </div>)
+        :
+        
+        //Body
+        (<div className='flex flex-col justify-center p-4 space-y-16 mt-12.5vh'>
           <div className='flex flex-col justify-center space-y-8'>
             {/* Title and add recommendation button */}
             <div className='flex flex-row flex-wrap items-center'>
               <h2 className='text-good-goods-blue-900 font-semibold text-2xl sm:text-3xl lg:text-4xl sm:w-3/4'>Community-Recommended Social Enterprises for Good Goods</h2>
-              <a href=''>
+              <a href='/recommendations/recommend'>
                 <div className="mt-4 text-white bg-good-goods-blue-900 hover:bg-sky-700 rounded-full text-sm w-full sm:w-auto px-5 sm:px-8 py-2.5 text-center self-end duration-200">Add Recommendation</div>
               </a>         
             </div>
@@ -117,14 +127,14 @@ export default function Recommendations() {
             
             
           </div>
-      </div> 
-
-      </div>
+      </div>)}
      
 
       <Footer />
-
-
+      </div>
     </div>
+
+
+    
   );
 }
