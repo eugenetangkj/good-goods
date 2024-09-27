@@ -40,22 +40,6 @@ export default function Recommendations() {
 }, []);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return (
     <div className='bg-good-goods-blue-100 p-8 h-screen flex flex-col justify-between'>
       <div className='flex flex-col justify-start'>

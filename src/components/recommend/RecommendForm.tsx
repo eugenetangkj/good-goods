@@ -12,6 +12,8 @@ export function RecommendForm() {
     const [emailInput, setEmailInput] = useState('');
     //Enterprise name input value
     const [enterpriseNameInput, setBusinessNameInput] = useState('');
+    //Enterprise description input value
+    const [descriptionInput, setDescriptionInput] = useState('');
     //Enterprise contact input value
     const [enterpriseContactInput, setBusinessContactInput] = useState('');
     
@@ -20,6 +22,7 @@ export function RecommendForm() {
     const [shouldModalAppear, setShouldModalAppear] = useState(false);
     const [shouldModalShowSuccess, setShouldModalShowSuccess] = useState<boolean>();
     const timeoutDuration = 3000; //In ms
+    const [isLoading, setIsLoading] = useState(false);
 
 
     useEffect(() => {
@@ -38,11 +41,15 @@ export function RecommendForm() {
     const handleEmailInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmailInput(event.target.value);
     };
-    //Function that runs when user changes email input
+    //Function that runs when user changes business name input
      const handleBusinessNameInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBusinessNameInput(event.target.value);
     };
-    //Function that runs when user changes enterprise contact
+    //Function that runs when user changes description input
+    const handleDescriptionInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setDescriptionInput(event.target.value);
+    }
+    //Function that runs when user changes business contact input
     const handleBusinessContactInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBusinessContactInput(event.target.value);
     };
@@ -52,13 +59,15 @@ export function RecommendForm() {
     const handleSubmitQuery = async (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const newMessage = "From: " + emailInput + "\n\n" + "Enterprise to recommend: " + enterpriseNameInput + "\n\n" + "Enterprise Website/Location: " + enterpriseContactInput;
+            const newMessage = "From: " + emailInput + "\n\n" + "Enterprise to recommend: " + enterpriseNameInput + "\n\n" + "Enterprise Description: " + descriptionInput
+            + "\n\n" + "Enterprise Website/Location: " + enterpriseContactInput
             await sendEmail("Recommendation: " + enterpriseNameInput, newMessage);
            
             //Reset fields
             setEmailInput("");
             setBusinessNameInput("");
             setBusinessContactInput("");
+            setDescriptionInput("");
             } catch (error) {
                 console.error("Error sending email:", error);
                 setShouldModalAppear(true);
@@ -69,7 +78,9 @@ export function RecommendForm() {
     
     //Helper function that makes the API request
     const sendEmail = async (subject: string, message: string) => {
+
         try {
+            setIsLoading(true);
             const response = await fetch("/api/sendContactEmail", {
                 method: "post",
                 headers: {
@@ -82,14 +93,17 @@ export function RecommendForm() {
             if (data.status !== 200) {
                 setShouldModalAppear(true);
                 setShouldModalShowSuccess(false);
+                setIsLoading(false);
                 throw new Error(
                     `Email API request failed with status: ${response.status}`
                 );
             }
             setShouldModalAppear(true);
             setShouldModalShowSuccess(true);
+            setIsLoading(false);
             console.log(data);
         } catch (error) {
+            setIsLoading(false);
             setShouldModalAppear(true);
             setShouldModalShowSuccess(false);
             console.log(error);
@@ -99,7 +113,12 @@ export function RecommendForm() {
 
 
     return (
-            <div>
+            (isLoading)
+            ?
+            (<div className="absolute inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center">
+                <div className="w-16 h-16 border-4 border-t-4 border-t-transparent border-white rounded-full animate-spin"></div>
+            </div>)
+            :(<div>
             <form className="flex flex-col w-full sm:w-3/4 2xl:w-1/2" onSubmit={ handleSubmitQuery }>
                 
                 {/* Email field */}
@@ -126,6 +145,22 @@ export function RecommendForm() {
                     />
                 </div>
 
+                {/* Description of Enterprise */}
+                <div className="mb-5">
+                    <label htmlFor="descriptionOfEnterprise" className="block mb-2 font-medium text-gray-900">Description of Enterprise</label>
+                    <textarea
+                    id="descriptionOfEnterprise"
+                    className="bg-white border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5 px-3"
+                    value={descriptionInput}
+                    onChange={ handleDescriptionInputChange }
+                    rows={2}
+                    required
+                    ></textarea>
+
+                </div>
+
+
+
 
                 {/* Enterprise Contact */}
                 <div className="mb-5">
@@ -151,6 +186,6 @@ export function RecommendForm() {
                 </div>
              </div>
             )}
-            </div>
+            </div>)
     );
   }
