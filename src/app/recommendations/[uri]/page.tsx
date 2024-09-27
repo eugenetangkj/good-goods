@@ -42,6 +42,10 @@ function ViewCommunityRecommendation() {
         }
     }, [recommendationId]);
 
+    useEffect(() => {
+
+    }, [loading]);
+
   
 
 

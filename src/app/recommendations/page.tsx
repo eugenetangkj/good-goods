@@ -71,10 +71,10 @@ export default function Recommendations() {
                 {communityRecommendations.map((recommendation) => (
 
                     <Link key={recommendation._id} href={`./recommendations/${recommendation['_id']}`} passHref>  
-                    <div className="cursor-pointer p-4 sm:p-6 space-y-4 bg-white rounded-xl card w-72 h-72 lg:w-96 lg:h-56 flex flex-col justify-center lg:flex-row space-x-4">
+                    <div className="cursor-pointer p-4 sm:p-6 space-y-4 bg-white rounded-xl card w-72 h-72 lg:w-96 lg:h-56 flex flex-col justify-start lg:flex-row space-x-4">
                             
                             {/* Store name and Description */}
-                            <div className="flex flex-col space-y-4">
+                            <div className="flex flex-col space-y-4 w-full">
                                 <h5 className="text-xl xl:text-1.5xl font-semibold text-good-goods-blue-900">
                                     {recommendation['enterpriseName']}
                                 </h5>
@@ -83,7 +83,7 @@ export default function Recommendations() {
                                 </p>
 
                                 {/* Likes and Dislikes */}
-                                <div className='flex flex-row self-end'>
+                                <div className='w-full flex flex-row justify-end self-end'>
                                 {/* Likes */}
                                 <div className="text-blue-700 border font-medium rounded-full text-sm p-2.5 text-center flex flex-row justify-center items-center duration-200 border-none space-x-1">
                                   <FaRegThumbsUp />

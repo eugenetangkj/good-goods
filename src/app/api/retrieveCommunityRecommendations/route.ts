@@ -3,6 +3,9 @@ import connectToDB from "../../../../lib/mongodb";
 import CommunityRecommendation from "../../../../models/communityRecommendation";
 import { NextResponse } from "next/server";
 
+// https://github.com/vercel/next.js/discussions/61884
+export const revalidate = 0;
+
 // RETRIEVES ALL RECOMMENDATIONS
 export async function GET() {
   try {
