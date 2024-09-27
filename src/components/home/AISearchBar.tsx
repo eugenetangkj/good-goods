@@ -1,3 +1,4 @@
+
 "use client"
 
 import { FaArrowCircleUp } from "react-icons/fa";
@@ -31,7 +32,6 @@ export function AISearchBar() {
     const [region, setRegion] = useState<string[]>(["North", "South", "East", "West", "North-East", "North-West", "South-East", "South-West"]); 
     const [businessType, setBusinessType] = useState<string[]>(["Food and Beverage", "Fashion and Retail"]); 
     const [isLoading, setIsLoading] = useState(false);
-    const [enterprisesIsLoading, setEnterprisesIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
     const [userSearchQuery, setUserSearchQuery] = useState('');
     const [userSearchResults, setUserSearchResults] = useState<Enterprise[]>();
@@ -48,12 +48,11 @@ export function AISearchBar() {
               throw new Error("Failed to fetch data");
             }
             const data = await response.json(); // Convert response to JSON
-            setEnterprisesIsLoading(false)
+            console.log(data);
             setSocialEnterprises(data["enterprises"] || []); // Store the data in state
             setDisplay(data["enterprises"] || []);
             setUserSearchResults(data["enterprises"] || []);
           } catch (error) {
-                setEnterprisesIsLoading(false)
                 setSocialEnterprises([]); // Store the data in state
                 setDisplay([]);
                 setUserSearchResults([]);
@@ -97,11 +96,9 @@ export function AISearchBar() {
             setIsLoading(false);
             setUserSearchResults(filteredSocialEnterprises);
             setUserInput('');
-            if (filteredSocialEnterprises.length === 0) {
-                setErrorMessage("No result found. Please try a different search term.")
-            }
         } catch {
             console.log('Ran into an error.');
+            setErrorMessage("No result found. Please try a different search term.")
             setDisplay([]);
             setIsLoading(false);
             setUserInput('');
@@ -141,19 +138,7 @@ export function AISearchBar() {
 
     return (
         <div className='flex flex-col space-y-8'>
-            {(enterprisesIsLoading || isLoading) &&
-            (<div className="absolute inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center">
-            <div className="w-16 h-16 border-4 border-t-4 border-t-transparent border-white rounded-full animate-spin"></div>
-            </div>)
-            }
-
-
-
-
-
-
             {/* Search bar form */}
-            {!(enterprisesIsLoading || isLoading) &&
             <form className="flex flex-col gap-4 space-y-8" onSubmit={handleSubmitQuery}>
 
                 {/* Search bar */}
@@ -194,12 +179,12 @@ export function AISearchBar() {
                     {userInput.length} / {maxNumberOfCharacters} characters
                 </div>
             </form>
-            }
 
             
 
+
+
             {/* Suggested prompts */}
-            {!(enterprisesIsLoading || isLoading) &&
             <div className='flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4 mt-8' id="prompts">
                 <div className='bg-sky-200 hover:bg-sky-300 px-4 py-2 text-sm md:text-base rounded-full cursor-pointer duration-200 w-fit' onClick={() => {
                     setUserInput(promptOne);
@@ -212,23 +197,21 @@ export function AISearchBar() {
                     <h6 className='font-bold text-good-goods-blue-900'>{promptTwo}</h6>
                 </div>
             </div>
-            }
 
 
             {/* Enterprises */}
             <div className='pt-20 flex flex-col items-center gap-y-8'>
                  {/* Filter checkboxes */}
-                    <div className='flex flex-row justify-start sm:justify-end items-center flex-wrap gap-x-4 gap-y-2 lg:gap-x-8 self-start sm:self-end'>
-                            <CheckboxFormat setFormat={ setFormat } setCurrentPage={ setCurrentPage } />
-                            <CheckboxRegion setRegion={ setRegion }  setCurrentPage={ setCurrentPage } />
-                            <CheckboxBusinessType setBusinessType={ setBusinessType }  setCurrentPage={ setCurrentPage } />
-                        
-                    </div>
-                
+                <div className='flex flex-row justify-start sm:justify-end items-center flex-wrap gap-x-4 gap-y-2 lg:gap-x-8 self-start sm:self-end'>
+                        <CheckboxFormat setFormat={ setFormat } setCurrentPage={ setCurrentPage } />
+                        <CheckboxRegion setRegion={ setRegion }  setCurrentPage={ setCurrentPage } />
+                        <CheckboxBusinessType setBusinessType={ setBusinessType }  setCurrentPage={ setCurrentPage } />
+                    
+                </div>
 
                 {/* User's search query */}
                 {
-                    (userSearchQuery.length !== 0 && !(enterprisesIsLoading || isLoading))
+                    (userSearchQuery.length !== 0)
                     ? <div className='flex flex-col sm:flex-row justify-start items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 w-fit self-start'>
                         <h6 className='text-sm sm:text-base'>You searched for:</h6>
                         <div className= 'text-white font-semibold bg-good-goods-blue-900 hover:bg-sky-700 text-xs sm:text-sm px-3 py-1 rounded-full w-fit flex flex-row items-center justify-center space-x-2'>
@@ -243,7 +226,7 @@ export function AISearchBar() {
                 }
                 
                 {/* Enterprises list */}
-                {isClient && !(enterprisesIsLoading || isLoading) &&
+                {isClient &&
                     <Enterprises enterprises={display || []} currentPage={ currentPage } setCurrentPage={ setCurrentPage }></Enterprises>
             
                 }
@@ -251,7 +234,6 @@ export function AISearchBar() {
                 
 
             </div>
-            
 
 
            
