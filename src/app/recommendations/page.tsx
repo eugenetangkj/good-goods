@@ -11,8 +11,8 @@ import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 //View recommendations made by other people
 export default function Recommendations() {
   //List of recommendations to display
-  const [communityRecommendations, setCommunityRecommendation] = useState<CommunityRecommendation[]>([]);
-  const [areRecommendationsLoading, setAreRecommendationsLoading] = useState(true);
+  const [communityRecommendations, setCommunityRecommendations] = useState<CommunityRecommendation[]>([]);
+  // const [areRecommendationsLoading, setAreRecommendationsLoading] = useState(true);
 
 
   //Populate data when page loads
@@ -20,18 +20,19 @@ export default function Recommendations() {
     // Function to fetch data from the API
     const fetchRecommendations = async () => {
       try {
-        setAreRecommendationsLoading(true);
+        // setAreRecommendationsLoading(true);
         const response = await fetch("/api/retrieveCommunityRecommendations");
         if (!response.ok) {
           throw new Error("Cannot get recommendations");
         }
         const data = await response.json(); // Convert response to JSON
-        setAreRecommendationsLoading(false)
-        setCommunityRecommendation(data["recommendations"] || []);
+        console.log(data);
+        // setAreRecommendationsLoading(false)
+        setCommunityRecommendations(data["recommendations"] || []);
 
       } catch (error) {
-            setAreRecommendationsLoading(false);
-            setCommunityRecommendation([]); //Just return no recommendation
+            // setAreRecommendationsLoading(false);
+            setCommunityRecommendations([]); //Just return no recommendation
       } finally {
       }
     };
@@ -44,15 +45,15 @@ export default function Recommendations() {
       <div className='flex flex-col justify-start'>
         <Navbar />
 
-        {(areRecommendationsLoading)
+        {/* {(areRecommendationsLoading)
         ?
             (<div className="absolute inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center">
             <div className="w-16 h-16 border-4 border-t-4 border-t-transparent border-white rounded-full animate-spin"></div>
             </div>)
-        :
+        : */}
         
-        //Body
-        (<div className='flex flex-col justify-center p-4 space-y-16 mt-12.5vh'>
+        
+        <div className='flex flex-col justify-center p-4 space-y-16 mt-12.5vh'>
           <div className='flex flex-col justify-center space-y-8'>
             {/* Title and add recommendation button */}
             <div className='flex flex-row flex-wrap items-center'>
@@ -109,7 +110,8 @@ export default function Recommendations() {
             
             
           </div>
-      </div>)}
+      </div>
+      {/* } */}
      
 
       <Footer />
