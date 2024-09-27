@@ -5,6 +5,7 @@ import Footer from "@/components/common/Footer";
 import { useState, useEffect } from "react";
 import { CommunityRecommendation } from "@/constants/CommunityRecommendation";
 import Link from "next/link";
+import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 
 
 //View recommendations made by other people
@@ -72,11 +73,11 @@ export default function Recommendations() {
             <h5 className='text-sm md:text-base'>Upvote community-recommended social enterprises to be featured in Good Goods!</h5>
 
             {/* Recommendations List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2.5xl:grid-cols-4 gap-8 w-fit">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2.5xl:grid-cols-4 gap-8 w-fit self-center">
                 {communityRecommendations.map((recommendation) => (
 
                     <Link href={`./${recommendation['enterpriseName']}`} passHref>  
-                    <div className="cursor-pointer p-2 sm:p-6 space-y-4 bg-white rounded-xl card w-72 h-72 lg:w-96 lg:h-56 flex flex-col justify-center lg:flex-row space-x-4">
+                    <div className="cursor-pointer p-4 sm:p-6 space-y-4 bg-white rounded-xl card w-72 h-72 lg:w-96 lg:h-56 flex flex-col justify-center lg:flex-row space-x-4">
                             {/* Image */}
                             
                             {/* Store name and Description */}
@@ -87,6 +88,25 @@ export default function Recommendations() {
                                 <p className="text-sm xl:text-base line-clamp-4">
                                     {recommendation['description']}
                                 </p>
+
+                                {/* Likes and Dislikes */}
+                                <div className='flex flex-row self-end'>
+                                {/* Likes */}
+                                <div className="text-blue-700 border font-medium rounded-full text-sm p-2.5 text-center flex flex-row justify-center items-center duration-200 border-none space-x-1">
+                                  <h6 className='text-gray-700 font-semibold'>{recommendation['numberOfLikes']}</h6>
+                                  <FaRegThumbsUp />
+                                </div>
+
+                                {/* Dislikes */}
+                                <div className="text-gray-500 border font-medium rounded-full text-sm p-2.5 text-center flex flex-row justify-center items-center duration-200 border-none space-x-1">
+                                  <h6 className='text-gray-700 font-semibold'>{recommendation['numberOfDislikes']}</h6>
+                                  <FaRegThumbsDown />
+                                </div>
+
+                                </div>
+
+                                
+                               
                             </div>
                     </div>
                     </Link>
