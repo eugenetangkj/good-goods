@@ -9,11 +9,11 @@ export async function GET() {
     // Connect to MongoDB
     await connectToDB();
 
-    // // Fetch social enterprises
-    const enterprises = await Recommendation.find();
+    // // Fetch recommendations
+    const recommendations = await Recommendation.find();
 
     // Return the enterprises as JSON
-    return NextResponse.json({enterprises});
+    return NextResponse.json({recommendations});
   } catch (error) {
     return NextResponse.json(
       { message: "Cannot fetch recommendations", error },
