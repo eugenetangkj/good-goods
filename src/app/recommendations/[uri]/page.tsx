@@ -6,7 +6,6 @@ import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { CommunityRecommendation } from '@/constants/CommunityRecommendation';
 import IndividualRecommendation from '@/components/recommend/IndividualRecommendation';
-import { CommunityRecommendationComment } from "@/constants/CommunityRecommendationComment";
 
 
 function ViewCommunityRecommendation() {

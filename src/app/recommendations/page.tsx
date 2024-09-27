@@ -69,7 +69,7 @@ export default function Recommendations() {
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2.5xl:grid-cols-4 gap-8 w-fit self-center">
                 {communityRecommendations.map((recommendation) => (
 
-                    <Link href={`./recommendations/${recommendation['_id']}`} passHref>  
+                    <Link key={recommendation._id} href={`./recommendations/${recommendation['_id']}`} passHref>  
                     <div className="cursor-pointer p-4 sm:p-6 space-y-4 bg-white rounded-xl card w-72 h-72 lg:w-96 lg:h-56 flex flex-col justify-center lg:flex-row space-x-4">
                             
                             {/* Store name and Description */}
