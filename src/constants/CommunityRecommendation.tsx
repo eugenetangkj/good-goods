@@ -5,4 +5,5 @@ export interface CommunityRecommendation {
     "numberOfLikes": number;
     "numberOfDislikes": number,
     "comments": string[],
+    "emailAddress": string,
 }

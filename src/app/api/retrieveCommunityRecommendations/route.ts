@@ -11,7 +11,6 @@ export async function GET() {
 
     // // Fetch recommendations
     const recommendations = await CommunityRecommendation.find();
-    console.log(recommendations);
 
 
     // Return the enterprises as JSON

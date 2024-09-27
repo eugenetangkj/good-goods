@@ -2,14 +2,13 @@
 import mongoose from "mongoose";
 
 const CommunityRecommendationSchema = new mongoose.Schema({
-  enterpriseName: String,
-  description: String,
-  website: String,
-  numberOfLikes: Number,
-  numberOfDislikes: Number,
-  comments: [String]
-},
-);
+  enterpriseName: { type: String, required: true },
+  description: { type: String, required: true },
+  website: { type: String, required: true },
+  numberOfLikes: { type: Number, default: 0 },
+  numberOfDislikes: { type: Number, default: 0 },
+  comments: { type: [String], default: [] },
+  emailAddress: { type: String, required: true },
+});
 
-export default mongoose.models.CommunityRecommendation ||
-  mongoose.model("CommunityRecommendation", CommunityRecommendationSchema);
+export default mongoose.models.CommunityRecommendation || mongoose.model("CommunityRecommendation", CommunityRecommendationSchema);

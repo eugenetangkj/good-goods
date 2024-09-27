@@ -11,11 +11,11 @@ export function RecommendForm() {
     //Email input value
     const [emailInput, setEmailInput] = useState('');
     //Enterprise name input value
-    const [enterpriseNameInput, setBusinessNameInput] = useState('');
+    const [enterpriseNameInput, setEnterpriseNameInput] = useState('');
     //Enterprise description input value
     const [descriptionInput, setDescriptionInput] = useState('');
     //Enterprise contact input value
-    const [enterpriseContactInput, setBusinessContactInput] = useState('');
+    const [enterpriseContactInput, setEnterpriseContactInput] = useState('');
     
 
     //Controls modal
@@ -35,6 +35,10 @@ export function RecommendForm() {
         }
     }, [shouldModalAppear])
 
+    useEffect(() => {
+
+    }, [isLoading]);
+
 
 
     //Function that runs when user changes email input
@@ -43,7 +47,7 @@ export function RecommendForm() {
     };
     //Function that runs when user changes business name input
      const handleBusinessNameInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setBusinessNameInput(event.target.value);
+        setEnterpriseNameInput(event.target.value);
     };
     //Function that runs when user changes description input
     const handleDescriptionInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -51,7 +55,7 @@ export function RecommendForm() {
     }
     //Function that runs when user changes business contact input
     const handleBusinessContactInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setBusinessContactInput(event.target.value);
+        setEnterpriseContactInput(event.target.value);
     };
 
    
@@ -61,12 +65,12 @@ export function RecommendForm() {
         try {
             const newMessage = "From: " + emailInput + "\n\n" + "Enterprise to recommend: " + enterpriseNameInput + "\n\n" + "Enterprise Description: " + descriptionInput
             + "\n\n" + "Enterprise Website/Location: " + enterpriseContactInput
-            await sendEmail("Recommendation: " + enterpriseNameInput, newMessage);
+            await makeApiCalls("Recommendation: " + enterpriseNameInput, newMessage, emailInput, enterpriseNameInput, descriptionInput, enterpriseContactInput);
            
             //Reset fields
             setEmailInput("");
-            setBusinessNameInput("");
-            setBusinessContactInput("");
+            setEnterpriseNameInput("");
+            setEnterpriseContactInput("");
             setDescriptionInput("");
             } catch (error) {
                 console.error("Error sending email:", error);
@@ -76,11 +80,11 @@ export function RecommendForm() {
     };
 
     
-    //Helper function that makes the API request
-    const sendEmail = async (subject: string, message: string) => {
-
+    //Helper function that makes the API requests
+    const makeApiCalls = async (subject: string, message: string, emailInput: string, enterpriseNameInput: string, descriptionInput: string, enterpriseContactInput:string) => {
+        setIsLoading(true);
+        // API to send email
         try {
-            setIsLoading(true);
             const response = await fetch("/api/sendContactEmail", {
                 method: "post",
                 headers: {
@@ -99,8 +103,6 @@ export function RecommendForm() {
                 );
             }
             setShouldModalAppear(true);
-            setShouldModalShowSuccess(true);
-            setIsLoading(false);
             console.log(data);
         } catch (error) {
             setIsLoading(false);
@@ -108,6 +110,36 @@ export function RecommendForm() {
             setShouldModalShowSuccess(false);
             console.log(error);
             throw new Error(`Error sending email: ${(error as Error).message}`);
+        }
+
+
+        // API to add recommendation into database
+        try {
+            const response = await fetch("/api/addCommunityRecommendation", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ emailInput, enterpriseNameInput, descriptionInput, enterpriseContactInput }),
+            });
+            const data = await response.json();
+            if (data.status != 201) {
+                setShouldModalAppear(true);
+                setShouldModalShowSuccess(false);
+                setIsLoading(false);
+                throw new Error(
+                    `Add recommendation request failed with status: ${response.status}`
+                );
+            }
+            setShouldModalAppear(true);
+            setShouldModalShowSuccess(true);
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+            setShouldModalAppear(true);
+            setShouldModalShowSuccess(false);
+            console.log(error);
+            throw new Error(`Error adding recommendation: ${(error as Error).message}`);
         }
     };
 
