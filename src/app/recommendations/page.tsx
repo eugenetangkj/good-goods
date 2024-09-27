@@ -11,7 +11,7 @@ import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 //View recommendations made by other people
 export default function Recommendations() {
   //List of recommendations to display
-  const [communityRecommendations, setCommunityRecommendation] = useState<CommunityRecommendation[]>([]);
+  const [communityRecommendations, setCommunityRecommendations] = useState<CommunityRecommendation[]>([]);
   const [areRecommendationsLoading, setAreRecommendationsLoading] = useState(true);
 
 
@@ -26,12 +26,13 @@ export default function Recommendations() {
           throw new Error("Cannot get recommendations");
         }
         const data = await response.json(); // Convert response to JSON
+        console.log(data);
         setAreRecommendationsLoading(false)
-        setCommunityRecommendation(data["recommendations"] || []);
+        setCommunityRecommendations(data["recommendations"] || []);
 
       } catch (error) {
             setAreRecommendationsLoading(false);
-            setCommunityRecommendation([]); //Just return no recommendation
+            setCommunityRecommendations([]); //Just return no recommendation
       } finally {
       }
     };
