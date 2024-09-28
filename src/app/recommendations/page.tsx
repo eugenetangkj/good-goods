@@ -12,7 +12,7 @@ import { FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
 export default function Recommendations() {
   //List of recommendations to display
   const [communityRecommendations, setCommunityRecommendations] = useState<CommunityRecommendation[]>([]);
-  const [areRecommendationsLoading, setAreRecommendationsLoading] = useState(true);
+  //const [areRecommendationsLoading, setAreRecommendationsLoading] = useState(true);
 
 
   //Populate data when page loads
@@ -27,11 +27,11 @@ export default function Recommendations() {
         }
         const data = await response.json(); // Convert response to JSON
         console.log(data);
-        setAreRecommendationsLoading(false)
+        //setAreRecommendationsLoading(false)
         setCommunityRecommendations(data["recommendations"] || []);
 
       } catch (error) {
-            setAreRecommendationsLoading(false);
+            //setAreRecommendationsLoading(false);
             setCommunityRecommendations([]); //Just return no recommendation
       } finally {
       }
@@ -45,12 +45,12 @@ export default function Recommendations() {
       <div className='flex flex-col justify-start'>
         <Navbar />
 
-        {(areRecommendationsLoading)
+        {/* {(areRecommendationsLoading)
         ?
             (<div className="absolute inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center">
             <div className="w-16 h-16 border-4 border-t-4 border-t-transparent border-white rounded-full animate-spin"></div>
             </div>)
-        :
+        : */}
         
         
         <div className='flex flex-col justify-center p-4 space-y-16 mt-12.5vh'>
@@ -111,7 +111,7 @@ export default function Recommendations() {
             
           </div>
       </div>
-    }
+    {/* } */}
      
 
       <Footer />
