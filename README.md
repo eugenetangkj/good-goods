@@ -13,7 +13,7 @@ Singaporeans recognise the importance of social enterprises and are willing to s
 ### Solution
 Meet Good Goods, an online platform that effortlessly connects consumers with social enterprises in Singapore. 😄🛒
 
-### Features
+#### Features
 1. Search bar to discover social enterprises that meet your product needs.
 2. Filter enterprises by format, region, and product type.
 3. View detailed information about social enterprises.
