@@ -20,15 +20,15 @@ Meet Good Goods, an online platform that effortlessly connects consumers with so
 4. Recommend social enterprises to be featured on Good Goods.
 
 
-### Implementation
-#### Front-end
+#### Implementation
+##### Front-end
 The front-end is built using Next.JS, with a mix of server-side and client-side components. TailwindCSS was used as the CSS framework, and Flowbite was used as the component library.
 
-#### Back-end
+##### Back-end
 MongoDB was used as both a data store and a vector store. The front-end retrieves data of social enterprises by making API calls to the MongoDB database.
 
 
-#### Retrieval Augmented Generation (RAG)
+##### Retrieval Augmented Generation (RAG)
 RAG was used for the search bar. This allows us to perform semantic search, so consumers can search using a natural language query and we can retrieve relevant results. For example, if the consumer searches for 'latte', related results like cafes would appear, despite their data not containing the actual word 'latte'.
 
 The high level idea of our implementation is as follows:
@@ -38,6 +38,8 @@ The high level idea of our implementation is as follows:
 4. Using the Approximate Nearest Neighbour (ANN) algorithm available in MongoDB's vector search, the 10 most similar social enterprises will be retrieved.
 5. The retrieved data will be fed as context into an OpenAI model. A prompt is then engineered to ask the model to return the relevant social enterprises that satisfy the user's query.
 
+##### Deployment
+Good Goods is deployed using Vercel.
 
-### More Information
+### Additional Information
 Good Goods was created during Open Government Products' Build for Good hackathon in 2024. Currently, only 20 social enterprises are featured on Good Goods.
